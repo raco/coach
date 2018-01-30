@@ -29,23 +29,25 @@
                             </div>
                         </div>
 
+                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="lastname">Lastname</label>  
+                            <div class="col-md-6">
+                                <input id="lastname" name="lastname" placeholder="" class="form-control input-md" type="text"> 
+                        </div>
+                    </div>
 
-
-                    <div class="form-group">
-  <label class="col-md-4 control-label" for="lastname">Lastname</label>  
-  <div class="col-md-6">
-  <input id="lastname" name="lastname" placeholder="" class="form-control input-md" type="text">
-    
+             <div class="form-group">
+               <label class="col-md-4 control-label" for="gender">Sexo</label>
+                <div class="col-md-4">
+                    <select id="selectbasic" name="gender" class="form-control">
+             <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+                    </select>
   </div>
 </div>
 
 
-
-
-
-
-
-
+                    
 
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
