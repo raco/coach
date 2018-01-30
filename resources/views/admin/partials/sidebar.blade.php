@@ -24,10 +24,10 @@
             
             {{-- MENU --}}
             <li class="active">
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Coaches</span> <span class="fa arrow"></span></a>
+                <a href="{{route('coach.list')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Coaches</span> <span class="fa arrow"></span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Clientes</span><span class="fa arrow"></span></a>
+                <a href="{{route('client.list')}}"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Clientes</span><span class="fa arrow"></span></a>
             </li>
         </ul>
     </div>

@@ -3,13 +3,13 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Coaches</h2>
+                <h2>Clientes</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/">Admin</a>
                     </li>
                     <li class="active">
-                        <strong>Coaches</strong>
+                        <strong>Clientes</strong>
                     </li>
                 </ol>
             </div>
@@ -20,7 +20,7 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 
-{{-- Aqui empieza el listado de Coach --}}
+{{-- Aqui empieza el listado de Clientes --}}
                 <div class="col-sm-12">
                     <div class="ibox">
                         <div class="ibox-content">
@@ -34,25 +34,25 @@
                           		<div class="table-responsive">
                                     <table class="table table-striped table-hover">
                                     	<tbody>
-                                    		@foreach ($coaches as $coach)
+                                    		@foreach ($clientes as $client)
 	                                    		<tr>
 		                                            <td class="client-avatar">
 		                                            	<img alt="image" src="img/a2.jpg"> 
 		                                            </td>
 		                                          
 		                                            <td>
-		                                            	<a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->user->name }}</a>
+		                                            	<a data-toggle="tab" href="#contact-1" class="client-link">{{ $client->user->name }}</a>
 		                                            </td>
 		                                            <td> 
-		                                            	{{ $coach->user->lastname }}		                                            	
+		                                            	{{ $client->user->lastname }}		                                            	
 		                                            </td>
 		                                            <td class="contact-type"><i class="fa fa-phone"> </i></td>
-                                            		<td>{{ $coach->user->phone }}</td>
+                                            		<td>{{ $client->user->phone }}</td>
 		                                            <td class="contact-type">
 		                                            	<i class="fa fa-envelope"> </i>
 		                                            </td>
-		                                            <td>{{ $coach->user->email }}</td>
-		                                            	@if ($coach->user->gender == 'f')
+		                                            <td>{{ $client->user->email }}</td>
+		                                            	@if ($client->user->gender == 'f')
 			                                            <td class="contact-type">
 		                                            		<i class="fa fa-female"></i>
 			                                            </td>
@@ -65,7 +65,7 @@
 		                                            	@endif
 
 		                                            <td class="client-status">
-		                                            	@if ($coach->state)
+		                                            	@if ($client->state)
 		                                            		<span class="label label-primary">Activo</span>
 		                                            	@else
 		                                            		<span class="label label-danger">Inactivo</span>
@@ -88,5 +88,5 @@
             </div>
         </div>
 
-{{-- Aqui Termina el listado de Coach --}}
+{{-- Aqui Termina el listado de Clientes --}}
 @endsection

@@ -11,7 +11,7 @@ class CoachController extends Controller
 
     public function list()
     {
-        $coaches = Coach::with('user')->get();
+        $coaches = Coach::with('user')->get(); 
         return view('admin.pages.coaches.list', compact('coaches'));
     }
 }
