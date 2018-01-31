@@ -41,28 +41,35 @@
 		                                            </td>
 		                                          
 		                                            <td>
-		                                            	<a data-toggle="tab" href="#contact-1" class="client-link">{{ $client->user->name }}</a>
+		                                            	<a data-toggle="tab" href="#contact-1" class="client-link">
+			                                            @if ($client->user->gender == 'f')
+			                                            	{{ $client->user->name }} {{ $client->user->lastname }}
+			                                            	<i class="fa fa-venus text-muted"></i>
+														@else
+															{{ $client->user->name }} {{ $client->user->lastname }}
+															<i class="fa fa-mars text-muted"></i>
+		                                            	@endif
+		                                            	</a>
 		                                            </td>
-		                                            <td> 
-		                                            	{{ $client->user->lastname }}		                                            	
-		                                            </td>
+		                                           
 		                                            <td class="contact-type"><i class="fa fa-phone"> </i></td>
                                             		<td>{{ $client->user->phone }}</td>
 		                                            <td class="contact-type">
 		                                            	<i class="fa fa-envelope"> </i>
 		                                            </td>
 		                                            <td>{{ $client->user->email }}</td>
-		                                            	@if ($client->user->gender == 'f')
-			                                            <td class="contact-type">
-		                                            		<i class="fa fa-female"></i>
-			                                            </td>
-			                                            <td>Mujer</td>
-		                                            	@else
-	                                            	    <td class="contact-type">
-		                                            		<i class="fa fa-male"></i>
-			                                            </td>
-			                                            <td>Hombre</td>
-		                                            	@endif
+		                                   
+													@if ($client->coach->sex_coach == 'f')
+														<td class="contact-type"><i class="fa fa-female"></i></td> 
+														<td>
+														   {{ $client->coach->full_name }} 
+														</td>
+													@else
+														<td class="contact-type"><i class="fa fa-male"></i></td>
+														<td>
+															{{$client->coach->full_name }} 
+														</td>
+													@endif
 
 		                                            <td class="client-status">
 		                                            	@if ($client->state)

@@ -19,6 +19,16 @@ class Coach extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFullNameAttribute() //$coach->full_name
+    {
+    	return $this->user->name.' '.$this->user->lastname ;
+    }
+
+    public function getSexCoachAttribute() //$coach->gender
+    {
+    	return $this->user->gender;
+    }
 }
 
  
