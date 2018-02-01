@@ -79,7 +79,7 @@
 		                                            	@endif
 		                                            </td>
 		                                            <td>
-		                                            	<a href="#" class="btn btn-default">
+		                                            	<a href="{{ route('client.edit', $client->id) }}" class="btn btn-default">
 		                                            		<i class="fa fa-pencil"></i>
 		                                            	</a>
 		                                            </td>
