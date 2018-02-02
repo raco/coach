@@ -29,13 +29,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
     public function coach()
     {
         return $this->hasOne(Coach::class);
     }
 
     public function client(){
-        return $this->hasOne(Client::class); 
+        return $this->hasOne(Client::class);
     }
 
 }

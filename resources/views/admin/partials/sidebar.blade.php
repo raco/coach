@@ -4,7 +4,7 @@
             {{-- PROFILE --}}
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                    <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                    <img alt="image" class="img-circle" src="{{ asset('img/profile_small.jpg') }}" />
                      </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">José Perez</strong>
@@ -21,7 +21,7 @@
                     IN+
                 </div>
             </li>
-            
+
             {{-- MENU --}}
             <li class="active">
                 <a href="{{route('coach.list')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Coaches</span> <span class="fa arrow"></span></a>

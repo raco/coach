@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Client;
-use App\User;
-use App\Coach;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+namespace App\Http\Controllers\Admin;
 
-class ClienteController extends Controller
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Client;
+use App\Coach;
+use App\User;
+
+class ClientController extends Controller
 {
     public function index(){
-    	return view('clientes/index'); 
+    	return view('clientes/index');
     }
 
     public function list()
@@ -19,10 +20,9 @@ class ClienteController extends Controller
     	return view('admin.pages.clients.list',compact('clientes'));
     }
 
-    public function edit(Client $client) 
+    public function edit(Client $client)
     {
     	$coaches = Coach::with('user')->get();
-    	     // dd($coaches);
     	return view('admin.pages.clients.edit', compact('client','coaches'));
     }
 
@@ -41,36 +41,32 @@ class ClienteController extends Controller
 
 		$user->save();
 		$client->save();
+
 		\Session::flash('flash_message','Dato de cliente ha sido actualizado');
 		return redirect()->back();
     }
 
     public function create(){
         $coaches = Coach::with('user')->get();
-  return view('admin.pages.clients.create',compact('coaches')) ; 
-    } 
+  		return view('admin.pages.clients.create',compact('coaches')) ;
+    }
 
     public function store (Request $request){
         $client = new Client;
-     $user = new User;
-    // dd($request);
-    $user->name = $request['name'];
-    $user->lastname = $request['lastname'];
-    $user->gender = $request['sexo'];
-    $user->phone = $request['phone'];
-    $user->email = $request['email'];
-    $user->password = bcrypt($request['password']);
+	    $user = new User;
+	    $user->name = $request['name'];
+	    $user->lastname = $request['lastname'];
+	    $user->gender = $request['sexo'];
+	    $user->phone = $request['phone'];
+	    $user->email = $request['email'];
+	    $user->password = bcrypt($request['password']);
+	    $user->save();
 
-    $user->save();
-    $client->user_id = $user->id;
-    $client->state="1";
-    $client->coach_id=$request['coach'];
-    $client->save();
+	    $client->user_id = $user->id;
+	    $client->state="1";
+	    $client->coach_id=$request['coach'];
+	    $client->save();
 
-    return redirect()->back();
-
-
+	    return redirect()->back();
     }
-
-
-} 
+}
