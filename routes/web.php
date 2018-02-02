@@ -10,6 +10,9 @@ Auth::routes();
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
 	// Muestra Dashboard
 	Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+	// Valida email del client
+	Route::post('validate/email', 'AdminController@validateEmail')->name('validate.email');
+
 	// Listado de Clientes
 	Route::get('clients', 'ClientController@list')->name('client.list');
 	//Editar Cientes
@@ -18,8 +21,12 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('clients/edit/{client}', 'ClientController@update')->name('client.update');
 	// Llama al formulario para  nuevo Cliente
 	Route::get('clients/create', 'ClientController@create')->name('client.create');
-	// Graba datos del coach
+		// Graba datos del coach
 	Route::post('clients/create', 'ClientController@store')->name('client.store');
+
+
+
+
 
 	// Listado de Coach
 	Route::get('coaches', 'CoachController@list')->name('coach.list');

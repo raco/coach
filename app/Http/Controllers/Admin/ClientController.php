@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Client;
 use App\Coach;
 use App\User;
+
 
 class ClientController extends Controller
 {
@@ -51,7 +54,8 @@ class ClientController extends Controller
   		return view('admin.pages.clients.create',compact('coaches')) ;
     }
 
-    public function store (Request $request){
+    public function store (Request $request)
+    {
         $client = new Client;
 	    $user = new User;
 	    $user->name = $request['name'];
@@ -70,4 +74,8 @@ class ClientController extends Controller
 
 	    return redirect()->back();
     }
+
+   
+
 }
+

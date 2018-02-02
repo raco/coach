@@ -28,8 +28,9 @@
                             <h3 class="m-t-none m-b">Registrar Nuevo Cliente</h3>
                             <p>Ingrese los datos del nuevo cliente.</p>
 
-                            <form action="{{route('client.store')}}" method="POST" role="form">
-                                {{csrf_field()}}
+                            <form action="{{route('client.store')}}" method="POST" role="form" id='frmcreateclients'> 
+
+                               {{csrf_field()}}
 
                               {{--   @if(Session::has('flash_message'))
                                 <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
@@ -61,6 +62,11 @@
                                     <input id="txtemailclient" data-validation="email" type="email" name="email" placeholder="Enter email" class="form-control">
                                     
                                      <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
+
+                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">                                    
+                                </div>
+
+
 
                                 </div>
                                 <div class="form-group">
@@ -108,11 +114,13 @@ function caracteresCorreoValido(email, div){
 
     if (caract.test(email) == false){
         $(div).hide().removeClass('hide').slideDown('fast');
-
+$('#email-error').hide();
         return false;
     }else{
         $(div).hide().addClass('hide').slideDown('slow');
 //        $(div).html('');
+
+        $('#email-error').show();
         return true;
     }
 }
@@ -121,12 +129,36 @@ function caracteresCorreoValido(email, div){
 
 
  <script>
-   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta
+   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta y me valida emails existentes
    $('form').find('input[type=email]').blur(function(){
-      caracteresCorreoValido($(this).val(), '#xmail')
+      caracteresCorreoValido($(this).val(), '#xmail');
+
+
+
+        $.ajax({ 
+            url: '{{ route('validate.email') }}', 
+            type: 'POST', 
+            dataType: 'json', 
+            data: { email: $(this).val() }, 
+
+        })
+        .done(function(data) { 
+                 $('#email-error').css('visibility', 'visible');
+                 $('#email-error').css('color', 'green');
+           $('#email-error').text('Correo aceptado');
+         
+
+        })
+        .fail(function(response) { 
+            // alert(response.responseJSON.errors[0]); ]
+             $('#email-error').css('visibility', 'visible');
+             $('#email-error').css('color', 'red');
+           $('#email-error').text('El correo ya ha sido registrado');
+
+        });
+
     });
 </script> 
-
 
 
 {{-- Inicio de validacion de campos vacios --}}
@@ -148,27 +180,10 @@ function caracteresCorreoValido(email, div){
      
        }
        else
-              {$('#frmgrabacliente').submit();};
+              {$('#frmcreateclients').submit();};
        
    });
 </script>
 {{-- Fin de la validacion de los campos en blanco --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endpush

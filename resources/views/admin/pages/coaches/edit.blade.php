@@ -55,6 +55,14 @@
                                     <label>Email</label>
                                     <input value="{{ $coach->user->email }}"  type="email" id="txtemailcoach" name="email" placeholder="Enter email" class="form-control">
                                 </div>
+                                
+
+                                <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
+
+                         <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
+
+
+
                                 <div class="form-group"">
                                     @if ($coach->state)
                                     <label>
@@ -81,6 +89,88 @@
 @endsection
 {{-- Me valida los campos en blanco --}}
 @push('scripts')
+
+
+<script type="text/javascript">
+
+// funcion para validar el correo
+function caracteresCorreoValido(email, div){
+    console.log(email);
+    // var email = $(email).val();
+    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+    if (caract.test(email) == false){
+        $(div).hide().removeClass('hide').slideDown('fast');
+
+        return false;
+    }else{
+        $(div).hide().addClass('hide').slideDown('slow');
+//        $(div).html('');
+        return true;
+    }
+}
+</script>
+{{-- Fin de la  funcion para validar el correo --}}
+
+
+ <script type="text/javascript">
+
+// funcion para validar el correo
+function caracteresCorreoValido(email, div){
+    console.log(email);
+    // var email = $(email).val();
+    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+    if (caract.test(email) == false){
+        $(div).hide().removeClass('hide').slideDown('fast');
+$('#email-error').hide();
+        return false;
+    }else{
+        $(div).hide().addClass('hide').slideDown('slow');
+//        $(div).html('');
+
+        $('#email-error').show();
+        return true;
+    }
+}
+</script>
+{{-- Fin de la  funcion para validar el correo --}}
+
+
+ <script>
+   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta y me valida emails existentes
+   $('form').find('input[type=email]').blur(function(){
+      caracteresCorreoValido($(this).val(), '#xmail');
+
+
+
+        $.ajax({ 
+            url: '{{ route('validate.email') }}', 
+            type: 'POST', 
+            dataType: 'json', 
+            data: { email: $(this).val() }, 
+
+        })
+        .done(function(data) { 
+                 $('#email-error').css('visibility', 'visible');
+                 $('#email-error').css('color', 'green');
+           $('#email-error').text('Correo aceptado');
+         
+
+        })
+        .fail(function(response) { 
+            // alert(response.responseJSON.errors[0]); ]
+             $('#email-error').css('visibility', 'visible');
+             $('#email-error').css('color', 'red');
+           $('#email-error').text('El correo ya ha sido registrado');
+
+        });
+
+    });
+</script> 
+
+
+
 <script>
 $('#btnmod').click(function(event) {
 event.preventDefault();

@@ -1,6 +1,7 @@
 @extends('admin.layout')
 @section('content')
 {{-- Cabecera --}}
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Coach</h2>
@@ -35,10 +36,11 @@
                                 @endif
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input  type="text" name= "name" placeholder="Ingrese Nombres" class="form-control">
+                                    <input id='txtnomcoach' type="text" name= "name" placeholder="Ingrese Nombres" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Apellidos</label> <input type="text" name='lastname' placeholder="Ingrese Apellidos" class="form-control" >
+                                    <label>Apellidos</label> 
+                                    <input id='txtlnamecoach' type="text" name='lastname' placeholder="Ingrese Apellidos" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label class="form-group">Sexo</label>
@@ -49,19 +51,33 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Teléfono</label>
-                                    <input type="text" placeholder="" name='phone'class="form-control">
+                                    <input id='txtphonecoach' type="text" placeholder="" name='phone'class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input  type="email" name="email" placeholder="Enter email" id="txtemailcoach" class="form-control">
                                 </div>
+
+                                  <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
+
+                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">                                    
+                                </div>
+
+
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input  type="password" name="password" placeholder="" class="form-control">
+                                    <input id='txtpasscoach'  type="password" name="password" placeholder="" class="form-control">
                                 </div>
-                                <br>
+                               
+
+                               <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">                                    
+                                </div>
+
+                                
+
+
                                 <div class="form-group">
-                                    <button class="btn btn-primary pull-right m-t-n-xs" type="submit"><strong>REGISTRAR</strong></button>
+                                    <button class="btn btn-primary pull-right m-t-n-xs" type="submit" id='btnguardar'><strong>REGISTRAR</strong></button>
                                 </div>
                             </form>
                         </div>
@@ -87,11 +103,13 @@ function caracteresCorreoValido(email, div){
 
     if (caract.test(email) == false){
         $(div).hide().removeClass('hide').slideDown('fast');
-
+$('#email-error').hide();
         return false;
     }else{
         $(div).hide().addClass('hide').slideDown('slow');
 //        $(div).html('');
+
+        $('#email-error').show();
         return true;
     }
 }
@@ -100,9 +118,34 @@ function caracteresCorreoValido(email, div){
 
 
  <script>
-   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta
+   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta y me valida emails existentes
    $('form').find('input[type=email]').blur(function(){
-      caracteresCorreoValido($(this).val(), '#xmail')
+      caracteresCorreoValido($(this).val(), '#xmail');
+
+
+
+        $.ajax({ 
+            url: '{{ route('validate.email') }}', 
+            type: 'POST', 
+            dataType: 'json', 
+            data: { email: $(this).val() }, 
+
+        })
+        .done(function(data) { 
+                 $('#email-error').css('visibility', 'visible');
+                 $('#email-error').css('color', 'green');
+           $('#email-error').text('Correo aceptado');
+         
+
+        })
+        .fail(function(response) { 
+            // alert(response.responseJSON.errors[0]); ]
+             $('#email-error').css('visibility', 'visible');
+             $('#email-error').css('color', 'red');
+           $('#email-error').text('El correo ya ha sido registrado');
+
+        });
+
     });
 </script> 
 
@@ -115,18 +158,24 @@ function caracteresCorreoValido(email, div){
     $('#btnguardar').click(function(event) {
         event.preventDefault();
         var name = $('#txtnomcoach'),
-        lastname = $('#txtapecoach'),
+        lastname = $('#txtlnamecoach'),
         fone = $('#txtphonecoach'),
-        email = $('#txtemailcoach');
+        email = $('#txtmailcoach');
+         password = $('#txtpasscoach');
         
         if (name.val().length == 0 ||
             lastname.val().length == 0 ||
             fone.val().length == 0 ||
+            password.val().length == 0 ||
             email.val().length == 0) { 
             $('#register-error').css('visibility', 'visible');
             $('#register-error').text('Llena todos los campos.');
         }
-        else{$('#frmgrabacoach').submit(); 
+        else
+            {$('#frmgrabacoach').submit(); 
+
+            $('#register-error').css('visibility', 'visible');
+           $('#register-error').text('Llena todos los campos.');
         
     };
 
