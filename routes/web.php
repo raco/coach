@@ -1,4 +1,7 @@
 <?php
+Route::get('/', function () {
+    return redirect('/login');
+});
 Auth::routes();
 
 // Listado de Coach
@@ -10,11 +13,3 @@ Route::get('clients/edit/{client}','ClienteController@edit')->name('client.edit'
 // Actualiza Clientes
 
 Route::post('clients/edit/{client}','ClienteController@update')->name('client.update');
-
-
-
-
-
-
-
-
