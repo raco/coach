@@ -66,8 +66,8 @@ class ClienteController extends Controller
     $client->state="1";
     $client->coach_id=$request['coach'];
     $client->save();
-
-    return redirect()->back();
+ \Session::flash('flash_message','Nuevo Cliente ha sido agregado');
+    return redirect()->back(); 
 
 
     }

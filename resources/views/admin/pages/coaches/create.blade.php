@@ -34,7 +34,7 @@
                                 <p>Edite los datos del coach.</p>
                                 
 
-                          <form action="{{route('coach.store')}}" method="POST" role="form">
+                          <form action="{{route('coach.store')}}" method="POST" role="form" id="frmgrabacoach">
 
 						{{csrf_field()}}
 
@@ -48,11 +48,11 @@
 
 								<div class="form-group"><label>Nombre</label> 
 								<input  type="text" 
-								name= "name" placeholder="Ingrese Nombres" class="form-control"></div>
+								name= "name" placeholder="Ingrese Nombres" id="txtnomcoach" class="form-control"></div>
 
                        
 
-                                	<div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' placeholder="Ingrese Apellidos" class="form-control" ></div>
+                                	<div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' placeholder="Ingrese Apellidos" id="txtapecoach" class="form-control" ></div>
                                     
                                     
 
@@ -68,19 +68,21 @@
 
 
 								<div class="form-group"><label>Teléfono</label> 
-									<input type="text" placeholder="" name='phone'class="form-control"></div>
+									<input id="txtphonecoach" type="text" placeholder="" name='phone'class="form-control"></div>
 
 
 
-                                    <div class="form-group"><label>Email</label> <input  type="email" name="email" placeholder="Enter email" class="form-control"></div>
+                                    <div class="form-group"><label>Email</label> <input  type="email" name="email" placeholder="Enter email" id="txtemailcoach" class="form-control"></div>
 
                                       <div class="form-group"><label>Password</label> <input  type="password" name="password" placeholder="" class="form-control"></div>
                                    
 						
 								
+                                    <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">                                    
+                                     </div>
 
                                     <div>
-                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Guardar</strong></button>
+                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="btnguardar" type="submit"><strong>Guardar</strong></button>
                                     </div>
 
 
@@ -95,3 +97,65 @@
     				</div>
                                 </form>
 @endsection
+
+@push('scripts')
+
+
+<script type="text/javascript">
+
+// funcion para validar el correo
+function caracteresCorreoValido(email, div){
+    console.log(email);
+    // var email = $(email).val();
+    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+    if (caract.test(email) == false){
+        $(div).hide().removeClass('hide').slideDown('fast');
+
+        return false;
+    }else{
+        $(div).hide().addClass('hide').slideDown('slow');
+//        $(div).html('');
+        return true;
+    }
+}
+</script>
+{{-- Fin de la  funcion para validar el correo --}}
+
+
+ <script>
+   // cuando pierde el foco, este valida si lo que esta en el campo de texto si es un correo o no y muestra una respuesta
+   $('form').find('input[type=email]').blur(function(){
+      caracteresCorreoValido($(this).val(), '#xmail')
+    });
+</script> 
+
+
+
+
+
+
+<script>
+    $('#btnguardar').click(function(event) {
+        event.preventDefault();
+        var name = $('#txtnomcoach'),
+        lastname = $('#txtapecoach'),
+        fone = $('#txtphonecoach'),
+        email = $('#txtemailcoach');
+        
+        if (name.val().length == 0 ||
+            lastname.val().length == 0 ||
+            fone.val().length == 0 ||
+            email.val().length == 0) { 
+            $('#register-error').css('visibility', 'visible');
+            $('#register-error').text('Llena todos los campos.');
+        }
+        else{$('#frmgrabacoach').submit(); 
+        
+    };
+
+
+    });
+</script>
+{{-- Fin de la validacion de los campos en blanco --}}
+@endpush

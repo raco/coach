@@ -59,6 +59,7 @@ $user->save();
 $coach->user_id = $user->id;
 $coach->state="1";
 $coach->save();
+  \Session::flash('flash_message','Nuevo Coach ha sido agregado');
 return redirect()->back();
    }
 }
