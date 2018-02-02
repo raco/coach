@@ -25,15 +25,3 @@ Route::post('coaches/edit/{coach}','CoachController@update')->name('coach.update
 Route::get('coaches/create','CoachController@create')->name('coach.create');
 // Graba datos del coach
 Route::post('coaches/create','CoachController@store')->name('coach.store');
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> ff62de47e762cf8f01cc9a962d497882aee68025
