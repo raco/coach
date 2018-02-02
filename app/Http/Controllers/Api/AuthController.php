@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -24,7 +25,22 @@ class AuthController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        // all good so return the token
-        return response()->json(compact('token'));
+        $user = JWTAuth::setToken($token)->authenticate();
+        $response = [
+        	'message' => 'Usuario autenticado exitosamente.',
+            'data' => ['user' => $user],
+            'token' => $token
+        ];
+        return ($user->client || $user->coach) ? response()->json($response, 200) : response()->json(['error' => 'invalid_credentials'], 401);
+    }
+
+    public function logout()
+    {
+    	$token = JWTAuth::getToken();
+    	JWTAuth::invalidate($token);
+
+    	return response()->json([
+    		'message' => 'El usuario a cerrado sesión.',
+        ], 200);
     }
 }

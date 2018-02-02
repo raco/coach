@@ -46,8 +46,17 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+        if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+            return response()->json(['token_expired'], 401);
+        } else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            return response()->json(['token_invalid'], 401);
+        } else if ($e instanceof \Tymon\JWTAuth\Exceptions\JWTException) {
+            return response()->json(['token_not_provided'], 401);
+        }
+
+        return parent::render($request, $e);
     }
+
 }
