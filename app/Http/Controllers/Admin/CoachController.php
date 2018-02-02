@@ -37,11 +37,13 @@ class CoachController extends Controller
 		return redirect()->back();
    	}
 
-   	public function create(){
+   	public function create()
+   	{
 		return view('admin.pages.coaches.create');
    	}
 
-   	public function store(Request $request){
+   	public function store(Request $request)
+   	{
 		$coach = new Coach;
 		$user = new User;
 		$user->name = $request['name'];
@@ -55,6 +57,7 @@ class CoachController extends Controller
 		$coach->user_id = $user->id;
 		$coach->state = true;
 		$coach->save();
+		\Session::flash('flash_message','Nuevo Coach ha sido agregado');
 		return redirect()->back();
    }
 }
