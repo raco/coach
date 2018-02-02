@@ -33,7 +33,8 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('coaches/create', 'CoachController@store')->name('coach.store');
 });
 
-Route::middleware(['auth', 'admin', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {
+Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {
 	// Listado de Clientes del coach
-	Route::get('clients', 'ClienteController@list')->name('client.list');
+	Route::get('dashboard', 'CoachController@dashboard')->name('coach.dashboard');
+	Route::get('clients', 'CoachController@clientList')->name('coach.client.list');
 });

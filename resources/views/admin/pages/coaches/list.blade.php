@@ -11,11 +11,6 @@
                 <strong>Coaches</strong>
             </li>
         </ol>
-        <div class="pull-right">
-            <a href="{{ route('coach.create') }}"   class="btn btn-info">Crear</a>
-        </div>
-    </div>
-    <div class="col-lg-2">
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -23,11 +18,17 @@
         {{-- Aqui empieza el listado de Coach --}}
         <div class="col-sm-12">
             <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Listado de todos los coaches.</h5>
+                    <div class="ibox-tools">
+                        <a href="{{ route('coach.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Coach</a>
+                    </div>
+                </div>
                 <div class="ibox-content">
                     <div class="input-group">
                         <input type="text" placeholder="Buscar coach..." class="input form-control">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn btn-info"> <i class="fa fa-search"></i> Buscar</button>
                         </span>
                     </div>
                     <div class="clients-list">
@@ -36,14 +37,18 @@
                                 <tbody>
                                     @foreach ($coaches as $coach)
                                     <tr>
+                                        <td class="client-status">
+                                            @if ($coach->state)
+                                            <span class="label label-primary">Activo</span>
+                                            @else
+                                            <span class="label label-danger">Inactivo</span>
+                                            @endif
+                                        </td>
                                         <td class="client-avatar">
-                                            <img alt="image" src="img/a2.jpg">
+                                            <img alt="image" src="{{ asset('img/a2.jpg') }}">
                                         </td>
                                         <td>
-                                            <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->user->name }}</a>
-                                        </td>
-                                        <td>
-                                            {{ $coach->user->lastname }}
+                                            <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->full_name }}</a>
                                         </td>
                                         <td class="contact-type"><i class="fa fa-phone"> </i></td>
                                         <td>{{ $coach->user->phone }}</td>
@@ -62,13 +67,7 @@
                                         </td>
                                         <td>Hombre</td>
                                         @endif
-                                        <td class="client-status">
-                                            @if ($coach->state)
-                                            <span class="label label-primary">Activo</span>
-                                            @else
-                                            <span class="label label-danger">Inactivo</span>
-                                            @endif
-                                        </td>
+
                                         <td>
                                             <a href="{{ route('coach.edit', $coach->id) }}" class="btn btn-default">
                                                 <i class="fa fa-pencil"></i>

@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('coach.layout')
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
@@ -22,10 +22,7 @@
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-title">
-                    <h5>Listado de todos los clientes.</h5>
-                    <div class="ibox-tools">
-                        <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Cliente</a>
-                    </div>
+                    <h5>Listado de todos mis clientes.</h5>
                 </div>
 				<div class="ibox-content">
 					<div class="input-group">
@@ -38,7 +35,7 @@
 						<div class="table-responsive">
 							<table class="table table-striped table-hover">
 								<tbody>
-									@foreach ($clientes as $client)
+									@foreach ($clients as $client)
 									<tr>
 										<td class="client-status">
 											@if ($client->state)
@@ -76,8 +73,8 @@
 											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
 										</td>
 										<td>
-											<a href="{{ route('client.edit', $client->id) }}" class="btn btn-default">
-												<i class="fa fa-pencil"></i>
+											<a href="#" class="btn btn-default">
+												<i class="fa fa-eye"></i>
 											</a>
 										</td>
 									</tr>

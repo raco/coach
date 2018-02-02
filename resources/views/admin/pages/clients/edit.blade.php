@@ -8,8 +8,8 @@
             <li>
                 <a href="/">Admin</a>
             </li>
-            <li class="active">
-                Clientes
+            <li>
+                <a href="{{ route('client.list') }}">Clientes</a>
             </li>
             <li class="active">
                 <strong>Editar</strong>
