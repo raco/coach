@@ -4,6 +4,5 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'AuthController@authenticate');
 
-Route::middleware('auth:api')->post('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('profile', 'ClientController@profile');
+Route::post('profile/update', 'ClientController@updateProfile');
