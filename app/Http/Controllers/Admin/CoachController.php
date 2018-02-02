@@ -60,4 +60,16 @@ class CoachController extends Controller
 		\Session::flash('flash_message','Nuevo Coach ha sido agregado');
 		return redirect()->back();
    }
+
+
+    public function updpass($id ,Request $request)
+   {
+		
+		$coach = Coach::findOrfail($id);
+		$user = User::findOrFail($coach->id);
+		$user->password= bcrypt($request['passcoach2']);
+		\Session::flash('flash_message','La contraseña ha sido modificado');
+		$user->save(); 
+		return redirect()->back();
+   }
 }

@@ -55,11 +55,10 @@
                                     <label>Email</label>
                                     <input value="{{ $coach->user->email }}"  type="email" id="txtemailcoach" name="email" placeholder="Enter email" class="form-control">
                                 </div>
-                                
+                                    
+                                     <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
-                                <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
-
-                         <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
+                                <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
 
 
 
@@ -84,6 +83,38 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-5">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12"><h3 class="m-t-none m-b">Editar</h3>
+                            <p>Modifique la contraseña del Coach.</p>
+                            <form action="{{route('coach.UpdatepasswordCoach',$coach->id)}}" method="POST" >
+                                {{csrf_field()}}
+                                @if(Session::has('flash_message'))
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok">
+                                </span><em> {!! session('flash_message') !!}</em>
+                                </div>
+                                @endif
+                                <div class="form-group"> 
+                               
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input value=""  type="password"  name="passcoach2" placeholder="" class="form-control">
+                                </div>
+                                    
+                                  {{--    <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
+
+                                <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div> --}}
+                               
+                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
+                                <button class="btn btn-primary pull-right m-t-n-xs" type="submit" id="btnmod"><strong>Actualizar Contraseña</strong></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -92,28 +123,6 @@
 
 
 <script type="text/javascript">
-
-// funcion para validar el correo
-function caracteresCorreoValido(email, div){
-    console.log(email);
-    // var email = $(email).val();
-    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-    if (caract.test(email) == false){
-        $(div).hide().removeClass('hide').slideDown('fast');
-
-        return false;
-    }else{
-        $(div).hide().addClass('hide').slideDown('slow');
-//        $(div).html('');
-        return true;
-    }
-}
-</script>
-{{-- Fin de la  funcion para validar el correo --}}
-
-
- <script type="text/javascript">
 
 // funcion para validar el correo
 function caracteresCorreoValido(email, div){
@@ -143,7 +152,6 @@ $('#email-error').hide();
       caracteresCorreoValido($(this).val(), '#xmail');
 
 
-
         $.ajax({ 
             url: '{{ route('validate.email') }}', 
             type: 'POST', 
@@ -168,8 +176,6 @@ $('#email-error').hide();
 
     });
 </script> 
-
-
 
 <script>
 $('#btnmod').click(function(event) {

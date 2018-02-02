@@ -38,6 +38,9 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('coaches/create', 'CoachController@create')->name('coach.create');
 	// Graba datos del coach
 	Route::post('coaches/create', 'CoachController@store')->name('coach.store');
+	// Actualiza contraseña del coach
+	Route::post('coaches/uppassword/{client}', 'CoachController@updpass')->name('coach.UpdatepasswordCoach');
+
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {
