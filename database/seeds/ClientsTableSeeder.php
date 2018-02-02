@@ -12,9 +12,15 @@ class ClientsTableSeeder extends Seeder
     public function run()
     {
     	DB::table('clients')->insert([
-			'user_id'=>'2',
+			'user_id'=>'4',
 			'coach_id'=>'1',
             'state'=>'1',
     	]);
-            }
+
+        DB::table('clients')->insert([
+            'user_id'=>'3',
+            'coach_id'=>'2',
+            'state'=>'1',
+        ]);
+    }
 }

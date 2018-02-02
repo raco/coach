@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Clientes</h2>
+                <h2>Clientes</h2> 
                 <ol class="breadcrumb">
                     <li>
                         <a href="/">Admin</a>
@@ -11,6 +11,13 @@
                     <li class="active">
                         <strong>Clientes</strong>
                     </li>
+
+
+				<div class="pull-right">
+                    <a href="{{ route('client.create') }}"   class="btn btn-info">Crear</a>
+                </div>
+
+
                 </ol>
             </div>
             <div class="col-lg-2">

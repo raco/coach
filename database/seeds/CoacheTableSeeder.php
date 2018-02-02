@@ -15,5 +15,10 @@ class CoacheTableSeeder extends Seeder
             'state' => '1',
             'user_id' => '1', 
         ]);
+
+        DB::table('coaches')->insert([
+            'state' => '1',
+            'user_id' => '2', 
+        ]);
     }
 }

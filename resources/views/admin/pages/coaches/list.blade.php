@@ -11,6 +11,14 @@
                     <li class="active">
                         <strong>Coaches</strong>
                     </li>
+
+
+					<div class="pull-right">
+                    <a href="{{ route('coach.create') }}"   class="btn btn-info">Crear</a>
+                </div>
+
+
+
                 </ol>
             </div>
             <div class="col-lg-2">
@@ -69,11 +77,11 @@
 		                                            		<span class="label label-primary">Activo</span>
 		                                            	@else
 		                                            		<span class="label label-danger">Inactivo</span>
-		                                            	@endif
+		                                            	@endif 
 		                                            </td>
 		                                            <td>
-		                                            	<a href="#" class="btn btn-default">
-		                                            		<i class="fa fa-pencil"></i>
+		                                            	<a href="{{ route('coach.edit', $coach->id) }}" class="btn btn-default">
+		                                            		<i class="fa fa-pencil"></i>  
 		                                            	</a>
 		                                            </td>
 		                                        </tr>
