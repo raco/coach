@@ -40,6 +40,8 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('coaches/create', 'CoachController@store')->name('coach.store');
 	// Actualiza contraseña del coach
 	Route::post('coaches/uppassword/{client}', 'CoachController@updpass')->name('coach.UpdatepasswordCoach');
+	// Multi Busqueda  del coach
+	Route::post('coaches/search', 'CoachController@search')->name('coach.search');
 
 });
 

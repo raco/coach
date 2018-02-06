@@ -28,10 +28,12 @@
                             <p>Edite los datos del Coach.</p>
                             <form action="{{route('coach.edit',$coach->id)}}" method="POST" role="form id=" id="frmeditcoach">
                                 {{csrf_field()}}
+                               
                                 @if(Session::has('flash_message'))
                                 <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
                                 </div>
                                 @endif
+
                                 <div class="form-group">
                                     <label>Nombre</label>
                                     <input type="text" id="txtnomcoach" name="name" placeholder="Ingrese Nombres" class="form-control" value="{{ $coach->user->name }}">
@@ -58,8 +60,8 @@
                                     
                                      <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
-                                <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
-
+                                {{-- <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
+ --}}
 
 
                                 <div class="form-group"">
@@ -91,9 +93,10 @@
                             <p>Modifique la contraseña del Coach.</p>
                             <form action="{{route('coach.UpdatepasswordCoach',$coach->id)}}" method="POST" >
                                 {{csrf_field()}}
-                                @if(Session::has('flash_message'))
+                               
+                                @if(Session::has('flash_message2'))
                                 <div class="alert alert-success"><span class="glyphicon glyphicon-ok">
-                                </span><em> {!! session('flash_message') !!}</em>
+                                </span><em> {!! session('flash_message2') !!}</em>
                                 </div>
                                 @endif
                                 <div class="form-group"> 

@@ -19,22 +19,30 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Listado de todos los coaches.</h5>
+                    <h5>Listado de todos los coaches.</h5> 
+
                     <div class="ibox-tools">
                         <a href="{{ route('coach.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Coach</a>
                     </div>
                 </div>
-                <div class="ibox-content">
+               
+                <form action="{{route('coach.search')}}" method="POST" role="form">
+                     {{csrf_field()}}
+                    <div class="ibox-content">
                     <div class="input-group">
-                        <input type="text" placeholder="Buscar coach..." class="input form-control">
+                        <input name='txtbuscoach' type="text" placeholder="Buscar coach..." class="input form-control" >
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn btn-info"> <i class="fa fa-search"></i> Buscar</button>
+                        <button type="submit" class="btn btn btn-info"> <i class="fa fa-search"></i> Buscar</button>
                         </span>
                     </div>
+                </form>
+
                     <div class="clients-list">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tbody>
+
+                                   
                                     @foreach ($coaches as $coach)
                                     <tr>
                                         <td class="client-status">
@@ -50,13 +58,18 @@
                                         <td>
                                             <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->full_name }}</a>
                                         </td>
+                                       
                                         <td class="contact-type"><i class="fa fa-phone"> </i></td>
-                                        <td>{{ $coach->user->phone }}</td>
+                                        {{-- <td>{{ $coach->user->phone }}</td> --}}
+                                        <td>{{ $coach->phone }}</td>
                                         <td class="contact-type">
                                             <i class="fa fa-envelope"> </i>
                                         </td>
-                                        <td>{{ $coach->user->email }}</td>
-                                        @if ($coach->user->gender == 'f')
+
+                                        {{-- <td>{{ $coach->user->email }}</td> --}}
+                                        <td>{{ $coach->email }}</td>
+                                       {{--  @if ($coach->user->gender == 'f') --}}
+                                        @if ($coach->gender == 'f')
                                         <td class="contact-type">
                                             <i class="fa fa-female"></i>
                                         </td>
@@ -66,7 +79,7 @@
                                             <i class="fa fa-male"></i>
                                         </td>
                                         <td>Hombre</td>
-                                        @endif
+                                        @endif 
 
                                         <td>
                                             <a href="{{ route('coach.edit', $coach->id) }}" class="btn btn-default">
