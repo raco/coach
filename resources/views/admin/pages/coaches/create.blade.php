@@ -18,6 +18,11 @@
         </ol>
     </div>
 </div>
+
+
+
+
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         {{-- Fin de Cabecera --}}
@@ -28,7 +33,7 @@
                         <div class="col-sm-12">
                             <h3 class="m-t-none m-b">Registrar nuevo coach</h3>
                             <p>Ingrese los datos del nuevo coach.</p>
-                            <form action="{{route('coach.store')}}" method="POST" role="form">
+                            <form action="{{route('coach.store')}}" method="POST" role="form" id="frmgrabacoach">
                                 {{csrf_field()}}
                                 @if(Session::has('flash_message'))
                                 <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
@@ -64,6 +69,8 @@
                                 </div>
 
 
+                            
+
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input id='txtpasscoach'  type="password" name="password" placeholder="" class="form-control">
@@ -71,6 +78,11 @@
                                
 
                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">                                    
+                                </div>
+
+                                 <div class="form-group">
+                                    <label>Frase</label>
+                                    <textarea class="form-control" id="txtphrase" name="txtphrase"></textarea>
                                 </div>
 
                                 
@@ -160,7 +172,7 @@ $('#email-error').hide();
         var name = $('#txtnomcoach'),
         lastname = $('#txtlnamecoach'),
         fone = $('#txtphonecoach'),
-        email = $('#txtmailcoach');
+        email = $('#txtemailcoach'),
          password = $('#txtpasscoach');
         
         if (name.val().length == 0 ||
@@ -170,12 +182,13 @@ $('#email-error').hide();
             email.val().length == 0) { 
             $('#register-error').css('visibility', 'visible');
             $('#register-error').text('Llena todos los campos.');
+            alert(name.val().length );
         }
         else
             {$('#frmgrabacoach').submit(); 
 
             $('#register-error').css('visibility', 'visible');
-           $('#register-error').text('Llena todos los campos.');
+           // $('#register-error').text('Llena todos los campos.');
         
     };
 

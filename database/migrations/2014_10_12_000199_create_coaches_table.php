@@ -16,8 +16,9 @@ class CreateCoachesTable extends Migration
         Schema::create('coaches', function (Blueprint $table) {
            $table->increments('id');
            $table->boolean('state');
+            $table->string('phrase');
            $table->timestamps();
-           $table->integer('user_id')->unsigned();
+           $table->integer('user_id')->unsigned(); 
            $table->foreign('user_id')->references('id')->on('users');
         });
     }

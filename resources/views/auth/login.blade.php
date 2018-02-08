@@ -17,17 +17,18 @@
             </div>
             <h3>Bienvenido</h3>
             <p>Ingresa tu correo y contraseña para acceder a tu panel. </p>
-            <form class="m-t" method="POST" action="{{ route('login') }}">
+            <form class="m-t" id="formlogin" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Correo Electrónico" autofocus="autofocus">
                     @if ($errors->has('email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('email') }}</strong> 
                         </span>
                     @endif
                 </div>
+
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <input id="password" type="password" class="form-control" name="password" required placeholder="Contraseña">
                     @if ($errors->has('password'))
@@ -37,14 +38,16 @@
                     @endif
                 </div>
 
-    {{--             <div class="form-group">
+                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
+
+                <div class="form-group">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
                         </label>
                     </div>
-                </div> --}}
-                <button type="submit" class="btn btn-primary block full-width m-b">
+                </div>
+                <button id="btnlogin" type="submit" class="btn btn-primary block full-width m-b">
                     Ingresar
                 </button>
                 <a href="{{ route('password.request') }}"><small>Olvidé mi contraseña</small></a>
@@ -52,9 +55,41 @@
         </div>
     </div>
 
-    <!-- Mainly scripts -->
-    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+@push('scripts')
+
+{{-- Me valida caracteres maximo de emails y usuarios --}}
+    <script>
+
+    $("#btnlogin").click(function (event)
+     { event.preventDefault(); 
+    var vemail = $('#email'),
+        vcontraseña = $('#contraseña'),
+        if(vemail.val().length >=100
+            // vcontraseña.val().length >=32)  
+        {  
+            $('#register-error').css('visibility', 'visible');
+            $('#register-error').text('Cantidad maxima de correo es 100 caracteres');
+            return false;  
+        } 
+            else{$('#formlogin').submit();}
+    });  
+
+        if(vcontraseña.val().length >=32
+            // vcontraseña.val().length >=32)  
+        {  
+            $('#register-error').css('visibility', 'visible');
+            $('#register-error').text('Cantidad maxima de password es 32 caracteres');
+            return false;  
+        } 
+            else{$('#formlogin').submit();}
+    });  
+
+
+
+}
+</script>
+
+@endpush
 
 </body>
 

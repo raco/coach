@@ -45,10 +45,14 @@ class UsersTableSeeder extends Seeder
                     factory(Client::class, 1)->create([
                         'user_id' => $user->id,
                         'coach_id' => $coach->id,
+
                     ]);
                 });
             });
         });
+
+
+        
 
     }
 }

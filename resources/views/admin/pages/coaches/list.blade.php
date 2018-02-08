@@ -11,8 +11,15 @@
                 <strong>Coaches</strong>
             </li>
         </ol>
+
     </div>
 </div>
+<form>
+
+
+
+</form>
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         {{-- Aqui empieza el listado de Coach --}}

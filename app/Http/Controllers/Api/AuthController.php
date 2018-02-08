@@ -31,7 +31,7 @@ class AuthController extends Controller
             'data' => ['user' => $user],
             'token' => $token
         ];
-        return ($user->client || $user->coach) ? response()->json($response, 200) : response()->json(['error' => 'invalid_credentials'], 401);
+        return ($user->client || $user->coach) ? response()->json($response, 200) : response()->json(['error' => 'Credencial no valido'], 401);
     }
 
     public function logout()

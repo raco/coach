@@ -75,7 +75,7 @@ class ClientController extends Controller
 	    return redirect()->back();
     }
 
-   
+ 
 
 }
 

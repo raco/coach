@@ -16,9 +16,9 @@ class CoachController extends Controller
          // $coaches = Coach::with('user')->get();
   
 $coaches=DB::table('coaches')
-	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state'))
+	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state','coaches.phrase'))
 	->join('users','users.id','=','coaches.user_id')->get();
-
+// dd($coaches);
 
         return view('admin.pages.coaches.list', compact('coaches'));
     }
@@ -65,6 +65,8 @@ $coaches=DB::table('coaches')
 		$user->save();
 		$coach->user_id = $user->id;
 		$coach->state = true;
+		$coach->phrase = $request['txtphrase'];
+
 		$coach->save();
 		\Session::flash('flash_message','Nuevo Coach ha sido agregado');
 		return redirect()->back();
@@ -72,8 +74,7 @@ $coaches=DB::table('coaches')
 
 
     public function updpass($id ,Request $request)
-   {
-		
+   {		
 		$coach = Coach::findOrfail($id); 
 		$user = User::findOrFail($coach->id);
 		$user->password= bcrypt($request['passcoach2']);
@@ -87,15 +88,17 @@ $coaches=DB::table('coaches')
 	$sbuscar= $request['txtbuscoach'];
 
 	$coaches=DB::table('coaches')
-	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state'))
+	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state,coaches.phrase'))
 	->join('users','users.id','=','coaches.user_id')
 	->where('name','like',"%{$sbuscar}%") 
 	->orwhere('lastname','like',"%{$sbuscar}%")
 	 ->orwhere('phone','like',"%{$sbuscar}%")
 	 ->orwhere('email','like',"%{$sbuscar}%")
 	->get();
-	 // dd($coaches);
+	  // dd($coaches);
   	return view('admin.pages.coaches.list',compact('coaches'));
  }
+
+ 
 
 }
