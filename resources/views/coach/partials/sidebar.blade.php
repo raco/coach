@@ -13,7 +13,9 @@
                         <li><a href="profile.html">Perfil</a></li>
                         <li><a href="#" onclick="document.getElementById('photo').click();">Cambiar Foto</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html">Cerrar Sesión</a></li>
+                        <li><a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out"></i> Cerrar Sesión
+                            </a></li>
                     </ul>
                     <form action="{{ route('coach.photo') }}" method="POST" enctype="multipart/form-data" id="formphoto" style="display: none">
                         {{ csrf_field() }}
