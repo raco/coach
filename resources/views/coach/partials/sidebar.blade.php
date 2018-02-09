@@ -4,7 +4,7 @@
             {{-- PROFILE --}}
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                    <img alt="image" class="img-circle" src="{{ asset('img/profile_small.jpg') }}" />
+                    <img alt="image" class="img-circle" src="{{ (auth()->user()->image_url) ? auth()->user()->image_url : asset('img/profile_small.jpg') }}" width="48" height="48" />
                      </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>

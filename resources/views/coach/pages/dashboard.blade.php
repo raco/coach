@@ -8,10 +8,23 @@
                 <a href="/">Dashboard</a>
             </li>
         </ol>
+        <br>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if(Session::has('flash_message'))
+            <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
+            </div>
+        @endif
         <div class="text-center">
             <h3><strong> Tu frase</strong></h3>
         </div>
-
         <div class="text-center">
           @empty ($coaches->phrase)
           <h1 class="text-muted"><strong>Ingrese una frase por favor </strong></h1>

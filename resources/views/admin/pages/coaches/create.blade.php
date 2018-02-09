@@ -36,7 +36,7 @@
                             <form action="{{route('coach.store')}}" method="POST" role="form" id="frmgrabacoach">
                                 {{csrf_field()}}
                                 @if(Session::has('flash_message'))
-                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
                                 </div>
                                 @endif
                                 <div class="form-group">
@@ -44,7 +44,7 @@
                                     <input id='txtnomcoach' type="text" name= "name" placeholder="Ingrese Nombres" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Apellidos</label> 
+                                    <label>Apellidos</label>
                                     <input id='txtlnamecoach' type="text" name='lastname' placeholder="Ingrese Apellidos" class="form-control" >
                                 </div>
                                 <div class="form-group">
@@ -65,19 +65,19 @@
 
                                   <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
-                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">                                    
+                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">
                                 </div>
 
 
-                            
+
 
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input id='txtpasscoach'  type="password" name="password" placeholder="" class="form-control">
                                 </div>
-                               
 
-                               <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">                                    
+
+                               <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">
                                 </div>
 
                                  <div class="form-group">
@@ -85,7 +85,7 @@
                                     <textarea class="form-control" id="txtphrase" name="txtphrase"></textarea>
                                 </div>
 
-                                
+
 
 
                                 <div class="form-group">
@@ -136,21 +136,21 @@ $('#email-error').hide();
 
 
 
-        $.ajax({ 
-            url: '{{ route('validate.email') }}', 
-            type: 'POST', 
-            dataType: 'json', 
-            data: { email: $(this).val() }, 
+        $.ajax({
+            url: '{{ route('validate.email') }}',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: $(this).val() },
 
         })
-        .done(function(data) { 
+        .done(function(data) {
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
-         
+
 
         })
-        .fail(function(response) { 
+        .fail(function(response) {
             // alert(response.responseJSON.errors[0]); ]
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
@@ -159,7 +159,7 @@ $('#email-error').hide();
         });
 
     });
-</script> 
+</script>
 
 
 
@@ -174,22 +174,22 @@ $('#email-error').hide();
         fone = $('#txtphonecoach'),
         email = $('#txtemailcoach'),
          password = $('#txtpasscoach');
-        
+
         if (name.val().length == 0 ||
             lastname.val().length == 0 ||
             fone.val().length == 0 ||
             password.val().length == 0 ||
-            email.val().length == 0) { 
+            email.val().length == 0) {
             $('#register-error').css('visibility', 'visible');
             $('#register-error').text('Llena todos los campos.');
             alert(name.val().length );
         }
         else
-            {$('#frmgrabacoach').submit(); 
+            {$('#frmgrabacoach').submit();
 
             $('#register-error').css('visibility', 'visible');
            // $('#register-error').text('Llena todos los campos.');
-        
+
     };
 
 

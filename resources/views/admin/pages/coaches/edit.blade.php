@@ -28,9 +28,9 @@
                             <p>Edite los datos del Coach.</p>
                             <form action="{{route('coach.edit',$coach->id)}}" method="POST" role="form id=" id="frmeditcoach">
                                 {{csrf_field()}}
-                               
+
                                 @if(Session::has('flash_message'))
-                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
                                 </div>
                                 @endif
 
@@ -57,7 +57,7 @@
                                     <label>Email</label>
                                     <input value="{{ $coach->user->email }}"  type="email" id="txtemailcoach" name="email" placeholder="Enter email" class="form-control">
                                 </div>
-                                    
+
                                      <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
                                 {{-- <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
@@ -93,23 +93,23 @@
                             <p>Modifique la contraseña del Coach.</p>
                             <form action="{{route('coach.UpdatepasswordCoach',$coach->id)}}" method="POST" >
                                 {{csrf_field()}}
-                               
+
                                 @if(Session::has('flash_message2'))
                                 <div class="alert alert-success"><span class="glyphicon glyphicon-ok">
                                 </span><em> {!! session('flash_message2') !!}</em>
                                 </div>
                                 @endif
-                                <div class="form-group"> 
-                               
+                                <div class="form-group">
+
                                 <div class="form-group">
                                     <label>Contraseña</label>
                                     <input value=""  type="password"  name="passcoach2" placeholder="" class="form-control">
                                 </div>
-                                    
+
                                   {{--    <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
                                 <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div> --}}
-                               
+
                                 <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
                                 <button class="btn btn-primary pull-right m-t-n-xs" type="submit" id="btnmod"><strong>Actualizar Contraseña</strong></button>
                             </form>
@@ -138,7 +138,7 @@ function caracteresCorreoValido(email, div){
 $('#email-error').hide();
         return false;
     }else{
-        $(div).hide().addClass('hide').slideDown('slow'); 
+        $(div).hide().addClass('hide').slideDown('slow');
 //        $(div).html('');
 
         $('#email-error').show();
@@ -155,21 +155,21 @@ $('#email-error').hide();
       caracteresCorreoValido($(this).val(), '#xmail');
 
 
-        $.ajax({ 
-            url: '{{ route('validate.email') }}', 
-            type: 'POST', 
-            dataType: 'json', 
-            data: { email: $(this).val() }, 
+        $.ajax({
+            url: '{{ route('validate.email') }}',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: $(this).val() },
 
         })
-        .done(function(data) { 
+        .done(function(data) {
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
-         
+
 
         })
-        .fail(function(response) { 
+        .fail(function(response) {
             // alert(response.responseJSON.errors[0]); ]
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
@@ -178,7 +178,7 @@ $('#email-error').hide();
         });
 
     });
-</script> 
+</script>
 
 <script>
 $('#btnmod').click(function(event) {

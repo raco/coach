@@ -28,16 +28,16 @@
                             <h3 class="m-t-none m-b">Registrar Nuevo Cliente</h3>
                             <p>Ingrese los datos del nuevo cliente.</p>
 
-                            <form action="{{route('client.store')}}" method="POST" role="form" id='frmcreateclients'> 
+                            <form action="{{route('client.store')}}" method="POST" role="form" id='frmcreateclients'>
 
                                {{csrf_field()}}
 
-                              {{--   @if(Session::has('flash_message'))
-                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
+                                @if(Session::has('flash_message'))
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
                                 </div>
 
-                                @endif --}}
-                                
+                                @endif
+
                                 <div class="form-group">
                                     <label>Nombre</label>
                                     <input id="txtnomclient" type="text" name= "name" placeholder="Ingrese Nombres" class="form-control">
@@ -58,12 +58,12 @@
                                     <input id="txtphoneclient" type="text" placeholder="" name='phone'class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label> 
+                                    <label>Email</label>
                                     <input id="txtemailclient" data-validation="email" type="email" name="email" placeholder="Enter email" class="form-control">
-                                    
+
                                      <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
 
-                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">                                    
+                                       <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none">
                                 </div>
 
 
@@ -82,7 +82,7 @@
                                 </div>
 
 
-                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">                                    
+                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">
                                 </div>
 
                                 <div>
@@ -135,21 +135,21 @@ $('#email-error').hide();
 
 
 
-        $.ajax({ 
-            url: '{{ route('validate.email') }}', 
-            type: 'POST', 
-            dataType: 'json', 
-            data: { email: $(this).val() }, 
+        $.ajax({
+            url: '{{ route('validate.email') }}',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: $(this).val() },
 
         })
-        .done(function(data) { 
+        .done(function(data) {
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
-         
+
 
         })
-        .fail(function(response) { 
+        .fail(function(response) {
             // alert(response.responseJSON.errors[0]); ]
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
@@ -158,7 +158,7 @@ $('#email-error').hide();
         });
 
     });
-</script> 
+</script>
 
 
 {{-- Inicio de validacion de campos vacios --}}
@@ -169,19 +169,19 @@ $('#email-error').hide();
        lastname = $('#txtapeclient'),
        fone = $('#txtphoneclient'),
        email = $('#txtemailclient');
-       
+
        if (name.val().length == 0 ||
            lastname.val().length == 0 ||
            fone.val().length == 0 ||
-           email.val().length == 0) { 
+           email.val().length == 0) {
            $('#register-error').css('visibility', 'visible');
            $('#register-error').text('Llena todos los campos.');
 
-     
+
        }
        else
               {$('#frmcreateclients').submit();};
-       
+
    });
 </script>
 {{-- Fin de la validacion de los campos en blanco --}}

@@ -12,7 +12,11 @@
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="profile.html">Perfil</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html">Cerrar Sesión</a></li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out"></i> Cerrar Sesión
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="logo-element">

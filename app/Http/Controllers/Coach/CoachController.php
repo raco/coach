@@ -39,12 +39,19 @@ class CoachController extends Controller
     {
         $this->validate($request, [
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'photo.image' => "Error, el archivo debe ser una imagen.",
+            'photo.mimes' => "Error, el archivo debe ser de tipo: jpeg, png, jpg, gif o svg",
         ]);
+
         $image = $request->file('photo');
         $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/uploads');
         $image->move($destinationPath, $input['imagename']);
-        \Session::flash('flash_message', 'Image Upload successful');
+        \Session::flash('flash_message', 'La foto ha sido cambiada correctamente.');
+        $user = auth()->user();
+        $user->image_url = url('uploads/'.$input['imagename']);
+        $user->save();
         return redirect(route('coach.dashboard'));
     }
 }

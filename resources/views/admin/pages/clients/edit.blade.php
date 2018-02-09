@@ -31,7 +31,7 @@
                             <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="frmeditclient">
                                 {{csrf_field()}}
                                 @if(Session::has('flash_message'))
-                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></    span><em> {!! session('flash_message') !!}</em>
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
                                 </div>
                                 @endif
 
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group"><label>Teléfono</label>
                         <input value="{{ $client->user->phone }}" type="text" id="txtfonoclient" placeholder="" name='phone'class="form-control"></div>
-                        
+
 
                         <div class="form-group"><label>Email</label> <input data-validation="email" value="{{ $client->user->email }}"  type="email" id="txtemailclient" name="email" placeholder="Enter email" class="form-control"></div>
 
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group"">
                         <div>
-                            @if ($client->state) 
+                            @if ($client->state)
                             <label>
                                 <input name="state" type="checkbox" value="1" checked="checked">
                                 <span>Cliente activo</span>
@@ -133,21 +133,21 @@ $('#email-error').hide();
 
 
 
-        $.ajax({ 
-            url: '{{ route('validate.email') }}', 
-            type: 'POST', 
-            dataType: 'json', 
-            data: { email: $(this).val() }, 
+        $.ajax({
+            url: '{{ route('validate.email') }}',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: $(this).val() },
 
         })
-        .done(function(data) { 
+        .done(function(data) {
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
-         
+
 
         })
-        .fail(function(response) { 
+        .fail(function(response) {
             // alert(response.responseJSON.errors[0]); ]
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
@@ -156,7 +156,7 @@ $('#email-error').hide();
         });
 
     });
-</script> 
+</script>
 
 
 
