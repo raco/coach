@@ -54,4 +54,19 @@ class CoachController extends Controller
         $user->save();
         return redirect(route('coach.dashboard'));
     }
+
+    public function search(Request $request)
+    {
+        $sbuscar= $request['txtbuscoach'];
+
+        $coaches = DB::table('coaches')
+        ->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state,coaches.phrase'))
+        ->join('users','users.id','=','coaches.user_id')
+        ->where('name','like',"%{$sbuscar}%")
+        ->orwhere('lastname','like',"%{$sbuscar}%")
+        ->orwhere('phone','like',"%{$sbuscar}%")
+        ->orwhere('email','like',"%{$sbuscar}%")
+        ->get();
+        return view('admin.pages.coaches.list',compact('coaches'));
+    }
 }

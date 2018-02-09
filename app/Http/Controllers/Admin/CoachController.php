@@ -13,19 +13,15 @@ class CoachController extends Controller
 {
     public function list()
     {
-         // $coaches = Coach::with('user')->get();
-  
-$coaches=DB::table('coaches')
-	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state','coaches.phrase'))
-	->join('users','users.id','=','coaches.user_id')->get();
-// dd($coaches);
+		$coaches=DB::table('coaches')
+		->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state','coaches.phrase'))
+		->join('users','users.id','=','coaches.user_id')->get();
 
         return view('admin.pages.coaches.list', compact('coaches'));
     }
 
    	public function edit(Coach $coach)
    	{
-  //  		 dd($coach);
 		return view('admin.pages.coaches.edit',compact('coach'));
   	}
 
@@ -40,7 +36,7 @@ $coaches=DB::table('coaches')
 		$user->email = $request['email'];
 		$coach->state = isset($request['state']);
 		$coach->user_id = $user->id;
-		$user->save(); 
+		$user->save();
 		$coach->save();
 		\Session::flash('flash_message','Dato del Coach ha sido actualizado');
 		return redirect()->back();
@@ -61,7 +57,6 @@ $coaches=DB::table('coaches')
 		$user->phone = $request['phone'];
 		$user->email = $request['email'];
 		$user->password = bcrypt($request['password']);
-
 		$user->save();
 		$coach->user_id = $user->id;
 		$coach->state = true;
@@ -74,31 +69,31 @@ $coaches=DB::table('coaches')
 
 
     public function updpass($id ,Request $request)
-   {		
-		$coach = Coach::findOrfail($id); 
+   {
+		$coach = Coach::findOrfail($id);
 		$user = User::findOrFail($coach->id);
 		$user->password= bcrypt($request['passcoach2']);
 		\Session::flash('flash_message2','La contraseña ha sido modificado');
-		$user->save(); 
+		$user->save();
 		return redirect()->back();
    }
 
-   public function search(Request $request)
-   {
-	$sbuscar= $request['txtbuscoach'];
+    public function search(Request $request)
+    {
+		$sbuscar= $request['txtbuscoach'];
 
-	$coaches=DB::table('coaches')
-	->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state,coaches.phrase'))
-	->join('users','users.id','=','coaches.user_id')
-	->where('name','like',"%{$sbuscar}%") 
-	->orwhere('lastname','like',"%{$sbuscar}%")
-	 ->orwhere('phone','like',"%{$sbuscar}%")
-	 ->orwhere('email','like',"%{$sbuscar}%")
-	->get();
-	  // dd($coaches);
-  	return view('admin.pages.coaches.list',compact('coaches'));
- }
+		$coaches=DB::table('coaches')
+		->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state,coaches.phrase'))
+		->join('users','users.id','=','coaches.user_id')
+		->where('name','like',"%{$sbuscar}%")
+		->orwhere('lastname','like',"%{$sbuscar}%")
+		 ->orwhere('phone','like',"%{$sbuscar}%")
+		 ->orwhere('email','like',"%{$sbuscar}%")
+		->get();
+		  // dd($coaches);
+	  	return view('admin.pages.coaches.list',compact('coaches'));
+ 	}
 
- 
+
 
 }
