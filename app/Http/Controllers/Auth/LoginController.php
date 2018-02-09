@@ -43,8 +43,11 @@ class LoginController extends Controller
             return '/dashboard';
         }
 
+        if (auth()->user()->admin) {
+            return '/';
+        }
+
         auth()->logout();
-        flash('Este usuario está inactivo por favor comuniquese con el administrador. ');
         return redirect()->back();
     }
 }

@@ -12,12 +12,10 @@ class CoachController extends Controller
 {
     public function dashboard()
     {
-        // dd(auth()->user()->id);
         $dusermail = auth()->user()->id;
-        $coaches=DB::table('coaches')
+        $coaches = DB::table('coaches')
          ->select(DB::raw('coaches.phrase'))
          ->where('user_id','=',$dusermail )->first();
-// dd($coaches);
 
     	return view('coach.pages.dashboard',compact('coaches'));
     }
@@ -25,14 +23,13 @@ class CoachController extends Controller
     public function clientList()
     {
     	$clients = Client::where('coach_id', auth()->user()->id)->get();
-    	// dd ($clients);
     	return view('coach.pages.clients', compact('clients'));
     }
 
     public function updphrase(Request $request)
     {
         $dusermail = auth()->user()->id;
-        $coach=Coach::where('user_id',$dusermail  )->first();
+        $coach = Coach::where('user_id',$dusermail  )->first();
         $coach->phrase= $request['txtphrase'];
         $coach->save();
         return redirect()->back();
@@ -40,7 +37,14 @@ class CoachController extends Controller
 
     public function uploadPhoto(Request $request)
     {
-
-        dd($request->file('photo'));
+        $this->validate($request, [
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $image = $request->file('photo');
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/uploads');
+        $image->move($destinationPath, $input['imagename']);
+        \Session::flash('flash_message', 'Image Upload successful');
+        return redirect(route('coach.dashboard'));
     }
 }
