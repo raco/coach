@@ -16,7 +16,7 @@ class CoachController extends Controller
         $dusermail = auth()->user()->id;
         $coaches=DB::table('coaches')
          ->select(DB::raw('coaches.phrase'))
-         ->where('user_id','=',$dusermail )->first(); 
+         ->where('user_id','=',$dusermail )->first();
 // dd($coaches);
 
     	return view('coach.pages.dashboard',compact('coaches'));
@@ -31,12 +31,16 @@ class CoachController extends Controller
 
     public function updphrase(Request $request)
     {
-        
-$dusermail = auth()->user()->id;
-$coach=Coach::where('user_id',$dusermail  )->first();
-$coach->phrase= $request['txtphrase'];
-$coach->save(); 
-return redirect()->back();    
+        $dusermail = auth()->user()->id;
+        $coach=Coach::where('user_id',$dusermail  )->first();
+        $coach->phrase= $request['txtphrase'];
+        $coach->save();
+        return redirect()->back();
     }
 
+    public function uploadPhoto(Request $request)
+    {
+
+        dd($request->file('photo'));
+    }
 }

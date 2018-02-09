@@ -43,7 +43,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('coaches/uppassword/{client}', 'CoachController@updpass')->name('coach.UpdatepasswordCoach');
 	// Multi Busqueda  del coach
 	Route::post('coaches/search', 'CoachController@search')->name('coach.search');
-	
+
 
 });
 
@@ -51,6 +51,7 @@ Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group
 	// Listado de Clientes del coach
 	Route::get('dashboard', 'CoachController@dashboard')->name('coach.dashboard');
 	Route::get('clients', 'CoachController@clientList')->name('coach.client.list');
+	Route::post('coach/uploadphoto', 'CoachController@uploadPhoto')->name('coach.photo');
 
 	// Update de frase del coach
 	Route::post('coaches/updphrase', 'CoachController@updphrase')->name('coach.updphrase');

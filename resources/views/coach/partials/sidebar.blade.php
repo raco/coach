@@ -11,9 +11,14 @@
                      </span> <span class="text-muted text-xs block">Coach <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="profile.html">Perfil</a></li>
+                        <li><a href="#" onclick="document.getElementById('photo').click();">Cambiar Foto</a></li>
                         <li class="divider"></li>
                         <li><a href="login.html">Cerrar Sesión</a></li>
                     </ul>
+                    <form action="{{ route('coach.photo') }}" method="POST" enctype="multipart/form-data" id="formphoto" style="display: none">
+                        {{ csrf_field() }}
+                        <input type="file" id="photo" name="photo" onchange="submitPhoto()">
+                    </form>
                 </div>
                 <div class="logo-element">
                     IN+
@@ -28,3 +33,8 @@
         </ul>
     </div>
 </nav>
+<script>
+    function submitPhoto() {
+        document.getElementById("formphoto").submit()
+    }
+</script>

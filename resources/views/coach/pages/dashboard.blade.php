@@ -14,7 +14,7 @@
 
         <div class="text-center">
           @empty ($coaches->phrase)
-          <h1 class="text-muted"><strong > Ingrese su frase por favor </strong></h1>
+          <h1 class="text-muted"><strong>Ingrese una frase por favor </strong></h1>
           @else
           <h1><strong > {{ $coaches->phrase}} </strong></h1>
           @endempty
