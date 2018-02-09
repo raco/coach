@@ -3,5 +3,5 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Coach::class, function (Faker $faker) {
-    return ['state' => true , 'Phrase'=> $faker->title];
+    return ['state' => true ];
 });

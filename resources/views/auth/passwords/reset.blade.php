@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('auth.layout')
 
 @section('content')
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
