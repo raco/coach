@@ -138,7 +138,7 @@ function caracteresCorreoValido(email, div){
 $('#email-error').hide();
         return false;
     }else{
-        $(div).hide().addClass('hide').slideDown('slow');
+        $(div).hide().addClass('hide').slideDown('slow'); 
 //        $(div).html('');
 
         $('#email-error').show();

@@ -36,4 +36,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectPath()
+    {
+        if (auth()->user()->coach && auth()->user()->coach->state=='1') {
+            return '/dashboard';
+        }
+
+        auth()->logout();
+        flash('Este usuario está inactivo por favor comuniquese con el administrador. ');
+        return redirect()->back();
+    }
 }

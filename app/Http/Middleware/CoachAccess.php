@@ -16,7 +16,7 @@ class CoachAccess
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->coach) {
+        if (Auth::user()->coach && Auth::user()->coach->state) {
             return $next($request);
         } else {
             if ($request->ajax()) {

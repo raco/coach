@@ -24,9 +24,6 @@
             <h1><strong > {{ $coaches->phrase}} </strong></h1> 
 @endempty
 
-
-       
-
             <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#miModal">Editar Frase</a>
 		</div>
 		
@@ -57,7 +54,7 @@
   {{csrf_field()}}
 <!-- Form Name -->
 <legend>Ingrese su frase por favor</legend>
-   {{auth()->user()->id}}
+{{--    {{auth()->user()->id}} --}}
 
 <!-- Text input-->
 <div class="form-group">
@@ -87,13 +84,5 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 @endsection  
