@@ -3,8 +3,14 @@ Route::get('/', function () {
     return redirect('/login');
 });
 Route::get('/dashboard', function () {
-    return (auth()->user()->admin)? redirect('/admin/dashboard') : redirect('/coach/dashboard');
+	if (auth()->check()) {
+    	return (auth()->user()->admin)? redirect('/admin/dashboard') : redirect('/coach/dashboard');
+	} else {
+		\Session::flash('flash_error_message', 'Este usuario no se encuentra activo, consulte con el administrador.');
+		return redirect('/login');
+	}
 });
+
 Auth::routes();
 
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
@@ -23,8 +29,6 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('clients/create', 'ClientController@create')->name('client.create');
 		// Graba datos del Cliente
 	Route::post('clients/create', 'ClientController@store')->name('client.store');
-
-
 
 
 

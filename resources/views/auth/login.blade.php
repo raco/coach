@@ -15,6 +15,10 @@
             <div>
                 <h1 class="logo-name">IN+</h1>
             </div>
+            @if(Session::has('flash_error_message'))
+                <div class="alert alert-danger"><em> {!! session('flash_error_message') !!}</em>
+                </div>
+            @endif
             <h3>Bienvenido</h3>
             <p>Ingresa tu correo y contraseña para acceder a tu panel. </p>
             <form class="m-t" id="formlogin" method="POST" action="{{ route('login') }}">
@@ -24,7 +28,7 @@
                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Correo Electrónico" autofocus="autofocus">
                     @if ($errors->has('email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong> 
+                            <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -61,28 +65,28 @@
     <script>
 
     $("#btnlogin").click(function (event)
-     { event.preventDefault(); 
+     { event.preventDefault();
     var vemail = $('#email'),
         vcontraseña = $('#contraseña'),
         if(vemail.val().length >=100
-            // vcontraseña.val().length >=32)  
-        {  
+            // vcontraseña.val().length >=32)
+        {
             $('#register-error').css('visibility', 'visible');
             $('#register-error').text('Cantidad maxima de correo es 100 caracteres');
-            return false;  
-        } 
+            return false;
+        }
             else{$('#formlogin').submit();}
-    });  
+    });
 
         if(vcontraseña.val().length >=32
-            // vcontraseña.val().length >=32)  
-        {  
+            // vcontraseña.val().length >=32)
+        {
             $('#register-error').css('visibility', 'visible');
             $('#register-error').text('Cantidad maxima de password es 32 caracteres');
-            return false;  
-        } 
+            return false;
+        }
             else{$('#formlogin').submit();}
-    });  
+    });
 
 
 

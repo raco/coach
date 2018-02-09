@@ -39,15 +39,14 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        if (auth()->user()->coach && auth()->user()->coach->state=='1') {
+        if (auth()->user()->coach && auth()->user()->coach->state) {
             return '/dashboard';
         }
 
         if (auth()->user()->admin) {
-            return '/';
+            return '/dashboard';
         }
-
         auth()->logout();
-        return redirect()->back();
+        return '/dashboard';
     }
 }

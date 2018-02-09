@@ -17,7 +17,7 @@ class CoachController extends Controller
          ->select(DB::raw('coaches.phrase'))
          ->where('user_id','=',$dusermail )->first();
 
-    	return view('coach.pages.dashboard',compact('coaches'));
+    	return view('coach.pages.dashboard', compact('coaches'));
     }
 
     public function clientList()
