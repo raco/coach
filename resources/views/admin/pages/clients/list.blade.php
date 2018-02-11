@@ -22,18 +22,19 @@
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-title">
-                    <h5>Listado de todos los clientes.</h5>
+                    <h5>Listado de todos los clientes2.</h5>  
                     <div class="ibox-tools">
                         <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Cliente</a>
                     </div>
                 </div>
-				  <form action="" method="POST" role="form">
-                     {{csrf_field()}}
+				 <form action="{{route('client.search')}}" method="POST" role="form">
+               		{{csrf_field()}}
+                    
 				<div class="ibox-content">
 					<div class="input-group">
 						<input type="text" name='txtbuscar' placeholder="Buscar cliente..." class="input form-control">
 						<span class="input-group-btn">
-							<button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+							<button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
 						</span>
 					</div>
 				</form>
@@ -56,31 +57,31 @@
 
 										<td>
 											<a data-toggle="tab" href="#contact-1" class="client-link">
-												@if ($client->user->gender == 'f')
-												{{ $client->user->name }} {{ $client->user->lastname }}
+												@if ($client->gender == 'f')
+												{{ $client->Cliente}} 
 												<i class="fa fa-venus text-muted"></i>
 												@else
-												{{ $client->user->name }} {{ $client->user->lastname }}
+												{{ $client->Cliente}}}
 												<i class="fa fa-mars text-muted"></i>
 												@endif
 											</a>
 										</td>
 
 										<td class="contact-type"><i class="fa fa-phone"> </i></td>
-										<td>{{ $client->user->phone }}</td>
+										<td>{{ $client->phone }}</td>
 										<td class="contact-type">
 											<i class="fa fa-envelope"> </i>
 										</td>
-										<td>{{ $client->user->email }}</td>
+										<td>{{ $client->email }}</td>
 										<td class="contact-type">
 											<span class="label label-default">Coach</span>
 										</td>
 										<td>
-											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
+											<a href="{{ route('coach.edit', $client->idcoach) }}">{{$client->Coach }}</a>
 										</td>
 										<td>
-											<a href="{{ route('client.edit', $client->id) }}" class="btn btn-default">
-												<i class="fa fa-pencil"></i>
+											<a href="{{ route('client.edit', $client->idclient) }}" class="btn btn-default">
+												<i class="fa fa-pencil"></i>                                 
 											</a>
 										</td>
 									</tr>

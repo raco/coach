@@ -68,7 +68,7 @@ class CoachController extends Controller
    }
 
 
-    public function updpass($id ,Request $request)
+    public function updpass($id ,Request $request) 
    {
 		$coach = Coach::findOrfail($id);
 		$user = User::findOrFail($coach->id);

@@ -19,14 +19,31 @@ class ClientController extends Controller
 
     public function list()
     {
-    	$clientes = Client::with('user')->with('coach')->get();
-    	return view('admin.pages.clients.list',compact('clientes'));
+
+		$clientes = DB::table('clients')
+		->leftJoin('users as u','clients.user_id','=', 'u.id')
+		->join('coaches as c','clients.coach_id','=', 'c.id')
+		->join('users as d','d.id','=', 'c.user_id')
+		// ->select('u.name', 'd.name as coach_name')->get();
+		->select(DB::raw('u.id as idclient,CONCAT(u.name," ", u.lastname) as Cliente, CONCAT(d.name," ", d.lastname) as Coach, u.phone, u.email,u.gender,c.state,c.id as idcoach'))->get();
+		   // dd($clientes );
+		return view('admin.pages.clients.list',compact('clientes'));
+
+
+    	// $clientes = Client::with('user')->with('coach')->get();
+    	// return view('admin.pages.clients.list',compact('clientes'));
     }
 
     public function edit(Client $client)
     {
+    	// dd($client);
+    	// Me manda toda la lista de coaches
     	$coaches = Coach::with('user')->get();
-    	return view('admin.pages.clients.edit', compact('client','coaches'));
+
+    	$client=Client::with('user')
+    	->where('clients.user_id','=', $client->id)->first();
+    	  // dd($client->user->name);
+    	return view('admin.pages.clients.edit', compact('client','coaches')); 
     }
 
     public function update($id, Request $request)
@@ -75,7 +92,28 @@ class ClientController extends Controller
 	    return redirect()->back();
     }
 
- 
+	public function search (Request $request) 
+ 	{
+
+ 		 // dd($request );
+ 		$sbuscar= $request['txtbuscar'];
+ 		$clientes = DB::table('clients')
+		->leftJoin('users as u','clients.user_id','=', 'u.id')
+		->join('coaches as c','clients.coach_id','=', 'c.id')
+		->join('users as d','d.id','=', 'c.user_id')
+		// ->select('u.name', 'd.name as coach_name')->get();
+		->select(DB::raw('u.id as idclient,CONCAT(u.name," ", u.lastname) as Cliente, CONCAT(d.name," ", d.lastname) as Coach, u.phone, u.email,u.gender,c.state,c.id as idcoach'))
+		->where('u.name','like',"%{$sbuscar}%")
+		->orwhere('u.lastname','like',"%{$sbuscar}%")
+		 ->orwhere('u.phone','like',"%{$sbuscar}%")
+		 ->orwhere('u.email','like',"%{$sbuscar}%")
+		->get();
+
+
+		 // dd($Datos );
+		return view('admin.pages.clients.list',compact('clientes'));
+			  
+ 	}
 
 }
 

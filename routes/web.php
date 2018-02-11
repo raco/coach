@@ -1,4 +1,4 @@
-<?php
+	<?php
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -29,9 +29,10 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('clients/create', 'ClientController@create')->name('client.create');
 		// Graba datos del Cliente
 	Route::post('clients/create', 'ClientController@store')->name('client.store');
+		// Multi Busqueda  del Cliente
+	Route::post('clients/search', 'ClientController@search')->name('client.search');
 
-
-
+ 
 
 	// Listado de Coach
 	Route::get('coaches', 'CoachController@list')->name('coach.list');
