@@ -8,7 +8,7 @@
 				<a href="/">Admin</a>
 			</li>
 			<li class="active">
-				<strong>Clientes</strong>
+				<strong>Clientes2</strong>
 			</li>
 		</ol>
 		<div class="pull-right">
@@ -24,13 +24,17 @@
 				<div class="ibox-title">
                     <h5>Listado de todos mis clientes.</h5>
                 </div>
+
+               		
 				<div class="ibox-content">
 					<div class="input-group">
-						<input type="text" placeholder="Buscar cliente..." class="input form-control">
-						<span class="input-group-btn">
-							<button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
-						</span>
+						<input type="text" placeholder="Buscar cliente..." name="txtbuscar" class="input form-control">
+					
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+							</span>	
 					</div>
+				
 					<div class="clients-list">
 						<div class="table-responsive">
 							<table class="table table-striped table-hover">
