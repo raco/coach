@@ -65,8 +65,13 @@
 
                         <div class="form-group"><label class="form-group">Seleccione su coach</label>
                         <select name="coach" class="form-control" name="account">
+                            <option value="none" selected="selected">Ninguno</option>
                             @foreach($coaches as $data)
-                            <option value="{{ $data->id }}">{{ $data->full_name }}</option>
+                                @if ($client->coach && $client->coach->id == $data->id)
+                                    <option value="{{ $data->id }}" selected="selected">{{ $data->full_name }}</option>
+                                @else 
+                                    <option value="{{ $data->id }}">{{ $data->full_name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

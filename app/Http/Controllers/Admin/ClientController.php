@@ -40,7 +40,7 @@ class ClientController extends Controller
 		$user->phone = $request['phone'];
 		$user->email = $request['email'];
 		$client->state = isset($request['state']);
-		$client->coach_id = $request['coach'];
+		$client->coach_id = ($request['coach'] != 'none') ? $request['coach'] : null;
 
 		$user->save();
 		$client->save();
@@ -67,8 +67,8 @@ class ClientController extends Controller
 	    $user->save();
 
 	    $client->user_id = $user->id;
-	    $client->state="1";
-	    $client->coach_id=$request['coach'];
+	    $client->state = true;
+	    $client->coach_id = ($request['coach'] != 'none') ? $request['coach'] : null;
 	    $client->save();
         \Session::flash('flash_message','Nuevo Cliente ha sido agregado');
 

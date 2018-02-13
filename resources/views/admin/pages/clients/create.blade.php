@@ -75,6 +75,7 @@
                                 </div>
                                 <div class="form-group"><label class="form-group">Seleccione su coach</label>
                                     <select name="coach" class="form-control">
+                                        <option value="none" selected="selected">Ninguno</option>
                                         @foreach($coaches as $data)
                                         <option value="{{ $data->id }}">{{ $data->full_name }}</option>
                                         @endforeach

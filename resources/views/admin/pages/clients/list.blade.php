@@ -76,7 +76,12 @@
 											<span class="label label-default">Coach</span>
 										</td>
 										<td>
+											@if ($client->coach)
+												{{-- expr --}}
 											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
+											@else 
+											Sin asignar
+											@endif
 										</td>
 										<td>
 											<a href="{{ route('client.edit', $client->id) }}" class="btn btn-default">
