@@ -147,6 +147,7 @@ $('#email-error').hide();
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
+            $('#btnguardar').removeAttr("disabled");
 
 
         })
@@ -155,7 +156,7 @@ $('#email-error').hide();
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
            $('#email-error').text('El correo ya ha sido registrado');
-
+             $('#btnguardar').attr("disabled","disabled");
         });
 
     });

@@ -89,7 +89,7 @@
 
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary pull-right m-t-n-xs" type="submit" id='btnguardar'><strong>REGISTRAR</strong></button>
+                                    <button class="btn btn-primary pull-right m-t-n-xs" name="btnreg" type="submit" id='btnguardar'><strong>REGISTRAR</strong></button>
                                 </div>
                             </form>
                         </div>
@@ -147,7 +147,7 @@ $('#email-error').hide();
                  $('#email-error').css('visibility', 'visible');
                  $('#email-error').css('color', 'green');
            $('#email-error').text('Correo aceptado');
-
+             $('#btnguardar').removeAttr("disabled");
 
         })
         .fail(function(response) {
@@ -155,7 +155,7 @@ $('#email-error').hide();
              $('#email-error').css('visibility', 'visible');
              $('#email-error').css('color', 'red');
            $('#email-error').text('El correo ya ha sido registrado');
-
+             $('#btnguardar').attr("disabled","disabled");
         });
 
     });

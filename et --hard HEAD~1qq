@@ -1,0 +1,195 @@
+[33mcommit d7828a64a414668aef0b6d29ac04f314cc426ab8[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Sat Feb 10 22:18:23 2018 -0500
+
+    Busqueda terminado, falta validar los estados del cliente en la consulta
+
+[33mcommit 4ce93be238689302c048703a28de75f1e189254d[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 16:12:40 2018 -0500
+
+    Searches
+
+[33mcommit bb142cfd02d7c3646a2c85f06c00bc877bf41411[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:59:01 2018 -0500
+
+    mensaje validación status de coach
+
+[33mcommit 351830a734d683f7e0576b0b42c49a9b815e8ec6[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:42:02 2018 -0500
+
+    Cerrar sesión botón arreglado
+
+[33mcommit 00595a66802678e423fa6f94adb20f3788b82ae1[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:40:54 2018 -0500
+
+    image default
+
+[33mcommit b034e0f39b1ce193c4d5a8a2afbbf9a212cd325f[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:35:51 2018 -0500
+
+    Upload image fixes #14
+
+[33mcommit d4a1f078602ece12a3abef52285287fae8c69992[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:15:58 2018 -0500
+
+    login admin
+
+[33mcommit 84577f68286fc5f03717a03a1c6cbbcee1a6f493[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 15:03:20 2018 -0500
+
+    photo
+
+[33mcommit f8bb58042340b891ab261fd25b131491d1348da0[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 9 14:40:34 2018 -0500
+
+    Fixes #13
+
+[33mcommit 1b611e863727cfbad6e55def87f88539da30b815[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 9 14:10:14 2018 -0500
+
+    closes #15, closes#12
+
+[33mcommit 35b468285eb12c47a3719552b6a00e504da1bc83[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Thu Feb 8 16:33:02 2018 -0500
+
+    arreglos
+
+[33mcommit 973292b1ef065d662d42ea674cdc45b3ed3933a0[m
+Author: vagrant <vagrant@homestead>
+Date:   Tue Feb 6 18:08:22 2018 +0000
+
+    Busqueda del coach funcional
+
+[33mcommit 6be9426a42370ce65549500acbd80b156cd84a37[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 2 18:59:31 2018 -0500
+
+    Modificar contraseña de Coach
+
+[33mcommit 634b6d4be8820bbc4443bec6aec0fd516cbbff4e[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 2 16:53:20 2018 -0500
+
+    server en el readme
+
+[33mcommit 2a59db8b72f7c2c27cf6278a2730b2cafae8fa85[m
+Merge: a242e94 646836c
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 2 16:51:18 2018 -0500
+
+    Merge branch 'master' of github.com:raco/coach
+
+[33mcommit a242e945d11c256633edc8652754351b103ae109[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 2 16:51:04 2018 -0500
+
+    closes #2 , closes #4
+
+[33mcommit 646836cda820f259b497b89884083a15f6954ab9[m
+Merge: 232d76f 6386398
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 2 15:43:02 2018 -0500
+
+    Merge branch 'master' of github.com:raco/coach
+
+[33mcommit 232d76fd89165e1a3fb278faf6e3841e6cc8ffa5[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 2 15:42:52 2018 -0500
+
+    Closes #8, closes #9 and closes #10
+
+[33mcommit 63863986047eaaa3f0302401968cdce50cf1e637[m
+Merge: 2d20fca 61e58d0
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 2 11:58:40 2018 -0500
+
+    Merging conflicts
+
+[33mcommit 2d20fca6c186344d9afb4cfbb2e3b7a5376886af[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Feb 2 11:50:37 2018 -0500
+
+    Validacion de correos realizado
+
+[33mcommit 61e58d0d000300bca44cd0bf07188afe297c97e6[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 2 11:45:31 2018 -0500
+
+    api
+
+[33mcommit 767080dbd106415f238448fbce52f7ab0d3622c5[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Fri Feb 2 02:07:45 2018 -0500
+
+    Arreglo de login y vistas
+
+[33mcommit ef491bf92cbeb75ddc67fc9cb3a3f13bab54a656[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Thu Feb 1 20:40:08 2018 -0500
+
+    Fixing conflicts
+
+[33mcommit 63237c344a4b12435d2585e84b0c0179ab2119a1[m
+Merge: 3349079 ff62de4
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Thu Feb 1 20:38:09 2018 -0500
+
+    Login and seeders this closes #7
+
+[33mcommit 3349079854982db808c746c2e44295ea4c747519[m
+Author: Renato Centeno <hello@renatocenteno.com>
+Date:   Thu Feb 1 20:36:06 2018 -0500
+
+    Login and seeders this closes #7
+
+[33mcommit ff62de47e762cf8f01cc9a962d497882aee68025[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Thu Feb 1 19:51:06 2018 -0500
+
+    closes #6,closes #3
+
+[33mcommit 89c30e26572210f00b42f9b3281bc6d869e035aa[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Wed Jan 31 19:48:15 2018 -0500
+
+    Closes #5
+
+[33mcommit 435a29bea4c884e6b500fd0ed3e44c36545b337b[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Wed Jan 31 19:46:30 2018 -0500
+
+    Closes #1, Closes #3
+
+[33mcommit c984613ee84c24bad0875102e7cb5f545d1ffe53[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Tue Jan 30 19:36:28 2018 -0500
+
+    Tabla de Clientes Listo
+
+[33mcommit 3c8bc6d00308183cd5c51355db40e1a3441dbacf[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Tue Jan 30 18:19:31 2018 -0500
+
+    Tabla de Clientes
+
+[33mcommit 9edd8b764965174a5c6eada3d47bf25491ec9638[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Tue Jan 30 16:40:25 2018 -0500
+
+    Creacion de Maqueta de Coach
+
+[33mcommit fc01568ffd003657282b1e6247b3d8cc14b5266a[m
+Author: jorgeantonio <jorgeantonio16@gmail.com>
+Date:   Fri Jan 26 18:42:14 2018 -0500
+
+    Login de formulario Coach con BD
