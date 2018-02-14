@@ -7,7 +7,7 @@
 			<li>
 				<a href="/">Admin</a>
 			</li>
-			<li class="active">
+			<li class="active"> 
 				<strong>Clientes</strong> 
 			</li>
 		</ol>

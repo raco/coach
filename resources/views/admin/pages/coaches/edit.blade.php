@@ -1,22 +1,19 @@
-@extends('admin.layout')
-@section('content')
-{{-- Cabecera --}}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Coaches</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="/">Admin</a>
-            </li>
-            <li class="active">
-                <a href="{{ route('coach.list') }}">Coaches</a>
-            </li>
-            <li class="active">
-                <strong>Editar</strong>
-            </li>
-        </ol>
+            <h2>Coaches</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/">Admin</a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('coach.list') }}">Coaches</a>
+                </li>
+                <li class="active">
+                    <strong>Editar</strong>
+                </li>
+            </ol>
     </div>
-</div>
+   
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         {{-- Fin de Cabecera --}}
@@ -120,7 +117,7 @@
         </div>
     </div>
 </div>
-@endsection
+
 {{-- Me valida los campos en blanco --}}
 @push('scripts')
 

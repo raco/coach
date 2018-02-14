@@ -7,7 +7,7 @@
                         <div class="col-sm-12 b-r">
                             <h3 class="m-t-none m-b">Editar</h3>
                             <p>Edite los datos del cliente.</p>
-                            <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="frmeditclient">
+                            <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="">
                                 {{csrf_field()}}
                                 @if(Session::has('flash_message'))
                                 <div class="alert alert-success">
