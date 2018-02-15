@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('coach_id')->unsigned();
+            $table->integer('coach_id')->unsigned()->nullable();
             $table->foreign('coach_id')->references('id')->on('users');
             $table->boolean('state');
             $table->timestamps();
