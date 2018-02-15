@@ -2,67 +2,63 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox">
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-12 b-r">
-                            <h3 class="m-t-none m-b">Editar</h3>
-                            <p>Edite los datos del cliente.</p>
-                            <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="">
-                                {{csrf_field()}}
-                                @if(Session::has('flash_message'))
-                                <div class="alert alert-success">
-                                    <span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
-                                </div>
-                                @endif
-                                    <div class="form-group"><label>Nombre</label>
-                                    <input value={{ $client->user->name }} type="text" id="txtnomclient"
-                                name= "name" placeholder="Ingrese Nombres" class="form-control"></div>
-                                <div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' id="txtlastnameclient" placeholder="Ingrese Apellidos" class="form-control" value="{{ $client->user->lastname }}"></div>
-                                <div class="form-group"><label class="form-group">Sexo</label>
-                                    <select name="sexo" class="form-control" name="account">
-                                        <option value="m">Masculino</option>
-                                        <option value="f">Femenino </option>
-                                    </select>
-                                </div>
-                                <div class="form-group"><label>Teléfono</label>
-                                <input value="{{ $client->user->phone }}" type="text" id="txtfonoclient" placeholder="" name='phone'class="form-control"></div>
-                                <div class="form-group"><label>Email</label> <input data-validation="email" value="{{ $client->user->email }}"  type="email" id="txtemailclient" name="email" placeholder="Enter email" class="form-control"></div>
-                                <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
-                                <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
-                                <div class="form-group"><label class="form-group">Seleccione su coach</label>
-                                    <select name="coach" class="form-control" name="account">
-                                        <option value="none" selected="selected">Ninguno</option>
-                                        @foreach($coaches as $data)
-                                        @if ($client->coach && $client->coach->id == $data->id)
-                                        <option value="{{ $data->id }}" selected="selected">{{ $data->full_name }}</option>
-                                        @else
-                                        <option value="{{ $data->id }}">{{ $data->full_name }}</option>
-                                        @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group"">
-                                    <div>
-                                        @if ($client->state)
-                                        <label>
-                                            <input name="state" type="checkbox" value="1" checked="checked">
-                                            <span>Cliente activo</span>
-                                        </label>
-                                        @else
-                                        <label>
-                                            <input name="state" type="checkbox"  value="0">
-                                            <span>Cliente inactivo</span>
-                                        </label>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
-                                <div>
-                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" id="btnmod"><strong>Modificar</strong></button>
-                                </div>
-                            </form>
+                <div class="col-sm-12">
+                    <h3 class="m-t-none m-b">Editar</h3>
+                    <p>Edite los datos del cliente.</p>
+                    <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="">
+                        {{csrf_field()}}
+                        @if(Session::has('flash_message'))
+                        <div class="alert alert-success">
+                            <span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em>
                         </div>
-                    </div>
+                        @endif
+                            <div class="form-group"><label>Nombre</label>
+                            <input value={{ $client->user->name }} type="text" id="txtnomclient"
+                        name= "name" placeholder="Ingrese Nombres" class="form-control"></div>
+                        <div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' id="txtlastnameclient" placeholder="Ingrese Apellidos" class="form-control" value="{{ $client->user->lastname }}"></div>
+                        <div class="form-group"><label class="form-group">Sexo</label>
+                            <select name="sexo" class="form-control" name="account">
+                                <option value="m">Masculino</option>
+                                <option value="f">Femenino </option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Teléfono</label>
+                        <input value="{{ $client->user->phone }}" type="text" id="txtfonoclient" placeholder="" name='phone'class="form-control"></div>
+                        <div class="form-group"><label>Email</label> <input data-validation="email" value="{{ $client->user->email }}"  type="email" id="txtemailclient" name="email" placeholder="Enter email" class="form-control"></div>
+                        <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
+                        <div style="color:red; margin-bottom:10px;" id="email-error" class="" style="display:none"></div>
+                        <div class="form-group"><label class="form-group">Seleccione su coach</label>
+                            <select name="coach" class="form-control" name="account">
+                                <option value="none" selected="selected">Ninguno</option>
+                                @foreach($coaches as $data)
+                                @if ($client->coach && $client->coach->id == $data->id)
+                                <option value="{{ $data->id }}" selected="selected">{{ $data->full_name }}</option>
+                                @else
+                                <option value="{{ $data->id }}">{{ $data->full_name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group"">
+                            <div>
+                                @if ($client->state)
+                                <label>
+                                    <input name="state" type="checkbox" value="1" checked="checked">
+                                    <span>Cliente activo</span>
+                                </label>
+                                @else
+                                <label>
+                                    <input name="state" type="checkbox"  value="0">
+                                    <span>Cliente inactivo</span>
+                                </label>
+                                @endif
+                            </div>
+                        </div>
+                        <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
+                        <div>
+                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" id="btnmod"><strong>Modificar</strong></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading animated fadeInRight">
     <div class="col-lg-10">
         <h2>Coaches</h2>
         <ol class="breadcrumb">
@@ -20,7 +20,7 @@
 
 </form>
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         {{-- Aqui empieza el listado de Coach --}}
         <div class="col-sm-12">
@@ -48,10 +48,8 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tbody>
-
-                                   
                                     @foreach ($coaches as $coach)
-                                    <tr>
+                                    <tr onclick="myFunction({{$coach->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                         <td class="client-status">
                                             @if ($coach->state)
                                             <span class="label label-primary">Activo</span>
@@ -67,15 +65,13 @@
                                         </td>
                                        
                                         <td class="contact-type"><i class="fa fa-phone"> </i></td>
-                                        {{-- <td>{{ $coach->user->phone }}</td> --}}
+                               
                                         <td>{{ $coach->phone }}</td>
                                         <td class="contact-type">
                                             <i class="fa fa-envelope"> </i>
                                         </td>
 
-                                        {{-- <td>{{ $coach->user->email }}</td> --}}
                                         <td>{{ $coach->email }}</td>
-                                       {{--  @if ($coach->user->gender == 'f') --}}
                                         @if ($coach->gender == 'f')
                                         <td class="contact-type">
                                             <i class="fa fa-female"></i>
@@ -88,17 +84,17 @@
                                         <td>Hombre</td>
                                         @endif 
 
-                                        <td>
+                                        {{-- <td> --}}
                                            {{--  <a href="{{ route('coach.edit', $coach->id) }}" class="btn btn-default">
                                                 <i class="fa fa-pencil"></i>
                                             </a> --}}
 
-                                        <a id="link" href="#" onclick="myFunction({{$coach->id}});" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                        {{-- <a id="link" href="#"  class="btn btn-default">
                                                     <i class="fa fa-pencil"></i>
-                                        </a>
+                                        </a> --}}
 
 
-                                        </td>
+                                        {{-- </td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -114,21 +110,9 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -139,10 +123,16 @@
 @endsection
 
 @push('scripts')
-        <script>
-     function myFunction(id) {
-     $('#myModal .modal-content').load("/admin/coaches/edit/" + id);};
-
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script>
+    function myFunction(id) {
+        $('#myModal .modal-content').load("/admin/coaches/edit/" + id);
+    }
     </script>
 
 @endpush    

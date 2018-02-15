@@ -22,7 +22,8 @@ class CoachController extends Controller
 
    	public function edit(Coach $coach)
    	{
-		return view('admin.pages.coaches.edit',compact('coach'));
+   		$clients = $coach->client;
+		return view('admin.pages.coaches.edit',compact('coach', 'clients'));
   	}
 
    	public function update($id, Request $request)

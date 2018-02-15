@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading animated fadeInRight">
 	<div class="col-lg-10">
 		<h2>Clientes</h2>
 		<ol class="breadcrumb">
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 </div>
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
 	<div class="row">
 		{{-- Aqui empieza el listado de Clientes --}}
 		<div class="col-sm-12">
@@ -42,7 +42,7 @@
 							<table class="table table-striped table-hover">
 								<tbody>
 									@foreach ($clientes as $client)
-									<tr>
+									<tr style="cursor: pointer" onclick="myFunction({{$client->id}})" data-toggle="modal" data-target="#myModal">
 										<td class="client-status">
 											@if ($client->state)
 											<span class="label label-primary">Activo</span>
@@ -55,9 +55,9 @@
 										</td>
 
 										<td>
-											<a data-toggle="tab" href="#contact-1" class="client-link">
+											<a href="#" class="client-link">
 												@if ($client->user->gender == 'f')
-											<a href	{{ $client->user->name }} {{ $client->user->lastname }}
+												{{ $client->user->name }} {{ $client->user->lastname }}
 												<i class="fa fa-venus text-muted"></i>
 												@else
 												{{ $client->user->name }} {{ $client->user->lastname }}
@@ -83,14 +83,7 @@
 											Sin asignar
 											@endif
 										</td>
-										<td>
-							
-
-										<a id="link" href="#" onclick="myFunction({{$client->id}});" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-pencil"></i>
-										</a>
-											
-									</td>
+									
 									</tr>
 									@endforeach
 								</tbody>
@@ -108,19 +101,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+   
     </div>
   </div>
 </div>
