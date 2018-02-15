@@ -43,13 +43,7 @@
 								<tbody>
 									@foreach ($clientes as $client)
 									<tr style="cursor: pointer" onclick="myFunction({{$client->id}})" data-toggle="modal" data-target="#myModal">
-										<td class="client-status">
-											@if ($client->state)
-											<span class="label label-primary">Activo</span>
-											@else
-											<span class="label label-default">Inactivo</span>
-											@endif
-										</td>
+										
 										<td class="client-avatar">
 											<img alt="image" src="{{ asset('img/a2.jpg') }}">
 										</td>
@@ -65,13 +59,6 @@
 												@endif
 											</a>
 										</td>
-
-										<td class="contact-type"><i class="fa fa-phone"> </i></td>
-										<td>{{ $client->user->phone }}</td>
-										<td class="contact-type">
-											<i class="fa fa-envelope"> </i>
-										</td>
-										<td>{{ $client->user->email }}</td>
 										<td class="contact-type">
 											<span class="label label-default">Coach</span>
 										</td>
@@ -81,6 +68,20 @@
 											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
 											@else 
 											Sin asignar
+											@endif
+										</td>
+										<td class="contact-type">
+											<i class="fa fa-envelope"> </i>
+										</td>
+										<td>{{ $client->user->email }}</td>
+
+										<td class="contact-type"><i class="fa fa-phone"> </i></td>
+										<td>{{ $client->user->phone }}</td>
+										<td class="client-status">
+											@if ($client->state)
+											<span class="label label-primary">Activo</span>
+											@else
+											<span class="label label-default">Inactivo</span>
 											@endif
 										</td>
 									
