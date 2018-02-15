@@ -18,6 +18,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	// Valida email del client
 	Route::post('validate/email', 'AdminController@validateEmail')->name('validate.email');
+	Route::post('updatePass', 'AdminController@updatePass')->name('admin.updatePass');
 
 	// Listado de Clientes
 	Route::get('clients', 'ClientController@list')->name('client.list');

@@ -18,8 +18,16 @@
                         <div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' id="txtlastnameclient" placeholder="Ingrese Apellidos" class="form-control" value="{{ $client->user->lastname }}"></div>
                         <div class="form-group"><label class="form-group">Sexo</label>
                             <select name="sexo" class="form-control" name="account">
-                                <option value="m">Masculino</option>
-                                <option value="f">Femenino </option>
+                                <option value="m"
+                                    @if ($client->user->gender == 'm')
+                                       selected="selected"
+                                    @endif
+                                >Masculino</option>
+                                <option value="f"
+                                    @if ($client->user->gender == 'f')
+                                       selected="selected"
+                                    @endif
+                                >Femenino </option>
                             </select>
                         </div>
                         <div class="form-group"><label>Teléfono</label>

@@ -36,8 +36,16 @@
                                             <div class="form-group">
                                                 <label class="form-group">Sexo</label>
                                                 <select name="sexo" class="form-control" name="account">
-                                                    <option value="m">Masculino</option>
-                                                    <option value="f">Femenino </option>
+                                                    <option value="m"
+                                                        @if ($coach->user->gender == 'm')
+                                                           selected="selected"
+                                                        @endif
+                                                    >Masculino</option>
+                                                    <option value="f"
+                                                        @if ($coach->user->gender == 'f')
+                                                           selected="selected"
+                                                        @endif
+                                                    >Femenino </option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

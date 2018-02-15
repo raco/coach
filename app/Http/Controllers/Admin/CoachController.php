@@ -14,7 +14,7 @@ class CoachController extends Controller
     public function list()
     {
 		$coaches=DB::table('coaches')
-		->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state','coaches.phrase'))
+		->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.image_url,users.gender,coaches.state','coaches.phrase'))
 		->join('users','users.id','=','coaches.user_id')->get();
 
         return view('admin.pages.coaches.list', compact('coaches'));
@@ -70,14 +70,14 @@ class CoachController extends Controller
 
 
     public function updpass($id ,Request $request) 
-   {
+   	{
 		$coach = Coach::findOrfail($id);
 		$user = User::findOrFail($coach->id);
 		$user->password= bcrypt($request['passcoach2']);
 		\Session::flash('flash_message2','La contraseña ha sido modificado');
 		$user->save();
 		return redirect()->back();
-   }
+   	}
 
     public function search(Request $request)
     {

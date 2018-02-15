@@ -49,7 +49,7 @@
 											@endif
 										</td>
 										<td class="client-avatar">
-											<img alt="image" src="{{ asset('img/a2.jpg') }}">
+											<img alt="image" src="{{ $client->user->image_url  or asset('img/user-default.png') }}">
 										</td>
 
 										<td>

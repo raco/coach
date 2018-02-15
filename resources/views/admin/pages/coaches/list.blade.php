@@ -58,7 +58,7 @@
                                             @endif
                                         </td>
                                         <td class="client-avatar">
-                                            <img alt="image" src="{{ asset('img/a2.jpg') }}">
+                                            <img alt="image" src="{{ $coach->image_url  or asset('img/user-default.png') }}">
                                         </td>
                                         <td>
                                             <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->full_name }}</a>
@@ -83,18 +83,7 @@
                                         </td>
                                         <td>Hombre</td>
                                         @endif 
-
-                                        {{-- <td> --}}
-                                           {{--  <a href="{{ route('coach.edit', $coach->id) }}" class="btn btn-default">
-                                                <i class="fa fa-pencil"></i>
-                                            </a> --}}
-
-                                        {{-- <a id="link" href="#"  class="btn btn-default">
-                                                    <i class="fa fa-pencil"></i>
-                                        </a> --}}
-
-
-                                        {{-- </td> --}}
+                                   
                                     </tr>
                                     @endforeach
                                 </tbody>
