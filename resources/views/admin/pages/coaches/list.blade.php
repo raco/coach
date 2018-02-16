@@ -50,13 +50,7 @@
                                 <tbody>
                                     @foreach ($coaches as $coach)
                                     <tr onclick="myFunction({{$coach->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
-                                        <td class="client-status">
-                                            @if ($coach->state)
-                                            <span class="label label-primary">Activo</span>
-                                            @else
-                                            <span class="label label-danger">Inactivo</span>
-                                            @endif
-                                        </td>
+                                        
                                         <td class="client-avatar">
                                             <img alt="image" src="{{ $coach->image_url  or asset('img/user-default.png') }}">
                                         </td>
@@ -83,7 +77,13 @@
                                         </td>
                                         <td>Hombre</td>
                                         @endif 
-                                   
+                                        <td class="client-status">
+                                            @if ($coach->state)
+                                            <span class="label label-primary">Activo</span>
+                                            @else
+                                            <span class="label label-danger">Inactivo</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
