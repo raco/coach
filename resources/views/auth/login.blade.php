@@ -13,7 +13,7 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-                <h1 class="logo-name">IN+</h1>
+                <h1 class="logo-name"><img src="{{ asset('img/logo-ynside.png') }}"></h1>
             </div>
             @if(Session::has('flash_error_message'))
                 <div class="alert alert-danger"><em> {!! session('flash_error_message') !!}</em>
