@@ -14,13 +14,11 @@
 
     </div>
 </div>
-<form>
-
-
-
-</form>
-
 <div class="wrapper wrapper-content">
+    @if(Session::has('flash_message2'))
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message2') !!}</em>
+        </div>
+    @endif
     <div class="row">
         {{-- Aqui empieza el listado de Coach --}}
         <div class="col-sm-12">
@@ -33,28 +31,28 @@
                     </div>
                 </div>
                
-                <form action="{{route('coach.search')}}" method="POST" role="form">
+                <div class="ibox-content">
+             {{--    <form action="{{route('coach.search')}}" method="POST" role="form">
                      {{csrf_field()}}
-                    <div class="ibox-content">
                     <div class="input-group">
                         <input name='txtbuscoach' type="text" placeholder="Buscar coach..." class="input form-control" >
                         <span class="input-group-btn">
                         <button type="submit" class="btn btn btn-info"> <i class="fa fa-search"></i> Buscar</button>
                         </span>
                     </div>
-                </form>
+                </form> --}}
 
                     <div class="clients-list">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tbody>
                                     @foreach ($coaches as $coach)
-                                    <tr onclick="myFunction({{$coach->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                    <tr>
                                         
                                         <td class="client-avatar">
                                             <img alt="image" src="{{ $coach->image_url  or asset('img/user-default.png') }}">
                                         </td>
-                                        <td>
+                                        <td onclick="myFunction({{$coach->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                             <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->full_name }}</a>
                                         </td>
                                        
@@ -83,6 +81,13 @@
                                             @else
                                             <span class="label label-danger">Inactivo</span>
                                             @endif
+                                        </td>
+                                        <td class="client-status">
+                                            <form action="{{ route('coach.delete', $coach->id) }}" method="POST">
+                                              {{ method_field('DELETE') }}
+                                              {{ csrf_field() }}
+                                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

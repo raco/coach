@@ -27,16 +27,16 @@
                         <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Cliente</a>
                     </div>
                 </div>
-				  <form action="" method="POST" role="form">
-                     {{csrf_field()}}
 				<div class="ibox-content">
-					<div class="input-group">
-						<input type="text" name='txtbuscar' placeholder="Buscar cliente..." class="input form-control">
-						<span class="input-group-btn">
-							<button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
-						</span>
-					</div>
-				</form>
+				  	{{-- <form action="" method="POST" role="form">
+                     	{{csrf_field()}}
+						<div class="input-group">
+							<input type="text" name='txtbuscar' placeholder="Buscar cliente..." class="input form-control">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
+							</span>
+						</div>
+					</form> --}}
 					<div class="clients-list">
 						<div class="table-responsive">
 							<table class="table table-striped table-hover">
@@ -64,10 +64,9 @@
 										</td>
 										<td>
 											@if ($client->coach)
-												{{-- expr --}}
-											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
+												<a href="#">{{$client->coach->full_name }}</a>
 											@else 
-											Sin asignar
+												Sin asignar
 											@endif
 										</td>
 										<td class="contact-type">

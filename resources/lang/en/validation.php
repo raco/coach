@@ -117,5 +117,5 @@ return [
     */
 
     'attributes' => [],
-
+    'recaptcha' => ':attribute no es correcto.',
 ];

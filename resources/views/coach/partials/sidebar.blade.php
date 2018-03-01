@@ -10,7 +10,7 @@
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>
                      </span> <span class="text-muted text-xs block">Coach <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="profile.html">Perfil</a></li>
+                        {{-- <li><a href="profile.html">Perfil</a></li> --}}
                         <li><a href="#" onclick="document.getElementById('photo').click();">Cambiar Foto</a></li>
                         <li class="divider"></li>
                         <li><a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -23,7 +23,7 @@
                     </form>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    <img src="{{ asset('img/logo-ynside.png') }}" style="width: 60px">
                 </div>
             </li>
             <li {{ (Request::url() == route('coach.dashboard')) ? 'class=active' : '' }}>

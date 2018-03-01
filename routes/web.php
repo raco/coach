@@ -50,6 +50,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	// Multi Busqueda  del coach
 	Route::post('coaches/search', 'CoachController@search')->name('coach.search');
 
+	Route::delete('coaches/delete/{coach}', 'CoachController@delete')->name('coach.delete');
 
 });
 

@@ -15,7 +15,9 @@ class CoachController extends Controller
     {
 		$coaches=DB::table('coaches')
 		->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.image_url,users.gender,coaches.state','coaches.phrase'))
-		->join('users','users.id','=','coaches.user_id')->get();
+		->join('users','users.id','=','coaches.user_id')
+		->where('coaches.deleted_at', '=', null)
+		->get();
 
         return view('admin.pages.coaches.list', compact('coaches'));
     }
@@ -39,7 +41,7 @@ class CoachController extends Controller
 		$coach->user_id = $user->id;
 		$user->save();
 		$coach->save();
-		\Session::flash('flash_message','Dato del Coach ha sido actualizado');
+		\Session::flash('flash_message2','Dato del Coach ha sido actualizado');
 		return redirect()->back();
    	}
 
@@ -95,6 +97,11 @@ class CoachController extends Controller
 	  	return view('admin.pages.coaches.list',compact('coaches'));
  	}
 
-
+ 	public function delete($coach)
+ 	{
+ 		Coach::findOrfail($coach)->delete();
+ 		\Session::flash('flash_message2','El coach ha sido eliminado correctamente');
+		return redirect()->back();
+ 	}
 
 }

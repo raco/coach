@@ -21,6 +21,13 @@
             @endif
             <h3>Bienvenido</h3>
             <p>Ingresa tu correo y contraseña para acceder a tu panel. </p>
+            @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text text-danger">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
             <form class="m-t" id="formlogin" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
 
@@ -41,6 +48,8 @@
                         </span>
                     @endif
                 </div>
+                
+                {!! Recaptcha::render() !!}
 
                 <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
 

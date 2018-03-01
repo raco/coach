@@ -1,5 +1,8 @@
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -10,11 +13,7 @@
                     {{ csrf_field() }}
                 </form>
             </li>
-            <li>
-                <a class="right-sidebar-toggle">
-                    <i class="fa fa-tasks"></i>
-                </a>
-            </li>
+          
         </ul>
     </nav>
 </div>

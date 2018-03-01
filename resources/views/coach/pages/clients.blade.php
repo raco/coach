@@ -27,13 +27,13 @@
 
                		
 				<div class="ibox-content">
-					<div class="input-group">
+					{{-- <div class="input-group">
 						<input type="text" placeholder="Buscar cliente..." name="txtbuscar" class="input form-control">
 					
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Buscar</button>
 							</span>	
-					</div>
+					</div> --}}
 				
 					<div class="clients-list">
 						<div class="table-responsive">
@@ -70,12 +70,6 @@
 											<i class="fa fa-envelope"> </i>
 										</td>
 										<td>{{ $client->user->email }}</td>
-										<td class="contact-type">
-											<span class="label label-default">Coach</span>
-										</td>
-										<td>
-											<a href="{{ route('coach.edit', $client->coach->id) }}">{{$client->coach->full_name }}</a>
-										</td>
 										<td>
 											<a href="#" class="btn btn-default">
 												<i class="fa fa-eye"></i>
