@@ -32,6 +32,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('clients/create', 'ClientController@store')->name('client.store');
 		// Multi Busqueda  del Cliente
 	Route::post('clients/search', 'ClientController@search')->name('client.search');
+	Route::delete('clients/delete/{client}', 'ClientController@delete')->name('client.delete');
 
  
 

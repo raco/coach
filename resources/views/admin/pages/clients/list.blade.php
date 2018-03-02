@@ -17,6 +17,10 @@
 	</div>
 </div>
 <div class="wrapper wrapper-content">
+	@if(Session::has('flash_message2'))
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message2') !!}</em>
+        </div>
+    @endif
 	<div class="row">
 		{{-- Aqui empieza el listado de Clientes --}}
 		<div class="col-sm-12">
@@ -42,13 +46,13 @@
 							<table class="table table-striped table-hover">
 								<tbody>
 									@foreach ($clientes as $client)
-									<tr style="cursor: pointer" onclick="myFunction({{$client->id}})" data-toggle="modal" data-target="#myModal">
+									<tr>
 										
 										<td class="client-avatar">
 											<img alt="image" src="{{ $client->user->image_url  or asset('img/user-default.png') }}">
 										</td>
 
-										<td>
+										<td style="cursor: pointer" onclick="myFunction({{$client->id}})" data-toggle="modal" data-target="#myModal">
 											<a href="#" class="client-link">
 												@if ($client->user->gender == 'f')
 												{{ $client->user->name }} {{ $client->user->lastname }}
@@ -64,7 +68,7 @@
 										</td>
 										<td>
 											@if ($client->coach)
-												<a href="#">{{$client->coach->full_name }}</a>
+												{{$client->coach->full_name }}
 											@else 
 												Sin asignar
 											@endif
@@ -83,7 +87,13 @@
 											<span class="label label-default">Inactivo</span>
 											@endif
 										</td>
-									
+										<td class="client-status">
+                                            <form action="{{ route('client.delete', $client->id) }}" method="POST">
+                                              {{ method_field('DELETE') }}
+                                              {{ csrf_field() }}
+                                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </td>
 									</tr>
 									@endforeach
 								</tbody>

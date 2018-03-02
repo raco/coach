@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->foreign('coach_id')->references('id')->on('users');
             $table->boolean('state');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

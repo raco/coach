@@ -75,7 +75,12 @@ class ClientController extends Controller
 	    return redirect()->back();
     }
 
- 
+ 	public function delete($client)
+ 	{
+ 		Client::findOrfail($client)->delete();
+ 		\Session::flash('flash_message2','El cliente ha sido eliminado correctamente');
+		return redirect()->back();
+ 	}
 
 }
 
