@@ -33,7 +33,8 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 		// Multi Busqueda  del Cliente
 	Route::post('clients/search', 'ClientController@search')->name('client.search');
 	Route::delete('clients/delete/{client}', 'ClientController@delete')->name('client.delete');
-
+	// Actualiza contraseña del coach
+	Route::post('clients/uppassword/{client}', 'ClientController@updpass')->name('client.updatePass');
  
 
 	// Listado de Coach

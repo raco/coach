@@ -1,6 +1,6 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <div class="ibox">
                 <div class="col-sm-12">
                     <h3 class="m-t-none m-b">Editar</h3>
@@ -67,6 +67,27 @@
                             <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" id="btnmod"><strong>Modificar</strong></button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox">
+                <div class="">
+                    <div class="row">
+                        <div class="col-sm-12"><h3 class="m-t-none m-b">Editar Contraseña</h3>
+                            <p>Modifique la contraseña del Cliente.</p>
+                            <form action="{{route('client.updatePass', $client->id)}}" method="POST" >
+                                {{csrf_field()}}
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input type="password"  name="password" class="form-control" required="required">
+                                </div>
+
+                                <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none"></div>
+                                <button class="btn btn-primary pull-right m-t-n-xs" type="submit"><strong>Actualizar Contraseña</strong></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

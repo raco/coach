@@ -82,5 +82,14 @@ class ClientController extends Controller
 		return redirect()->back();
  	}
 
+ 	public function updpass($id, Request $request) 
+   	{
+		$client = Client::findOrfail($id);
+		$user = User::findOrFail($client->id);
+		$user->password= bcrypt($request['password']);
+		\Session::flash('flash_message2','La contraseña ha sido modificada');
+		$user->save();
+		return redirect()->back();
+   	}
 }
 
