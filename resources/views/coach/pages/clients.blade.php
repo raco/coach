@@ -38,6 +38,14 @@
 					<div class="clients-list">
 						<div class="table-responsive">
 							<table class="table table-striped table-hover">
+								<thead>
+                                    <tr>
+                                        <th >Estado</th>
+                                        <th colspan="2">Nombre</th>
+                                        <th colspan="2">Teléfono</th>
+                                        <th colspan="2">Correo Electrónico</th>
+                                    </tr>
+                                </thead>
 								<tbody>
 									@foreach ($clients as $client)
 									<tr>
