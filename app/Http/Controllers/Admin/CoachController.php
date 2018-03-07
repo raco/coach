@@ -74,7 +74,7 @@ class CoachController extends Controller
     public function updpass($id ,Request $request) 
    	{
 		$coach = Coach::findOrfail($id);
-		$user = User::findOrFail($coach->id);
+		$user = $coach->user;
 		$user->password= bcrypt($request['passcoach2']);
 		\Session::flash('flash_message2','La contraseña ha sido modificado');
 		$user->save();
