@@ -58,7 +58,7 @@
                                             </div>
 
                                             <div id="xmail" class="hide"><h7 class="text-danger">Ingresa un email valido</h7></div>
-                                            <div class="form-group"">
+                                            <div class="form-group">
                                                 @if ($coach->state)
                                                 <label>
                                                     <input name="state" type="checkbox" value="1" checked="checked">

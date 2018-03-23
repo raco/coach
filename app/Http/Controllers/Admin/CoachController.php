@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Coach;
-use App\Http\Controllers\Controller;
+
 use App\User;
-use Faker\Provider\pt_BR\phone;
+use App\Coach;
 use Illuminate\Http\Request;
+use Faker\Provider\pt_BR\phone;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class CoachController extends Controller
 {

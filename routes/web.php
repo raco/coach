@@ -51,9 +51,27 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('coaches/uppassword/{client}', 'CoachController@updpass')->name('coach.UpdatepasswordCoach');
 	// Multi Busqueda  del coach
 	Route::post('coaches/search', 'CoachController@search')->name('coach.search');
-
+	
 	Route::delete('coaches/delete/{coach}', 'CoachController@delete')->name('coach.delete');
+	
+	
+	// PRODUCTOS
+	Route::get('products', 'ProductController@list')->name('product.list');
+	
+	Route::get('products/create', 'ProductController@create')->name('product.create');
+	Route::post('products/create', 'ProductController@store')->name('product.store');
+	
+	Route::get('products/edit/{product}', 'ProductController@edit')->name('product.edit');
+	Route::put('products/update/{product}', 'ProductController@update')->name('product.update');
 
+	// DIETS
+	Route::get('diets', 'DietController@list')->name('diet.list');
+	
+	Route::get('diets/create', 'DietController@create')->name('diet.create');
+	Route::post('diets/create', 'DietController@store')->name('diet.store');
+	
+	Route::get('diets/edit/{diet}', 'DietController@edit')->name('diet.edit');
+	Route::put('diets/update/{diet}', 'DietController@update')->name('diet.update');
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {

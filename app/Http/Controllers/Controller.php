@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function storeImage($imageFile)
+    {
+        $imageName = time().'.'.$imageFile->getClientOriginalExtension();
+        $destinationPath = public_path('/uploads');
+        $imageFile->move($destinationPath, $imageName);
+        return url('uploads/'.$imageName);
+    }
 }

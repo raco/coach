@@ -34,6 +34,12 @@
             <li {{ (Request::url() == route('client.list')) ? 'class=active' : '' }}>
                 <a href="{{route('client.list')}}"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Clientes</a>
             </li>
+            <li {{ (Request::url() == route('product.list')) ? 'class=active' : '' }}>
+                <a href="{{route('product.list')}}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Productos</a>
+            </li>
+            <li {{ (Request::url() == route('diet.list')) ? 'class=active' : '' }}>
+                <a href="{{route('diet.list')}}"><i class="fa fa-heartbeat"></i> <span class="nav-label">Dietas</a>
+            </li>
         </ul>
     </div>
 </nav>
