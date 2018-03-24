@@ -29,7 +29,7 @@
                 <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</a>
             </li>
             <li {{ (Request::url() == route('coach.list')) ? 'class=active' : '' }}>
-                <a href="{{route('coach.list')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Coaches</span></a>
+                <a href="{{route('coach.list')}}"><i class="fa fa-users"></i> <span class="nav-label">Coaches</span></a>
             </li>
             <li {{ (Request::url() == route('client.list')) ? 'class=active' : '' }}>
                 <a href="{{route('client.list')}}"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Clientes</a>
@@ -39,6 +39,9 @@
             </li>
             <li {{ (Request::url() == route('diet.list')) ? 'class=active' : '' }}>
                 <a href="{{route('diet.list')}}"><i class="fa fa-heartbeat"></i> <span class="nav-label">Dietas</a>
+            </li>
+            <li {{ (Request::url() == route('buyingrequest.list')) ? 'class=active' : '' }}>
+                <a href="{{route('buyingrequest.list')}}"><i class="fa fa-ticket"></i> <span class="nav-label">Peticiones de Compra</a>
             </li>
         </ul>
     </div>

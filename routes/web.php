@@ -72,6 +72,11 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	
 	Route::get('diets/edit/{diet}', 'DietController@edit')->name('diet.edit');
 	Route::put('diets/update/{diet}', 'DietController@update')->name('diet.update');
+	
+	// BUYING REQUEST
+	Route::get('buyingrequests', 'BuyingrequestController@list')->name('buyingrequest.list');
+	Route::put('buyingrequests/update/{buyingrequest}', 'BuyingrequestController@update')->name('buyingrequest.update');
+	
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {

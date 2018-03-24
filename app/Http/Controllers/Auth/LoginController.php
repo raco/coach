@@ -49,10 +49,10 @@ class LoginController extends Controller
         $this->validate($request, [
             $this->username() => 'required|string',
             'password' => 'required|string',
-            // 'g-recaptcha-response' => 'required|recaptcha',
+            'g-recaptcha-response' => 'required|recaptcha',
         ], [
             'password.required' => 'Ingresa una contraseña.',
-            // 'g-recaptcha-response.required' => 'Completa el campo reCAPTCHA' 
+            'g-recaptcha-response.required' => 'Completa el campo reCAPTCHA' 
         ]);
     }
 

@@ -17,7 +17,7 @@ class Client extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function  coach()
+    public function coach()
 	{
 		return $this->belongsTo(Coach::class);
 	}
