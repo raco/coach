@@ -22,7 +22,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('place');
             $table->boolean('seen')->default(false);
 
-            $table->integer('coach_id');
+            $table->integer('coach_id')->unsigned();
             $table->foreign('coach_id')->references('id')->on('users');
             
             $table->integer('client_id')->unsigned();
