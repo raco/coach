@@ -77,6 +77,14 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('buyingrequests', 'BuyingrequestController@list')->name('buyingrequest.list');
 	Route::put('buyingrequests/update/{buyingrequest}', 'BuyingrequestController@update')->name('buyingrequest.update');
 	
+	// POSTS
+	Route::get('posts', 'PostController@list')->name('post.list');
+	
+	Route::get('posts/create', 'PostController@create')->name('post.create');
+	Route::post('posts/create', 'PostController@store')->name('post.store');
+	
+	Route::get('posts/edit/{post}', 'PostController@edit')->name('post.edit');
+	Route::put('posts/update/{post}', 'PostController@update')->name('post.update');
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {

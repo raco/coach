@@ -13,9 +13,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        //
+        $posts = Post::all();
+        return view('admin.pages.posts.index', compact('posts'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.posts.create');
     }
 
     /**
@@ -36,18 +37,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $content = $request->input('content');
+        $dom = new \DomDocument();
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $images = $dom->getElementsByTagName('img');
+        foreach($images as $k => $img){
+            $data = $img->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name= "/uploads/" . time().$k.'.png';
+            $path = public_path() . $image_name;
+            file_put_contents($path, $data);
+            $img->removeAttribute('src');
+            $img->setAttribute('src', url($image_name));
+        }
+        $content = $dom->saveHTML();
+        
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->excerpt = $request->input('excerpt');
+        $post->content = $content;
+        $post->image = $this->storeImage($request->file('file'));
+        $post->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
+        \Session::flash('flash_message','La noticia ha sido creada.');
+		return redirect()->back();
     }
 
     /**
@@ -58,7 +73,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.pages.posts.edit', compact('post'));
     }
 
     /**
@@ -70,7 +85,34 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $content = $request->input('content');
+        $dom = new \DomDocument();
+        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $images = $dom->getElementsByTagName('img');
+        foreach($images as $k => $img){
+            $data = $img->getAttribute('src');
+            if(strpos($data, config('app.url')) === false) {
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $data = base64_decode($data);
+                $image_name= "/uploads/" . time().$k.'.png';
+                $path = public_path() . $image_name;
+                file_put_contents($path, $data);
+                $img->removeAttribute('src');
+                $img->setAttribute('src', url($image_name));
+            }
+        }
+        $content = $dom->saveHTML();
+
+        $post->title = $request->input('title');
+        $post->excerpt = $request->input('excerpt');
+        $post->content = $content;
+        $post->image = ($request->hasFile('file')) ? $this->storeImage($request->file('file')) : $post->image;
+        $post->featured = $request->input('featured') ? true : false;
+        $post->save();
+
+        \Session::flash('flash_message','La noticia ha sido actualizada.');
+		return redirect()->back();
     }
 
     /**
@@ -81,6 +123,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->destroy();
+        \Session::flash('flash_message','La noticia ha sido eliminada.');
+		return redirect()->back();
     }
 }
