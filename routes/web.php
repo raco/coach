@@ -20,22 +20,17 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('validate/email', 'AdminController@validateEmail')->name('validate.email');
 	Route::post('updatePass', 'AdminController@updatePass')->name('admin.updatePass');
 
-	// Listado de Clientes
+	// Clientes
 	Route::get('clients', 'ClientController@list')->name('client.list');
-	//Editar Cientes
 	Route::get('clients/edit/{client}', 'ClientController@edit')->name('client.edit');
-	// Actualiza Clientes
 	Route::post('clients/edit/{client}', 'ClientController@update')->name('client.update');
-	// Llama al formulario para  nuevo Cliente
 	Route::get('clients/create', 'ClientController@create')->name('client.create');
-		// Graba datos del Cliente
 	Route::post('clients/create', 'ClientController@store')->name('client.store');
-		// Multi Busqueda  del Cliente
 	Route::post('clients/search', 'ClientController@search')->name('client.search');
 	Route::delete('clients/delete/{client}', 'ClientController@delete')->name('client.delete');
-	// Actualiza contraseña del coach
 	Route::post('clients/uppassword/{client}', 'ClientController@updpass')->name('client.updatePass');
- 
+	
+	Route::get('clients/messages/{id}', 'ClientController@messages')->name('client.messages');
 
 	// Listado de Coach
 	Route::get('coaches', 'CoachController@list')->name('coach.list');
@@ -63,7 +58,8 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	
 	Route::get('products/edit/{product}', 'ProductController@edit')->name('product.edit');
 	Route::put('products/update/{product}', 'ProductController@update')->name('product.update');
-
+	Route::delete('products/delete/{product}', 'ProductController@destroy')->name('product.delete');
+	
 	// DIETS
 	Route::get('diets', 'DietController@list')->name('diet.list');
 	
@@ -72,6 +68,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	
 	Route::get('diets/edit/{diet}', 'DietController@edit')->name('diet.edit');
 	Route::put('diets/update/{diet}', 'DietController@update')->name('diet.update');
+	Route::delete('diets/delete/{diet}', 'DietController@destroy')->name('diet.delete');
 	
 	// BUYING REQUEST
 	Route::get('buyingrequests', 'BuyingrequestController@list')->name('buyingrequest.list');
@@ -85,6 +82,22 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	
 	Route::get('posts/edit/{post}', 'PostController@edit')->name('post.edit');
 	Route::put('posts/update/{post}', 'PostController@update')->name('post.update');
+	Route::delete('posts/delete/{post}', 'PostController@destroy')->name('post.delete');
+
+	// APPOINTMENTS
+	Route::get('appointments', 'AppointmentController@list')->name('appointment.list');
+	Route::get('appointments/create', 'AppointmentController@create')->name('appointment.create');
+	Route::post('appointments/create', 'AppointmentController@store')->name('appointment.store');
+	
+	Route::get('appointments/edit/{appointment}', 'AppointmentController@edit')->name('appointment.edit');
+	Route::put('appointments/update/{appointment}', 'AppointmentController@update')->name('appointment.update');
+	Route::delete('appointments/delete/{appointment}', 'AppointmentController@destroy')->name('appointment.delete');
+
+	// IMAGE
+	Route::get('images', 'ImageController@list')->name('image.list');
+	Route::get('images/edit/{image}', 'ImageController@edit')->name('image.edit');
+	Route::put('images/update/{image}', 'ImageController@update')->name('image.update');
+	Route::delete('images/delete/{image}', 'ImageController@destroy')->name('image.delete');
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {

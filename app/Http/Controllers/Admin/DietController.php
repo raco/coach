@@ -118,6 +118,8 @@ class DietController extends Controller
      */
     public function destroy(Diet $diet)
     {
-        //
+        $diet->delete();
+        \Session::flash('flash_message','La dieta ha sido eliminada.');
+		return redirect()->back();
     }
 }

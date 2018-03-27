@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
+use App\Coach;
+use App\Client;
 use App\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
@@ -13,9 +17,26 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        //
+        $appointments = DB::table('appointments as a')
+                            ->leftJoin('users as client', 'client.id', '=', 'a.client_id')
+                            ->leftJoin('users as coach', 'coach.id', '=', 'a.coach_id')
+                            ->select(
+                                'a.id as id',
+                                'appointment_date',
+                                'appointment_time',
+                                'subject',
+                                'message',
+                                'place',
+                                'seen',
+                                'client.name as client_name',
+                                'client.lastname as client_lastname',
+                                'coach.name as coach_name',
+                                'coach.lastname as coach_lastname'
+                            )
+                            ->get();
+        return view('admin.pages.appointments.index', compact('appointments'));
     }
 
     /**
@@ -25,7 +46,9 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::with('user')->get();
+        $coaches = Coach::with('user')->get();
+        return view('admin.pages.appointments.create', compact('clients', 'coaches'));
     }
 
     /**
@@ -36,18 +59,18 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $appointment = new Appointment();
+        $appointment->client_id = $request->input('client_id');
+        $appointment->coach_id = $request->input('coach_id');
+        $appointment->appointment_date = $request->input('appointment_date_submit');
+        $appointment->appointment_time = $request->input('appointment_time_submit').':00';
+        $appointment->place = $request->input('place');
+        $appointment->subject = $request->input('subject');
+        $appointment->message = $request->input('message');
+        $appointment->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Appointment  $appointment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Appointment $appointment)
-    {
-        //
+        \Session::flash('flash_message', 'La cita fue creada con exito.');
+		return redirect()->back();
     }
 
     /**
@@ -57,8 +80,10 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Appointment $appointment)
-    {
-        //
+    {   
+        $clients = Client::with('user')->get();
+        $coaches = Coach::with('user')->get();
+        return view('admin.pages.appointments.edit', compact('appointment', 'clients', 'coaches'));
     }
 
     /**
@@ -70,7 +95,17 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $appointment->client_id = $request->input('client_id');
+        $appointment->coach_id = $request->input('coach_id');
+        $appointment->appointment_date = $request->input('appointment_date_submit');
+        $appointment->appointment_time = $request->input('appointment_time_submit').':00';
+        $appointment->place = $request->input('place');
+        $appointment->subject = $request->input('subject');
+        $appointment->message = $request->input('message');
+        $appointment->save();
+
+        \Session::flash('flash_message', 'La cita fue actualizada con exito.');
+		return redirect()->back();
     }
 
     /**
@@ -81,6 +116,8 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->delete();
+        \Session::flash('flash_message', 'La cita fue eliminada con exito.');
+		return redirect()->back();
     }
 }

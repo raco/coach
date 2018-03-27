@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Appointment extends Model
+class Image extends Model
 {
-    public function client()
+    public function user()
     {
         return $this->belongsTo(User::class, 'client_id', 'id');
     }
 
-    public function coach()
+    public function getShortCommentAttribute()
     {
-        return $this->belongsTo(User::class, 'coach_id', 'id');
+        return substr($this->comment, 0, 50).'...';
     }
-
 }
+

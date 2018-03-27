@@ -2,13 +2,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading animated fadeInRight">
     <div class="col-lg-10">
-        <h2>Productos</h2>
+        <h2>Imágenes</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/">Admin</a>
             </li>
             <li class="active">
-                <strong>Productos</strong>
+                <strong>Imágenes</strong>
             </li>
         </ol>
 
@@ -24,11 +24,7 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Listado de todos los productos.</h5> 
-
-                    <div class="ibox-tools">
-                        <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Producto</a>
-                    </div>
+                    <h5>Listado de todos las imágenes.</h5> 
                 </div>
                
                 <div class="ibox-content">
@@ -39,29 +35,29 @@
                                 <thead>
                                     <tr>
                                         <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Categoria</th>
-                                        <th>Descripcion</th>
-                                        {{--  <th >Estado</th>  --}}
+                                        <th>Cliente</th>
+                                        <th>Comentario</th>
+                                        <th>Fecha</th>
                                         <th colspan="2">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($images as $image)
                                         <tr>
-                                            <td><img src="{{ $product->image }}" style="width: 60px"></td>
-                                            <td>{{ $product->name }}</td>
-                                            <td>{{ $product->category }}</td>
-                                            <td>{{ $product->description }}</td>
-                                            {{--  <td>{{ $product->state }}</td>  --}}
+                                            <td><img src="{{ $image->url }}" style="width: 60px"></td>
+                                            <td>{{ $image->user->full_name }}</td>
+                                            <td>{{ $image->short_comment }}</td>
                                             <td>
-                                                <button class="btn btn-default"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                                {{ $image->created_at->format('d/m/Y') }}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-default"  onclick="myFunction({{$image->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                             </td>
                                             <td class="client-status">
-                                                <form action="{{ route('product.delete', $product->id) }}" method="POST">
-                                                {{ method_field('DELETE') }}
+                                                <form action="{{ route('image.delete', $image->id) }}" method="POST">
+                                                        {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                                                 </form>
@@ -102,7 +98,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <script>
     function myFunction(id) {
-        $('#myModal .modal-content').load("/admin/products/edit/" + id);
+        $('#myModal .modal-content').load("/admin/images/edit/" + id);
     }
     </script>
 

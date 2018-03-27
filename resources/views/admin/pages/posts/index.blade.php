@@ -55,6 +55,13 @@
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                             </td>
+                                            <td>
+                                                <form action="{{ route('post.delete', $post->id) }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

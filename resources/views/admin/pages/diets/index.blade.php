@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>Categoria</th>
                                         <th>Resumen</th>
-                                        <th>Acciones</th>
+                                        <th colspan="2">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,6 +52,13 @@
                                                 <button class="btn btn-default"  onclick="myFunction({{$diet->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('diet.delete', $diet->id) }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -98,6 +98,8 @@
 											@endif
 										</td>
 										<td class="client-status">
+											<a href="{{ route('client.messages', $client->user->id) }}" class="btn btn-info btn-xs pull-left" title="Conversaciones entre cliente y su coach"><i class="fa fa-comments"></i></a>
+											
                                             <form action="{{ route('client.delete', $client->id) }}" method="POST">
                                               {{ method_field('DELETE') }}
                                               {{ csrf_field() }}

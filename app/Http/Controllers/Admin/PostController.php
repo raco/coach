@@ -123,7 +123,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->destroy();
+        $post->delete();
         \Session::flash('flash_message','La noticia ha sido eliminada.');
 		return redirect()->back();
     }

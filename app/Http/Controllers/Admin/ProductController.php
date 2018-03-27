@@ -48,9 +48,9 @@ class ProductController extends Controller
 		return redirect()->back();
     }
 
-    public function delete(Product $product)
+    public function destroy(Product $product)
     {
-        $product->destroy();
+        $product->delete();
         \Session::flash('flash_message','El producto ha sido eliminado.');
 		return redirect()->back();
     }

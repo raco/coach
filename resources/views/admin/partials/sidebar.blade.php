@@ -46,6 +46,12 @@
             <li {{ (Request::url() == route('post.list')) ? 'class=active' : '' }}>
                 <a href="{{route('post.list')}}"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Noticias</a>
             </li>
+            <li {{ (Request::url() == route('appointment.list')) ? 'class=active' : '' }}>
+                <a href="{{route('appointment.list')}}"><i class="fa fa-calendar"></i> <span class="nav-label">Citas</a>
+            </li>
+            <li {{ (Request::url() == route('image.list')) ? 'class=active' : '' }}>
+                <a href="{{route('image.list')}}"><i class="fa fa-picture-o"></i> <span class="nav-label">Imágenes</a>
+            </li>
         </ul>
     </div>
 </nav>

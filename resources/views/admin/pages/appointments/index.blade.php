@@ -2,13 +2,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading animated fadeInRight">
     <div class="col-lg-10">
-        <h2>Productos</h2>
+        <h2>Citas</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/">Admin</a>
             </li>
             <li class="active">
-                <strong>Productos</strong>
+                <strong>Citas</strong>
             </li>
         </ol>
 
@@ -20,14 +20,13 @@
         </div>
     @endif
     <div class="row">
-        {{-- Aqui empieza el listado de Coach --}}
+        {{-- Aqui empieza el listado --}}
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Listado de todos los productos.</h5> 
-
+                    <h5>Listado de todas las Citas.</h5> 
                     <div class="ibox-tools">
-                        <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm">+ Registrar Nuevo Producto</a>
+                        <a href="{{ route('appointment.create') }}" class="btn btn-primary btn-sm">+ Registrar Nueva Cita</a>
                     </div>
                 </div>
                
@@ -38,29 +37,33 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Categoria</th>
-                                        <th>Descripcion</th>
-                                        {{--  <th >Estado</th>  --}}
+                                        <th>Cliente</th>
+                                        <th>Coach</th>
+                                        <th>Fecha y hora</th>
+                                        <th>Asunto</th>
+                                        <th>Mensaje</th>
+                                        <th>Lugar</th>
+                                        <th>Visto</th>
                                         <th colspan="2">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($appointments as $appointment)
                                         <tr>
-                                            <td><img src="{{ $product->image }}" style="width: 60px"></td>
-                                            <td>{{ $product->name }}</td>
-                                            <td>{{ $product->category }}</td>
-                                            <td>{{ $product->description }}</td>
-                                            {{--  <td>{{ $product->state }}</td>  --}}
-                                            <td>
-                                                <button class="btn btn-default"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                            <td>{{ $appointment->client_name }} {{ $appointment->client_lastname }}</td>
+                                            <td>{{ $appointment->coach_name }} {{ $appointment->coach_lastname }}</td>
+                                            <td>{{ date_create($appointment->appointment_date)->format('d/m/Y') }} {{ substr($appointment->appointment_time, 0, 5) }}</td>
+                                            <td>{{ $appointment->subject }}</td>
+                                            <td>{{ $appointment->message }}</td>
+                                            <td>{{ $appointment->place }}</td>
+                                            <td>{{ $appointment->seen ? 'Si' : 'No' }}</td>
+                                            <td class="client-status">
+                                                <button class="btn btn-default btn-xs"  onclick="myFunction({{$appointment->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                             </td>
                                             <td class="client-status">
-                                                <form action="{{ route('product.delete', $product->id) }}" method="POST">
+                                                <form action="{{ route('appointment.delete', $appointment->id) }}" method="POST">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
@@ -90,20 +93,13 @@
 <!-- Fin del Modal -->
 
 
-{{-- Aqui Termina el listado de Coach --}}
+{{-- Aqui Termina el listado --}}
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <script>
     function myFunction(id) {
-        $('#myModal .modal-content').load("/admin/products/edit/" + id);
+        $('#myModal .modal-content').load("/admin/appointments/edit/" + id);
     }
     </script>
-
 @endpush    

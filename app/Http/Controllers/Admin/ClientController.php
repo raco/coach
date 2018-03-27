@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Controllers\Controller; 
+use App\User;
+use App\Coach;
+use App\Client;
+use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Client;
-use App\Coach;
-use App\User;
+use App\Http\Controllers\Controller; 
 
 
 class ClientController extends Controller
@@ -49,7 +50,8 @@ class ClientController extends Controller
 		return redirect()->back();
     }
 
-    public function create(){
+	public function create()
+	{
         $coaches = Coach::with('user')->get();
   		return view('admin.pages.clients.create',compact('coaches')) ;
     }
@@ -90,6 +92,12 @@ class ClientController extends Controller
 		\Session::flash('flash_message2','La contraseña ha sido modificada');
 		$user->save();
 		return redirect()->back();
-   	}
+	}
+	   
+	public function messages($id)
+	{
+		$messages = Message::where('from_id', $id)->orWhere('to_id', $id)->get();
+  		return view('admin.pages.clients.messages', compact('messages', 'id')) ;
+	}
 }
 
