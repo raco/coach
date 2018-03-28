@@ -31,6 +31,8 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('clients/uppassword/{client}', 'ClientController@updpass')->name('client.updatePass');
 	
 	Route::get('clients/messages/{id}', 'ClientController@messages')->name('client.messages');
+	Route::get('clients/medical/{client}', 'ClientController@medicalData')->name('client.medical');
+	Route::put('clients/medical/update/{client}', 'ClientController@updateMedicalData')->name('client.medical.update');
 
 	// Listado de Coach
 	Route::get('coaches', 'CoachController@list')->name('coach.list');
@@ -101,11 +103,52 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {
-	// Listado de Clientes del coach
+	
 	Route::get('dashboard', 'CoachController@dashboard')->name('coach.dashboard');
-	Route::get('clients', 'CoachController@clientList')->name('coach.client.list');
 	Route::post('coach/uploadphoto', 'CoachController@uploadPhoto')->name('coach.photo');
+	
+	// Clientes
+	Route::get('clients', 'CoachController@clientList')->name('coach.client.list');
+	Route::get('clients/show/{client}', 'CoachController@clientShow')->name('coach.client.show');
 
 	// Update de frase del coach
 	Route::post('coaches/updphrase', 'CoachController@updphrase')->name('coach.updphrase');
+
+	// IMAGE
+	Route::get('images', 'ImageController@list')->name('coach.image.list');
+	Route::get('images/show/{image}', 'ImageController@show')->name('coach.image.show');
+
+	// DIETS
+	Route::get('diets', 'DietController@list')->name('coach.diet.list');
+	
+	Route::get('diets/create', 'DietController@create')->name('coach.diet.create');
+	Route::post('diets/create', 'DietController@store')->name('coach.diet.store');
+	
+	Route::get('diets/edit/{diet}', 'DietController@edit')->name('coach.diet.edit');
+	Route::put('diets/update/{diet}', 'DietController@update')->name('coach.diet.update');
+	Route::delete('diets/delete/{diet}', 'DietController@destroy')->name('coach.diet.delete');
+
+	// PRODUCTOS
+	Route::get('products', 'ProductController@list')->name('coach.product.list');
+	
+	Route::get('products/create', 'ProductController@create')->name('coach.product.create');
+	Route::post('products/create', 'ProductController@store')->name('coach.product.store');
+	
+	Route::get('products/edit/{product}', 'ProductController@edit')->name('coach.product.edit');
+	Route::put('products/update/{product}', 'ProductController@update')->name('coach.product.update');
+	Route::delete('products/delete/{product}', 'ProductController@destroy')->name('coach.product.delete');
+
+	// BUYING REQUEST
+	Route::get('buyingrequests', 'BuyingrequestController@list')->name('coach.buyingrequest.list');
+	Route::get('buyingrequests/show/{buyingrequest}', 'BuyingrequestController@show')->name('coach.buyingrequest.show');
+	Route::put('buyingrequests/update/{buyingrequest}', 'BuyingrequestController@update')->name('coach.buyingrequest.update');
+
+	// APPOINTMENTS
+	Route::get('appointments', 'AppointmentController@list')->name('coach.appointment.list');
+	Route::get('appointments/create', 'AppointmentController@create')->name('coach.appointment.create');
+	Route::post('appointments/create', 'AppointmentController@store')->name('coach.appointment.store');
+	
+	Route::get('appointments/edit/{appointment}', 'AppointmentController@edit')->name('coach.appointment.edit');
+	Route::put('appointments/update/{appointment}', 'AppointmentController@update')->name('coach.appointment.update');
+	Route::delete('appointments/delete/{appointment}', 'AppointmentController@destroy')->name('coach.appointment.delete');
 });

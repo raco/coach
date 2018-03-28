@@ -42,7 +42,10 @@ class ClientController extends Controller
 		$user->email = $request['email'];
 		$client->state = isset($request['state']);
 		$client->coach_id = ($request['coach'] != 'none') ? $request['coach'] : null;
-
+		$client->iban = $request['iban'];
+	    $client->bank = $request['bank'];
+		$client->lopd_document = $request['lopd_document'];
+		
 		$user->save();
 		$client->save();
 
@@ -71,6 +74,9 @@ class ClientController extends Controller
 	    $client->user_id = $user->id;
 	    $client->state = true;
 	    $client->coach_id = ($request['coach'] != 'none') ? $request['coach'] : null;
+	    $client->iban = $request['iban'];
+	    $client->bank = $request['bank'];
+	    $client->lopd_document = $request['lopd_document'];
 	    $client->save();
         \Session::flash('flash_message','Nuevo Cliente ha sido agregado');
 
@@ -98,6 +104,20 @@ class ClientController extends Controller
 	{
 		$messages = Message::where('from_id', $id)->orWhere('to_id', $id)->get();
   		return view('admin.pages.clients.messages', compact('messages', 'id')) ;
+	}
+
+	public function medicalData(Client $client)
+	{
+		return view('admin.pages.clients.medical', compact('client')) ;
+	}
+	
+	public function updateMedicalData(Client $client, Request $request)
+	{
+		$client->medical_data = $request->input('medical_data');
+		$client->save();
+
+		\Session::flash('flash_message2','Los datos médicos han sido actualizados.');
+		return redirect()->back();
 	}
 }
 

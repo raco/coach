@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Coach;
 use Illuminate\Database\Eloquent\Model;
 
 class Diet extends Model
@@ -11,5 +12,10 @@ class Diet extends Model
     public function getExcerptAttribute()
     {
         return substr(strip_tags($this->content), 0, 50).'...';
+    }
+
+    public function coach()
+    {
+        return $this->belongsTo(Coach::class);
     }
 }

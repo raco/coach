@@ -32,6 +32,21 @@
             <li {{ (Request::url() == route('coach.client.list')) ? 'class=active' : '' }}>
                 <a href="{{route('coach.client.list')}}"><i class="fa fa-users"></i> <span class="nav-label">Clientes</a>
             </li>
+            <li {{ (Request::url() == route('coach.image.list')) ? 'class=active' : '' }}>
+                <a href="{{route('coach.image.list')}}"><i class="fa fa-picture-o"></i> <span class="nav-label">Fotos de Clientes</a>
+            </li>
+            <li {{ (Request::url() == route('coach.diet.list')) ? 'class=active' : '' }}>
+                <a href="{{route('coach.diet.list')}}"><i class="fa fa-heartbeat"></i> <span class="nav-label">Dietas</a>
+            </li>
+            <li {{ (Request::url() == route('coach.product.list')) ? 'class=active' : '' }}>
+                <a href="{{route('coach.product.list')}}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Productos</a>
+            </li>
+            <li {{ (Request::url() == route('coach.buyingrequest.list')) ? 'class=active' : '' }}>
+                <a href="{{route('coach.buyingrequest.list')}}"><i class="fa fa-ticket"></i> <span class="nav-label">Peticiones de Compra</a>
+            </li>
+            <li {{ (Request::url() == route('coach.appointment.list')) ? 'class=active' : '' }}>
+                <a href="{{route('coach.appointment.list')}}"><i class="fa fa-calendar"></i> <span class="nav-label">Citas</a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -17,7 +17,7 @@ class CreateBuyingrequestsTable extends Migration
             $table->increments('id');
             $table->boolean('state')->default(false);
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('coach_id')->unsigned();

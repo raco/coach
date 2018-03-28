@@ -23,7 +23,12 @@ class CoachController extends Controller
     public function clientList()
     {
     	$clients = Client::where('coach_id', auth()->user()->id)->get();
-    	return view('coach.pages.clients', compact('clients'));
+    	return view('coach.pages.clients.index', compact('clients'));
+    }
+
+    public function clientShow(Client $client)
+    {
+    	return view('coach.pages.clients.show', compact('client'));
     }
 
     public function updphrase(Request $request)

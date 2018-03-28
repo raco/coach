@@ -1,5 +1,11 @@
 @extends('admin.layout')
 @section('content')
+<style>
+	.btn-xs {
+		margin-right: 5px;
+		float: left;
+	}
+</style>
 <div class="row wrapper border-bottom white-bg page-heading animated fadeInRight">
 	<div class="col-lg-10">
 		<h2>Clientes</h2>
@@ -98,12 +104,14 @@
 											@endif
 										</td>
 										<td class="client-status">
+											<button class="btn btn-default btn-xs"  onclick="getMedicalData({{$client->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal" title="Datos médicos del cliente">
+												<i class="fa fa-stethoscope"></i>
+											</button>
 											<a href="{{ route('client.messages', $client->user->id) }}" class="btn btn-info btn-xs pull-left" title="Conversaciones entre cliente y su coach"><i class="fa fa-comments"></i></a>
-											
                                             <form action="{{ route('client.delete', $client->id) }}" method="POST">
                                               {{ method_field('DELETE') }}
                                               {{ csrf_field() }}
-                                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                              <button type="submit" class="btn btn-danger btn-xs" title="Eliminar cliente"><i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
 									</tr>
@@ -121,7 +129,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
    
     </div>
@@ -132,10 +140,15 @@
 @endsection
 
 @push('scripts')
-		<script>
-  	 function myFunction(id) {
-  	 $('#myModal .modal-content').load("/admin/clients/edit/" + id);};
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
-	</script>
-
+<script>
+function myFunction(id) {
+	$('#myModal .modal-content').load("/admin/clients/edit/" + id);
+};
+function getMedicalData(id) {
+	$('#myModal .modal-content').load("/admin/clients/medical/" + id);
+};
+</script>
 @endpush				

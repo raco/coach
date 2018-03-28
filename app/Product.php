@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'category', 'description', 'image'];
+    protected $fillable = ['name', 'category', 'description', 'image', 'coach_id'];
 
     public function showState()
     {

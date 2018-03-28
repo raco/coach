@@ -8,7 +8,7 @@
 				<a href="/">Admin</a>
 			</li>
 			<li class="active">
-				<strong>Clientes2</strong>
+				<strong>Clientes</strong>
 			</li>
 		</ol>
 		<div class="pull-right">
@@ -43,7 +43,8 @@
                                         <th >Estado</th>
                                         <th colspan="2">Nombre</th>
                                         <th colspan="2">Teléfono</th>
-                                        <th colspan="2">Correo Electrónico</th>
+										<th colspan="2">Correo Electrónico</th>
+										<th></th>
                                     </tr>
                                 </thead>
 								<tbody>
@@ -79,9 +80,9 @@
 										</td>
 										<td>{{ $client->user->email }}</td>
 										<td>
-											<a href="#" class="btn btn-default">
+											<button class="btn btn-default" onclick="myFunction({{$client->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
 												<i class="fa fa-eye"></i>
-											</a>
+											</button>
 										</td>
 									</tr>
 									@endforeach
@@ -94,5 +95,26 @@
 		</div>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>
+<!-- Fin del Modal -->
+
 {{-- Aqui Termina el listado de Clientes --}}
 @endsection
+
+
+@push('scripts')
+   
+    <script>
+    function myFunction(id) {
+        $('#myModal .modal-content').load("/coach/clients/show/" + id);
+    }
+    </script>
+
+@endpush    

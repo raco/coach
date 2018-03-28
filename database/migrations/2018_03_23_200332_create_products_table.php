@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->text('description');
             $table->boolean('state')->default(true);
+            $table->integer('coach_id')->unsigned()->nullable();
+            $table->foreign('coach_id')->references('id')->on('coaches');
             $table->timestamps();
         });
     }

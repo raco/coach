@@ -81,6 +81,18 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>IBAN</label>
+                                    <input id="iban" type="text" name='iban' class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Entidad Bancaria</label>
+                                    <input id="bank" type="text" name='bank' class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Documento firmado acorde a la LOPD</label>
+                                    <textarea id="summernote" name="lopd_document" rows="4"></textarea>
+                                </div>
 
 
                                 <div style="color:red; margin-bottom:10px;" id="register-error" class="text-center" style="display:none">
@@ -103,10 +115,20 @@
 
 @push('scripts')
 
-
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script type="text/javascript">
-
+$('#summernote').summernote({
+    tabsize: 2,
+    height: 300,
+    toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+    ],
+    disableDragAndDrop: true
+});
 // funcion para validar el correo
 function caracteresCorreoValido(email, div){
     console.log(email);

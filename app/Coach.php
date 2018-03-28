@@ -34,6 +34,7 @@ class Coach extends Model
     {
     	return $this->user->gender;
     }
+
 }
 
  

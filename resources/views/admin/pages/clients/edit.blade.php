@@ -5,7 +5,7 @@
                 <div class="col-sm-12">
                     <h3 class="m-t-none m-b">Editar</h3>
                     <p>Edite los datos del cliente.</p>
-                    <form action="{{route('client.update',$client->id)}}" method="POST" role="form" id="frmeditclient">
+                    <form action="{{route('client.update', $client->id)}}" method="POST" role="form" id="frmeditclient">
                         {{csrf_field()}}
                         @if(Session::has('flash_message'))
                         <div class="alert alert-success">
@@ -13,8 +13,7 @@
                         </div>
                         @endif
                             <div class="form-group"><label>Nombre</label>
-                            <input value={{ $client->user->name }} type="text" id="txtnomclient"
-                        name= "name" placeholder="Ingrese Nombres" class="form-control"></div>
+                            <input value="{{ $client->user->name }}" type="text" id="txtnomclient" name="name" placeholder="Ingrese Nombres" class="form-control"></div>
                         <div class="form-group"><label>Apellidos</label> <input type="text" name='lastname' id="txtlastnameclient" placeholder="Ingrese Apellidos" class="form-control" value="{{ $client->user->lastname }}"></div>
                         <div class="form-group"><label class="form-group">Sexo</label>
                             <select name="sexo" class="form-control" name="account">
@@ -47,7 +46,19 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group"">
+                        <div class="form-group">
+                            <label>IBAN</label>
+                            <input id="iban" type="text" name='iban' class="form-control" value="{{ $client->iban }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Entidad Bancaria</label>
+                            <input id="bank" type="text" name='bank' class="form-control" value="{{ $client->bank }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Documento firmado acorde a la LOPD</label>
+                            <textarea id="summernote" name="lopd_document" rows="4">{{ $client->lopd_document }}</textarea>
+                        </div>
+                        <div class="form-group">
                             <div>
                                 @if ($client->state)
                                 <label>
@@ -96,6 +107,17 @@
 
 
 <script type="text/javascript">
+$('#summernote').summernote({
+    tabsize: 2,
+    height: 300,
+    toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+    ],
+    disableDragAndDrop: true
+});
 
 // funcion para validar el correo
 function caracteresCorreoValido(email, div){
