@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>Categoria</th>
                                         <th>Resumen</th>
-                                        <th colspan="2">Acciones</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,11 +49,10 @@
                                             <td>{{ $diet->category }}</td>
                                             <td>{{ $diet->excerpt }}</td>
                                             <td>
-                                                <button class="btn btn-default"  onclick="myFunction({{$diet->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                                <button class="btn btn-default btn-xs"  onclick="myFunction({{$diet->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                            </td>
-                                            <td>
+                                         
                                                 <form action="{{ route('coach.diet.delete', $diet->id) }}" method="POST">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
@@ -88,6 +87,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('js/table.js') }}"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script>

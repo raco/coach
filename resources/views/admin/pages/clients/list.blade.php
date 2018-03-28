@@ -52,10 +52,11 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th colspan="2">Nombre</th>
-										<th colspan="2">Coach</th>
-										<th colspan="2">Correo Electrónico</th>
-										<th colspan="2">Teléfono</th>
+										<th>Foto</th>
+										<th>Nombre</th>
+										<th>Coach</th>
+										<th>Correo Electrónico</th>
+										<th>Teléfono</th>
 										<th >Estado</th>
 										<th >Acciones</th>
 									</tr>
@@ -79,9 +80,6 @@
 												@endif
 											</a>
 										</td>
-										<td class="contact-type">
-											<span class="label label-default">Coach</span>
-										</td>
 										<td>
 											@if ($client->coach)
 												{{$client->coach->full_name }}
@@ -89,12 +87,9 @@
 												Sin asignar
 											@endif
 										</td>
-										<td class="contact-type">
-											<i class="fa fa-envelope"> </i>
-										</td>
 										<td>{{ $client->user->email }}</td>
 
-										<td class="contact-type"><i class="fa fa-phone"> </i></td>
+										
 										<td>{{ $client->user->phone }}</td>
 										<td class="client-status">
 											@if ($client->state)
@@ -150,5 +145,35 @@ function myFunction(id) {
 function getMedicalData(id) {
 	$('#myModal .modal-content').load("/admin/clients/medical/" + id);
 };
+
+$('.table').DataTable( {
+	searching: true, 
+	paging: true,
+	ordering: true,
+	language: {
+		"sProcessing":     "Procesando...",
+		"sLengthMenu":     "Mostrar _MENU_ registros",
+		"sZeroRecords":    "No se encontraron resultados",
+		"sEmptyTable":     "Ningún dato disponible en esta tabla",
+		"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix":    "",
+		"sSearch":         "Buscar:",
+		"sUrl":            "",
+		"sInfoThousands":  ",",
+		"sLoadingRecords": "Cargando...",
+		"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		}
+	}
+});
 </script>
 @endpush				

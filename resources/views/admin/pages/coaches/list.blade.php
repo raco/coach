@@ -47,10 +47,11 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Nombre</th>
-                                        <th colspan="2">Teléfono</th>
-                                        <th colspan="2">Correo Electrónico</th>
-                                        <th colspan="2">Sexo</th>
+                                        <th>Foto</th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Sexo</th>
                                         <th >Estado</th>
                                         <th >Acciones</th>
                                     </tr>
@@ -58,32 +59,20 @@
                                 <tbody>
                                     @foreach ($coaches as $coach)
                                     <tr>
-                                        
                                         <td class="client-avatar">
                                             <img alt="image" src="{{ $coach->image_url  or asset('img/user-default.png') }}">
                                         </td>
                                         <td onclick="myFunction({{$coach->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                             <a data-toggle="tab" href="#contact-1" class="client-link">{{ $coach->full_name }}</a>
                                         </td>
-                                       
-                                        <td class="contact-type"><i class="fa fa-phone"> </i></td>
                                
                                         <td>{{ $coach->phone }}</td>
-                                        <td class="contact-type">
-                                            <i class="fa fa-envelope"> </i>
-                                        </td>
 
                                         <td>{{ $coach->email }}</td>
                                         @if ($coach->gender == 'f')
-                                        <td class="contact-type">
-                                            <i class="fa fa-female"></i>
-                                        </td>
-                                        <td>Mujer</td>
+                                            <td><i class="fa fa-female"></i> Mujer</td>
                                         @else
-                                        <td class="contact-type">
-                                            <i class="fa fa-male"></i>
-                                        </td>
-                                        <td>Hombre</td>
+                                            <td><i class="fa fa-male"></i> Hombre</td>
                                         @endif 
                                         <td class="client-status">
                                             @if ($coach->state)
@@ -127,16 +116,40 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-    <script>
-    function myFunction(id) {
-        $('#myModal .modal-content').load("/admin/coaches/edit/" + id);
-    }
-    </script>
+
+<script>
+$('.table').DataTable( {
+	searching: true, 
+	paging: true,
+	ordering: true,
+	language: {
+		"sProcessing":     "Procesando...",
+		"sLengthMenu":     "Mostrar _MENU_ registros",
+		"sZeroRecords":    "No se encontraron resultados",
+		"sEmptyTable":     "Ningún dato disponible en esta tabla",
+		"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix":    "",
+		"sSearch":         "Buscar:",
+		"sUrl":            "",
+		"sInfoThousands":  ",",
+		"sLoadingRecords": "Cargando...",
+		"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		}
+	}
+});
+function myFunction(id) {
+    $('#myModal .modal-content').load("/admin/coaches/edit/" + id);
+}
+</script>
 
 @endpush    

@@ -40,10 +40,11 @@
 							<table class="table table-striped table-hover">
 								<thead>
                                     <tr>
-                                        <th >Estado</th>
-                                        <th colspan="2">Nombre</th>
-                                        <th colspan="2">Teléfono</th>
-										<th colspan="2">Correo Electrónico</th>
+                                        <th>Estado</th>
+                                        <th>Foto</th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+										<th>Correo Electrónico</th>
 										<th></th>
                                     </tr>
                                 </thead>
@@ -72,12 +73,7 @@
 												@endif
 											</a>
 										</td>
-
-										<td class="contact-type"><i class="fa fa-phone"> </i></td>
 										<td>{{ $client->user->phone }}</td>
-										<td class="contact-type">
-											<i class="fa fa-envelope"> </i>
-										</td>
 										<td>{{ $client->user->email }}</td>
 										<td>
 											<button class="btn btn-default" onclick="myFunction({{$client->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
@@ -110,7 +106,7 @@
 
 
 @push('scripts')
-   
+   	<script src="{{ asset('js/table.js') }}"></script>
     <script>
     function myFunction(id) {
         $('#myModal .modal-content').load("/coach/clients/show/" + id);

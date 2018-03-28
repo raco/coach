@@ -44,7 +44,7 @@
                                         <th>Mensaje</th>
                                         <th>Lugar</th>
                                         <th>Visto</th>
-                                        <th colspan="2">Acciones</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,8 +61,7 @@
                                                 <button class="btn btn-default btn-xs"  onclick="myFunction({{$appointment->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                            </td>
-                                            <td class="client-status">
+                                           
                                                 <form action="{{ route('appointment.delete', $appointment->id) }}" method="POST">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
@@ -97,7 +96,9 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('js/table.js') }}"></script>
     <script>
+    
     function myFunction(id) {
         $('#myModal .modal-content').load("/admin/appointments/edit/" + id);
     }

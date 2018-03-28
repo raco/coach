@@ -35,15 +35,14 @@
 
                     <div class="clients-list">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table id="productsTable" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Categoria</th>
                                         <th>Descripcion</th>
-                                        {{--  <th >Estado</th>  --}}
-                                        <th colspan="2">Acciones</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,13 +52,10 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->category }}</td>
                                             <td>{{ $product->description }}</td>
-                                            {{--  <td>{{ $product->state }}</td>  --}}
                                             <td>
-                                                <button class="btn btn-default"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                                <button class="btn btn-default btn-xs"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                            </td>
-                                            <td class="client-status">
                                                 <form action="{{ route('product.delete', $product->id) }}" method="POST">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
@@ -94,16 +90,43 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+
+   
     <script>
+    $('#productsTable').DataTable( {
+        // dom: 'Bfrtip',
+        searching: true, 
+        paging: true,
+        ordering: true,
+        language: {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
     function myFunction(id) {
         $('#myModal .modal-content').load("/admin/products/edit/" + id);
     }
+    
     </script>
 
 @endpush    

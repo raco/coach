@@ -41,8 +41,7 @@
                                         <th>Nombre</th>
                                         <th>Categoria</th>
                                         <th>Descripcion</th>
-                                        {{--  <th >Estado</th>  --}}
-                                        <th colspan="2">Acciones</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,13 +51,10 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->category }}</td>
                                             <td>{{ $product->description }}</td>
-                                            {{--  <td>{{ $product->state }}</td>  --}}
                                             <td>
-                                                <button class="btn btn-default"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+                                                <button class="btn btn-default btn-xs"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                            </td>
-                                            <td class="client-status">
                                                 <form action="{{ route('coach.product.delete', $product->id) }}" method="POST">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
@@ -93,12 +89,7 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('js/table.js') }}"></script>
     <script>
     function myFunction(id) {
         $('#myModal .modal-content').load("/coach/products/edit/" + id);
