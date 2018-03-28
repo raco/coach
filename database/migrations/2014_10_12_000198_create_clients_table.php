@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('bank')->nullable();
             $table->text('lopd_document')->nullable();
             $table->text('medical_data')->nullable();
+            $table->string('weight_image')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('coach_id')->unsigned()->nullable();

@@ -6,6 +6,9 @@
         <li role="presentation">
             <a href="#medical" aria-controls="medical" role="tab" data-toggle="tab">Datos Médicos</a>
         </li>
+        <li role="presentation">
+            <a href="#weight" aria-controls="weight" role="tab" data-toggle="tab">Evolución de Peso</a>
+        </li>
     </ul>
     <div class="tab-content">
         <div id="profile" class="tab-pane active" role="tabpanel">
@@ -47,9 +50,22 @@
                 <div class="row">
                     <div class="col-sm-12">
                         @empty($client->medical_data)
-                            <h2>No dispone de datos médicos.</h2>
+                            <h2 class="text-center">No dispone de datos médicos.</h2>
                         @else
                             {!! $client->medical_data !!}
+                        @endempty
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="weight" class="tab-pane" role="tabpanel">
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        @empty($client->weight_image)
+                            <h2>No dispone de datos de peso.</h2>
+                        @else
+                            <img src="{{$client->weight_image}}" style="max-width: 100%">
                         @endempty
                     </div>
                 </div>
