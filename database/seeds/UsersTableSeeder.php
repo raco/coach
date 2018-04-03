@@ -5,6 +5,7 @@ use App\Admin;
 use App\Coach;
 use App\Image;
 use App\Client;
+use App\Weight;
 use App\Message;
 use App\Product;
 use App\Buyingrequest;
@@ -89,6 +90,11 @@ class UsersTableSeeder extends Seeder
                                     'to_rol' => 'Cliente',
                                 ]);
                             });
+
+                            // WEIGHTS
+                            factory(Weight::class, 10)->create([
+                                'client_id' => $user->id,
+                            ]);
                         });
                 });
             });
@@ -140,6 +146,11 @@ class UsersTableSeeder extends Seeder
                             'to_id' => $client->user->id,
                             'to_name' => $client->user->full_name,
                             'to_rol' => 'Cliente',
+                        ]);
+
+                        // WEIGHTS
+                        factory(Weight::class, 10)->create([
+                            'client_id' => $client->user->id,
                         ]);
                     });
                 });

@@ -41,6 +41,7 @@
                                         <th>Título</th>
                                         <th>Resumen</th>
                                         <th>Fecha</th>
+                                        <th>Destacado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -50,6 +51,7 @@
                                             <td>{{ $post->title }}</td>
                                             <td>{{ $post->short_excerpt }}</td>
                                             <td>{{ $post->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ $post->isFeatured() }}</td>
                                             <td>
                                                 <button class="btn btn-default btn-xs"  onclick="myFunction({{$post->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>

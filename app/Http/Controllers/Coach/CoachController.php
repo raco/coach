@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Coach;
 
-use App\Client;
 use App\Coach;
-use App\Http\Controllers\Controller;
+use App\Client;
+use App\Weight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class CoachController extends Controller
 {
@@ -74,4 +75,10 @@ class CoachController extends Controller
         ->get();
         return view('admin.pages.coaches.list',compact('coaches'));
     }
+
+    public function weights($id)
+	{
+		$weights = Weight::where('client_id', $id)->get();
+  		return view('coach.pages.clients.weights', compact('weights')) ;
+	}
 }

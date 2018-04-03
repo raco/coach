@@ -42,6 +42,7 @@
                                         <th>Nombre</th>
                                         <th>Categoria</th>
                                         <th>Descripcion</th>
+                                        <th>Fecha</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -52,6 +53,7 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->category }}</td>
                                             <td>{{ $product->description }}</td>
+                                            <td>{{ $product->created_at->format('m/d/Y') }}</td>
                                             <td>
                                                 <button class="btn btn-default btn-xs"  onclick="myFunction({{$product->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>

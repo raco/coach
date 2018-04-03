@@ -8,6 +8,19 @@
         </div>
         @endif
         <div class="form-group">
+            <label>Cliente</label>
+            <select name="client_id" id="client" required class="form-control">
+                <option disabled readonly>Elija cliente</option>
+                    @foreach ($clients as $client)
+                    @if ($client->user->id == $diet->client_id)
+                    <option value="{{ $client->user->id }}" selected>{{ $client->user->full_name }}</option>
+                    @else
+                    <option value="{{ $client->user->id }}">{{ $client->user->full_name }}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label>Categoria</label>
             <input type="text" name="category" placeholder="Ingrese Categoria" class="form-control"  minlength="2" maxlength="100" value="{{ $diet->category }}" required>
         </div>

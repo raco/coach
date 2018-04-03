@@ -19,6 +19,9 @@ class CreateDietsTable extends Migration
             $table->text('content');
             $table->integer('coach_id')->unsigned()->nullable();
             $table->foreign('coach_id')->references('id')->on('coaches');
+
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

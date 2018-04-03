@@ -37,6 +37,15 @@
                                 </div>
                                 @endif
                                 <div class="form-group">
+                                    <label>Cliente</label>
+                                    <select name="client_id" id="client" required class="form-control">
+                                        <option disabled readonly selected>Elija cliente</option>
+                                        @foreach ($clients as $client)
+                                        <option value="{{ $client->user->id }}">{{ $client->user->full_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Categoria</label>
                                     <input type="text" name="category" placeholder="Ingrese Categoria" class="form-control"  minlength="2" maxlength="100" required>
                                 </div>

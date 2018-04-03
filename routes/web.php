@@ -31,6 +31,7 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::post('clients/uppassword/{client}', 'ClientController@updpass')->name('client.updatePass');
 	
 	Route::get('clients/messages/{id}', 'ClientController@messages')->name('client.messages');
+	Route::get('clients/weights/{id}', 'ClientController@weights')->name('client.weights');
 	Route::get('clients/medical/{client}', 'ClientController@medicalData')->name('client.medical');
 	Route::put('clients/medical/update/{client}', 'ClientController@updateMedicalData')->name('client.medical.update');
 
@@ -100,6 +101,15 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 	Route::get('images/edit/{image}', 'ImageController@edit')->name('image.edit');
 	Route::put('images/update/{image}', 'ImageController@update')->name('image.update');
 	Route::delete('images/delete/{image}', 'ImageController@destroy')->name('image.delete');
+
+	// TASKS
+	Route::get('tasks/{id}', 'TaskController@list')->name('task.list');
+	Route::get('task/create/{id}', 'TaskController@create')->name('task.create');
+	Route::post('tasks/create', 'TaskController@store')->name('task.store');
+	
+	Route::get('tasks/edit/{task}', 'TaskController@edit')->name('task.edit');
+	Route::put('tasks/update/{task}', 'TaskController@update')->name('task.update');
+	Route::delete('tasks/delete/{task}', 'TaskController@destroy')->name('task.delete');
 });
 
 Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group(function () {
@@ -110,6 +120,8 @@ Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group
 	// Clientes
 	Route::get('clients', 'CoachController@clientList')->name('coach.client.list');
 	Route::get('clients/show/{client}', 'CoachController@clientShow')->name('coach.client.show');
+	Route::get('clients/weights/{id}', 'CoachController@weights')->name('coach.client.weights');
+	
 
 	// Update de frase del coach
 	Route::post('coaches/updphrase', 'CoachController@updphrase')->name('coach.updphrase');
@@ -127,7 +139,7 @@ Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group
 	Route::get('diets/edit/{diet}', 'DietController@edit')->name('coach.diet.edit');
 	Route::put('diets/update/{diet}', 'DietController@update')->name('coach.diet.update');
 	Route::delete('diets/delete/{diet}', 'DietController@destroy')->name('coach.diet.delete');
-
+	
 	// PRODUCTOS
 	Route::get('products', 'ProductController@list')->name('coach.product.list');
 	
@@ -137,12 +149,12 @@ Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group
 	Route::get('products/edit/{product}', 'ProductController@edit')->name('coach.product.edit');
 	Route::put('products/update/{product}', 'ProductController@update')->name('coach.product.update');
 	Route::delete('products/delete/{product}', 'ProductController@destroy')->name('coach.product.delete');
-
+	
 	// BUYING REQUEST
 	Route::get('buyingrequests', 'BuyingrequestController@list')->name('coach.buyingrequest.list');
 	Route::get('buyingrequests/show/{buyingrequest}', 'BuyingrequestController@show')->name('coach.buyingrequest.show');
 	Route::put('buyingrequests/update/{buyingrequest}', 'BuyingrequestController@update')->name('coach.buyingrequest.update');
-
+	
 	// APPOINTMENTS
 	Route::get('appointments', 'AppointmentController@list')->name('coach.appointment.list');
 	Route::get('appointments/create', 'AppointmentController@create')->name('coach.appointment.create');
@@ -151,4 +163,13 @@ Route::middleware(['auth', 'coach'])->namespace('Coach')->prefix('coach')->group
 	Route::get('appointments/edit/{appointment}', 'AppointmentController@edit')->name('coach.appointment.edit');
 	Route::put('appointments/update/{appointment}', 'AppointmentController@update')->name('coach.appointment.update');
 	Route::delete('appointments/delete/{appointment}', 'AppointmentController@destroy')->name('coach.appointment.delete');
+	
+	// TASKS
+	Route::get('tasks/{id}', 'TaskController@list')->name('coach.task.list');
+	Route::get('task/create/{id}', 'TaskController@create')->name('coach.task.create');
+	Route::post('tasks/create', 'TaskController@store')->name('coach.task.store');
+	
+	Route::get('tasks/edit/{task}', 'TaskController@edit')->name('coach.task.edit');
+	Route::put('tasks/update/{task}', 'TaskController@update')->name('coach.task.update');
+	Route::delete('tasks/delete/{task}', 'TaskController@destroy')->name('coach.task.delete');
 });

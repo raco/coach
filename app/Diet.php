@@ -4,6 +4,7 @@ namespace App;
 
 use App\Coach;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Diet extends Model
 {
@@ -17,5 +18,10 @@ class Diet extends Model
     public function coach()
     {
         return $this->belongsTo(Coach::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -103,6 +103,8 @@
 												<i class="fa fa-stethoscope"></i>
 											</button>
 											<a href="{{ route('client.messages', $client->user->id) }}" class="btn btn-info btn-xs pull-left" title="Conversaciones entre cliente y su coach"><i class="fa fa-comments"></i></a>
+											<a href="{{ route('client.weights', $client->user->id) }}" class="btn btn-primary btn-xs pull-left" title="Historial de pesos del cliente"><i class="fa fa-calculator"></i></a>
+											<a href="{{ route('task.list', $client->user->id) }}" class="btn btn-info btn-xs pull-left" title="Tareas"><i class="fa fa-list"></i></a>
                                             <form action="{{ route('client.delete', $client->id) }}" method="POST">
                                               {{ method_field('DELETE') }}
                                               {{ csrf_field() }}

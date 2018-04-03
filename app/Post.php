@@ -12,4 +12,9 @@ class Post extends Model
     {
         return substr(strip_tags($this->excerpt), 0, 50).'...';
     }
+
+    public function isFeatured()
+    {
+        return $this->featured ? 'Si' : 'No';
+    } 
 }

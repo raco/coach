@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Coach;
 use App\Client;
+use App\Weight;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -104,6 +105,12 @@ class ClientController extends Controller
 	{
 		$messages = Message::where('from_id', $id)->orWhere('to_id', $id)->get();
   		return view('admin.pages.clients.messages', compact('messages', 'id')) ;
+	}
+
+	public function weights($id)
+	{
+		$weights = Weight::where('client_id', $id)->get();
+  		return view('admin.pages.clients.weights', compact('weights')) ;
 	}
 
 	public function medicalData(Client $client)

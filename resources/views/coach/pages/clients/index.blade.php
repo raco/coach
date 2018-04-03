@@ -76,7 +76,9 @@
 										<td>{{ $client->user->phone }}</td>
 										<td>{{ $client->user->email }}</td>
 										<td>
-											<button class="btn btn-default" onclick="myFunction({{$client->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
+											<a href="{{ route('coach.client.weights', $client->user->id) }}" class="btn btn-primary btn-xs pull-left" title="Historial de pesos del cliente"><i class="fa fa-calculator"></i></a>
+											<a href="{{ route('coach.task.list', $client->user->id) }}" class="btn btn-info btn-xs pull-left" title="Tareas"><i class="fa fa-list"></i></a>
+											<button class="btn btn-xs" onclick="myFunction({{$client->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
 												<i class="fa fa-eye"></i>
 											</button>
 										</td>

@@ -38,6 +38,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Cliente</th>
                                         <th>Categoria</th>
                                         <th>Resumen</th>
                                         <th>Acciones</th>
@@ -46,6 +47,7 @@
                                 <tbody>
                                     @foreach ($diets as $diet)
                                         <tr>
+                                            <td>{{ $diet->client->name }} {{ $diet->client->lastname }}</td>
                                             <td>{{ $diet->category }}</td>
                                             <td>{{ $diet->excerpt }}</td>
                                             <td>

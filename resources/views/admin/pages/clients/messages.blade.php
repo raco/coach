@@ -29,7 +29,7 @@
                             <p>Conversacion de cliente y su coach.</p>
                             
                             @forelse ($messages as $message)
-                                <p><strong>[{{ $message->from_rol }}] {{ $message->from_name }}:</strong> {{ $message->message }}</p>
+                                <p><strong><small class="text-muted">[{{ $message->created_at->format('m/d/Y H:m') }}]</small> {{ $message->from_name }} <small class="text-muted">{{ $message->from_rol }}</small></strong>: {{ $message->message }}</p>
                             @empty
                                 <h2>No hay conversaciones por el momento.</h2>
                             @endforelse

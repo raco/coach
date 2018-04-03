@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Coach;
+namespace App\Http\Controllers\Admin;
 
 use App\Task;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function list($id)
     {
         $tasks = Task::where('client_id', $id)->get();
-        return view('coach.pages.clients.tasks', compact('tasks', 'id'));
+        return view('admin.pages.clients.tasks', compact('tasks', 'id'));
     }
     
     /**
@@ -26,7 +26,7 @@ class TaskController extends Controller
      */
     public function create($id)
     {
-        return view('coach.pages.tasks.create', compact('id'));
+        return view('admin.pages.tasks.create', compact('id'));
     }
 
     /**
@@ -54,7 +54,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('coach.pages.tasks.edit', compact('task'));
+        return view('admin.pages.tasks.edit', compact('task'));
     }
 
     /**

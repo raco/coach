@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Coach;
 
 use App\Diet;
+use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,8 @@ class DietController extends Controller
      */
     public function create()
     {
-        return view('coach.pages.diets.create');
+        $clients = Client::where('coach_id', auth()->user()->id)->get();
+        return view('coach.pages.diets.create', compact('clients'));
     }
 
     /**
@@ -59,6 +61,7 @@ class DietController extends Controller
         $diet->category = $request->input('category');
         $diet->content = $content;
         $diet->coach_id = auth()->user()->coach->id;
+        $diet->client_id = $request->input('client_id');
         $diet->save();
 
         \Session::flash('flash_message','La dieta ha sido creada.');
@@ -73,7 +76,8 @@ class DietController extends Controller
      */
     public function edit(Diet $diet)
     {
-        return view('coach.pages.diets.edit', compact('diet'));
+        $clients = Client::where('coach_id', auth()->user()->id)->get();
+        return view('coach.pages.diets.edit', compact('diet', 'clients'));
     }
 
     /**
@@ -106,6 +110,7 @@ class DietController extends Controller
 
         $diet->category = $request->input('category');
         $diet->content = $content;
+        $diet->client_id = $request->input('client_id');
         $diet->save();
 
         \Session::flash('flash_message', 'La dieta ha sido actualizada.');
