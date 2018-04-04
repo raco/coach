@@ -19,6 +19,21 @@
 
     <script>
         $('#createForm').validate();
+
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#summernote').summernote({
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                ],
+                disableDragAndDrop: true,
+                dialogsInBody: true
+            });
+        });
         $('#summernote').summernote({
             tabsize: 2,
             height: 300,
@@ -28,7 +43,8 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
             ],
-            disableDragAndDrop: true
+            disableDragAndDrop: true,
+            dialogsInBody: true
         });
     </script>
 </div>

@@ -107,6 +107,21 @@
 
 
 <script type="text/javascript">
+
+$('#myModal').on('shown.bs.modal', function() {
+    $('#summernote').summernote({
+        tabsize: 2,
+        height: 300,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ],
+        disableDragAndDrop: true,
+        dialogsInBody: true
+    });
+});
 $('#summernote').summernote({
     tabsize: 2,
     height: 300,
@@ -116,7 +131,8 @@ $('#summernote').summernote({
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
     ],
-    disableDragAndDrop: true
+    disableDragAndDrop: true,
+    dialogsInBody: true
 });
 
 // funcion para validar el correo

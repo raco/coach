@@ -39,7 +39,8 @@ class PostController extends Controller
     {
         $content = $request->input('content');
         $dom = new \DomDocument();
-        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $dom->encoding = 'utf-8';         
+        $dom->loadHTML( utf8_decode( $content ) );    
         $images = $dom->getElementsByTagName('img');
         foreach($images as $k => $img){
             $data = $img->getAttribute('src');
@@ -87,7 +88,8 @@ class PostController extends Controller
     {
         $content = $request->input('content');
         $dom = new \DomDocument();
-        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $dom->encoding = 'utf-8';         
+        $dom->loadHTML( utf8_decode( $content ) );    
         $images = $dom->getElementsByTagName('img');
         foreach($images as $k => $img){
             $data = $img->getAttribute('src');

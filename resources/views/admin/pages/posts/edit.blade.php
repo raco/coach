@@ -21,8 +21,8 @@
         </div>
         <div class="form-group">
             <label>Imagen</label><br>
-            <img src="{{ $post->image }}" style="max-width: 200px">
-            <input type="file" name="file">
+            <img src="{{ $post->image }}" style="max-width: 200px" id="preview">
+            <input type="file" name="file" id="file">
         </div>
         <div class="form-group">
             <label><input type="checkbox" name="featured" value="1"
@@ -40,6 +40,21 @@
 
 
     <script>
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#summernote').summernote({
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['picture']]
+                ],
+                disableDragAndDrop: true,
+                dialogsInBody: true
+            });
+        });
         $('#createForm').validate({
             rules: {
                 file: {
@@ -57,7 +72,23 @@
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['insert', ['picture']]
             ],
-            disableDragAndDrop: true
+            disableDragAndDrop: true,
+            dialogsInBody: true
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#file").change(function() {
+            readURL(this);
         });
     </script>
 </div>

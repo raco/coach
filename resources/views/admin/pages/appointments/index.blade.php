@@ -37,26 +37,24 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Cliente</th>
                                         <th>Coach</th>
                                         <th>Fecha y hora</th>
                                         <th>Asunto</th>
                                         <th>Mensaje</th>
                                         <th>Lugar</th>
-                                        <th>Visto</th>
+                                        {{-- <th>Visto</th> --}}
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $appointment)
                                         <tr>
-                                            <td>{{ $appointment->client_name }} {{ $appointment->client_lastname }}</td>
-                                            <td>{{ $appointment->coach_name }} {{ $appointment->coach_lastname }}</td>
+                                            <td>{{ $appointment->coach->name }} {{ $appointment->coach->lastname }}</td>
                                             <td>{{ date_create($appointment->appointment_date)->format('d/m/Y') }} {{ substr($appointment->appointment_time, 0, 5) }}</td>
                                             <td>{{ $appointment->subject }}</td>
                                             <td>{{ $appointment->message }}</td>
                                             <td>{{ $appointment->place }}</td>
-                                            <td>{{ $appointment->seen ? 'Si' : 'No' }}</td>
+                                            {{-- <td>{{ $appointment->seen ? 'Si' : 'No' }}</td> --}}
                                             <td class="client-status">
                                                 <button class="btn btn-default btn-xs"  onclick="myFunction({{$appointment->id}})" style="cursor: pointer" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-pencil"></i>

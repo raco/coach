@@ -19,23 +19,24 @@ class AppointmentController extends Controller
      */
     public function list()
     {
-        $appointments = DB::table('appointments as a')
-                            ->leftJoin('users as client', 'client.id', '=', 'a.client_id')
-                            ->leftJoin('users as coach', 'coach.id', '=', 'a.coach_id')
-                            ->select(
-                                'a.id as id',
-                                'appointment_date',
-                                'appointment_time',
-                                'subject',
-                                'message',
-                                'place',
-                                'seen',
-                                'client.name as client_name',
-                                'client.lastname as client_lastname',
-                                'coach.name as coach_name',
-                                'coach.lastname as coach_lastname'
-                            )
-                            ->get();
+        $appointments = Appointment::all();
+        // $appointments = DB::table('appointments as a')
+        //                     ->leftJoin('users as client', 'client.id', '=', 'a.client_id')
+        //                     ->leftJoin('users as coach', 'coach.id', '=', 'a.coach_id')
+        //                     ->select(
+        //                         'a.id as id',
+        //                         'appointment_date',
+        //                         'appointment_time',
+        //                         'subject',
+        //                         'message',
+        //                         'place',
+        //                         'seen',
+        //                         'client.name as client_name',
+        //                         'client.lastname as client_lastname',
+        //                         'coach.name as coach_name',
+        //                         'coach.lastname as coach_lastname'
+        //                     )
+        //                     ->get();
         return view('admin.pages.appointments.index', compact('appointments'));
     }
 
@@ -60,7 +61,6 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $appointment = new Appointment();
-        $appointment->client_id = $request->input('client_id');
         $appointment->coach_id = $request->input('coach_id');
         $appointment->appointment_date = $request->input('appointment_date_submit');
         $appointment->appointment_time = $request->input('appointment_time_submit').':00';
@@ -68,6 +68,8 @@ class AppointmentController extends Controller
         $appointment->subject = $request->input('subject');
         $appointment->message = $request->input('message');
         $appointment->save();
+
+        $appointment->client()->attach($request->input('clients'));
 
         \Session::flash('flash_message', 'La cita fue creada con exito.');
 		return redirect()->back();
@@ -83,7 +85,8 @@ class AppointmentController extends Controller
     {   
         $clients = Client::with('user')->get();
         $coaches = Coach::with('user')->get();
-        return view('admin.pages.appointments.edit', compact('appointment', 'clients', 'coaches'));
+        $assistants = $appointment->client->pluck('id')->toArray();
+        return view('admin.pages.appointments.edit', compact('appointment', 'clients', 'coaches', 'assistants'));
     }
 
     /**
@@ -95,7 +98,6 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        $appointment->client_id = $request->input('client_id');
         $appointment->coach_id = $request->input('coach_id');
         $appointment->appointment_date = $request->input('appointment_date_submit');
         $appointment->appointment_time = $request->input('appointment_time_submit').':00';
@@ -103,6 +105,8 @@ class AppointmentController extends Controller
         $appointment->subject = $request->input('subject');
         $appointment->message = $request->input('message');
         $appointment->save();
+
+        $appointment->client()->sync($request->input('clients'));
 
         \Session::flash('flash_message', 'La cita fue actualizada con exito.');
 		return redirect()->back();

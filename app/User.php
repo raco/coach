@@ -2,12 +2,13 @@
 
 namespace App;
 
-use App\Client;
 use App\Coach;
+use App\Client;
+use App\Appointment;
 use App\Notifications\MyResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -65,4 +66,8 @@ class User extends Authenticatable implements JWTSubject
         $this->notify(new MyResetPassword($token));
     }
     
+    public function appointments()
+    {
+        return $this->belongsToMany(Appointment::class, 'appointment_client');
+    }
 }

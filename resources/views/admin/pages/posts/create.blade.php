@@ -50,7 +50,8 @@
                                 </div>
                                  <div class="form-group">
                                     <label>Imagen</label>
-                                    <input type="file" name="file" required>
+                                    <img src="" id="preview" style="max-width: 100%">
+                                    <input type="file" name="file" required id="file">
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary pull-right m-t-n-xs" type="submit" ><strong>REGISTRAR</strong></button>
@@ -82,6 +83,21 @@
             ['insert', ['picture']]
         ],
         disableDragAndDrop: true
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file").change(function() {
+        readURL(this);
     });
 </script>
 @endpush

@@ -37,9 +37,8 @@
                                 </div>
                                 @endif
                                 <div class="form-group">
-                                    <label>Cliente</label>
-                                    <select name="client_id" id="client" required class="form-control">
-                                        <option disabled readonly selected>Elija cliente</option>
+                                    <label>Cliente</label><br>
+                                    <select name="clients[]" id="clients" required multiple="multiple">
                                         @foreach ($clients as $client)
                                         <option value="{{ $client->user->id }}">{{ $client->user->full_name }}</option>
                                         @endforeach
@@ -89,6 +88,8 @@
 <script src="{{ asset('js/picker.date.js') }}"></script>
 <script src="{{ asset('js/picker.time.js') }}"></script>
 <script src="{{ asset('js/es_ES.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('js/bootstrap-multiselect.css') }}">
+<script src="{{ asset('js/bootstrap-multiselect.js') }}"></script>
 <script>
     $('#createForm').validate();
     $('#appointment_date').pickadate({
@@ -98,7 +99,26 @@
         format: 'HH:i',
         formatSubmit: 'HH:i',
     });
-    
+    $('#clients').multiselect({
+        buttonWidth: '100%',
+        buttonText: function(options, select) {
+                if (options.length === 0) {
+                    return 'Elija Clientes ...';
+                } else {
+                     var labels = [];
+                     options.each(function() {
+                         if ($(this).attr('label') !== undefined) {
+                             labels.push($(this).attr('label'));
+                         }
+                         else {
+                             labels.push($(this).html());
+                         }
+                     });
+                     return labels.join(', ') + '';
+                 }
+            }
+    });
+
 </script>
 @endpush
 

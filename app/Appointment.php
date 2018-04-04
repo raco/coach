@@ -8,7 +8,7 @@ class Appointment extends Model
 {
     public function client()
     {
-        return $this->belongsTo(User::class, 'client_id', 'id');
+        return $this->belongsToMany(User::class, 'appointment_client');
     }
 
     public function coach()

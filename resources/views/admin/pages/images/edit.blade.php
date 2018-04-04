@@ -10,8 +10,8 @@
         @endif
         <div class="form-group">
             <label>Imagen</label><br>
-            <img src="{{ $image->url }}" style="max-width: 200px">
-            <input type="file" name="file">
+            <img src="{{ $image->url }}" style="max-width: 200px" id="preview">
+            <input type="file" name="file" id="file">
         </div>
         <div class="form-group">
             <label>Cliente</label>
@@ -41,6 +41,21 @@
             extension: "png|jpg|jpeg|gif|svg"
             }
         }
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file").change(function() {
+        readURL(this);
     });
     </script>
 </div>

@@ -49,8 +49,9 @@
                                     <textarea name="description" class="form-control" rows="4"  minlength="2" maxlength="500" required></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Imagen</label>
-                                    <input type="file" name="file" required>
+                                    <label>Imagen</label><br>
+                                    <img src="" style="max-width: 200px" id="preview">
+                                    <input type="file" name="file" required id="file">
                                 </div>
 
 
@@ -70,14 +71,29 @@
 
 @push('scripts')
 <script>
-  $('#createForm').validate({
-  rules: {
-    file: {
-      required: true,
-      extension: "png|jpg|jpeg|gif|svg"
+    $('#createForm').validate({
+        rules: {
+            file: {
+                required: true,
+                extension: "png|jpg|jpeg|gif|svg"
+            }
+        }
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-  }
-});
+
+    $("#file").change(function() {
+        readURL(this);
+    });
 </script>
 @endpush
 
