@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>Administrador</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}"/>
     <link href= "{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href= "{{asset('awesome/css/awesome.css')}}" rel="stylesheet">
 

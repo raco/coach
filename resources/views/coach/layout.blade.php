@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<title>Coach</title>
+      <title>Coach</title>
+      <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}"/>
     <link href= "{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href= "{{asset('awesome/css/awesome.css')}}" rel="stylesheet">
     <!-- Toastr style -->
