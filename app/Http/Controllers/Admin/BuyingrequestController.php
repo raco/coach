@@ -32,7 +32,11 @@ class BuyingrequestController extends Controller
         $buyingrequest->state = !$buyingrequest->state;
         $buyingrequest->save();
         
-        \Session::flash('flash_message','La peticion ha sido entregada.');
+        if (!$buyingrequest->state) {
+            \Session::flash('flash_message', 'La petición está pendiente de entrega.');
+        } else {
+            \Session::flash('flash_message', 'La petición ha sido entregada.');
+        }
 		return redirect()->back();
     }
 

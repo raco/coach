@@ -28,7 +28,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <div class="ibox-tools">
-                        <h5>Tareas del Cliente</h5>
+                    <h5>Tareas de <strong>{{ $user->full_name }}</strong> con Coach: <strong>{{ $user->client->coach->full_name }}</strong></h5>
                         <button class="btn btn-sm btn-success" onclick="crear()" style="cursor: pointer" data-toggle="modal" data-target="#myModal">+ Registrar Nueva Tarea</button>
                     </div>
                 </div>

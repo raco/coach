@@ -82,11 +82,13 @@
                                             @endif
                                         </td>
                                         <td class="client-status">
-                                            <form action="{{ route('coach.delete', $coach->id) }}" method="POST">
-                                              {{ method_field('DELETE') }}
-                                              {{ csrf_field() }}
-                                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                                            </form>
+                                            <button class="btn btn-danger btn-xs"
+                                            onclick="deleteCoach({{$coach->id}})" 
+                                            style="cursor: pointer" 
+                                            data-toggle="modal" 
+                                            data-target="#deletemodal"
+                                            ><i class="fa fa-trash"></i></button>
+                                            
                                         </td>
                                     </tr>
                                     @endforeach
@@ -106,6 +108,26 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       
+    </div>
+  </div>
+</div>
+<!-- Fin del Modal -->
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content text-center" style="padding: 30px">
+        <h2 class="text-center">¿Está seguro de eliminar a este coach?</h2>
+        <form action="/admin/coaches/delete/" method="POST">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button type="submit" class="btn btn-danger btn-xl">
+                Eliminar
+            </button>
+        </form>
+        <br>
+        <button class="btn btn-default btn-xl"  data-dismiss="modal">
+            Cancelar
+        </button>
     </div>
   </div>
 </div>
@@ -149,6 +171,11 @@ $('.table').DataTable( {
 });
 function myFunction(id) {
     $('#myModal .modal-content').load("/admin/coaches/edit/" + id);
+}
+function deleteCoach(id) {
+    var action = $('#deletemodal .modal-content').find('form').attr('action');
+    console.log(action + id);
+    $('#deletemodal .modal-content').find('form').attr('action', action + id)
 }
 </script>
 

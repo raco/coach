@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,8 @@ class TaskController extends Controller
     public function list($id)
     {
         $tasks = Task::where('client_id', $id)->get();
-        return view('admin.pages.clients.tasks', compact('tasks', 'id'));
+        $user = User::find($id);
+        return view('admin.pages.clients.tasks', compact('tasks', 'id', 'user'));
     }
     
     /**
