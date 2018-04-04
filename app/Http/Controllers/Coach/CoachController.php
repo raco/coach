@@ -63,7 +63,7 @@ class CoachController extends Controller
 
     public function search(Request $request)
     {
-        $sbuscar= $request['txtbuscoach'];
+        $sbuscar = $request['txtbuscoach'];
 
         $coaches = DB::table('coaches')
         ->select(DB::raw('coaches.id,CONCAT(users.name," ", users.lastname) AS full_name,users.phone,users.email,users.gender,coaches.state,coaches.phrase'))

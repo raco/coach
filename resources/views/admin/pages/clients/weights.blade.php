@@ -55,6 +55,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">Evolución de Peso</h3>
+                            @empty($client->weight_image)
+                                <h2>No dispone de datos de peso.</h2>
+                            @else
+                                <img src="{{$client->weight_image}}" style="max-width: 100%">
+                            @endempty
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

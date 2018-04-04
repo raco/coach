@@ -110,7 +110,8 @@ class ClientController extends Controller
 	public function weights($id)
 	{
 		$weights = Weight::where('client_id', $id)->get();
-  		return view('admin.pages.clients.weights', compact('weights')) ;
+		$client = User::find($id)->client;
+  		return view('admin.pages.clients.weights', compact('weights', 'client')) ;
 	}
 
 	public function medicalData(Client $client)
