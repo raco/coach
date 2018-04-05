@@ -42,6 +42,10 @@ class Coach extends Model
     	return $this->user->gender;
     }
 
+    public static function hasClients($id)
+    {
+        return self::find($id)->client->count() ? true : false;
+    }
 }
 
  

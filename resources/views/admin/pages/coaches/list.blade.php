@@ -82,12 +82,23 @@
                                             @endif
                                         </td>
                                         <td class="client-status">
-                                            <button class="btn btn-danger btn-xs"
-                                            onclick="deleteCoach({{$coach->id}})" 
-                                            style="cursor: pointer" 
-                                            data-toggle="modal" 
-                                            data-target="#deletemodal"
-                                            ><i class="fa fa-trash"></i></button>
+                                            @if (\App\Coach::hasClients($coach->id))
+                                                <button class="btn btn-danger btn-xs"
+                                                onclick="deleteCoach({{$coach->id}})" 
+                                                style="cursor: pointer" 
+                                                data-toggle="modal" 
+                                                data-target="#deletemodal"
+                                                ><i class="fa fa-trash"></i></button>
+                                            @else
+                                                <form action="{{ route('coach.delete', $coach->id) }}" method="POST">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    
+                                                    <button type="submit" class="btn btn-danger btn-xs">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                             
                                         </td>
                                     </tr>
@@ -116,7 +127,7 @@
 <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content text-center" style="padding: 30px">
-        <h2 class="text-center">¿Está seguro de eliminar a este coach?</h2>
+        <h2 class="text-center">El coach a eliminar tiene clientes asignados. ¿Aún asi quiere eliminarlo?</h2>
         <form action="/admin/coaches/delete/" method="POST">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
