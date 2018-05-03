@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -17,7 +16,7 @@ class AuthController extends Controller
 
         try {
             // attempt to verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
@@ -27,7 +26,7 @@ class AuthController extends Controller
 
         $user = JWTAuth::setToken($token)->authenticate();
         $response = [
-        	'message' => 'Usuario autenticado exitosamente.',
+            'message' => 'Usuario autenticado exitosamente.',
             'data' => ['user' => $user],
             'token' => $token
         ];
@@ -36,11 +35,11 @@ class AuthController extends Controller
 
     public function logout()
     {
-    	$token = JWTAuth::getToken();
-    	JWTAuth::invalidate($token);
+        $token = JWTAuth::getToken();
+        JWTAuth::invalidate($token);
 
-    	return response()->json([
-    		'message' => 'El usuario a cerrado sesión.',
+        return response()->json([
+            'message' => 'El usuario a cerrado sesión.',
         ], 200);
     }
 }
