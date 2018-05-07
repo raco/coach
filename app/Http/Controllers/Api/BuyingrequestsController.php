@@ -6,6 +6,7 @@ use App\Buyingrequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class BuyingrequestsController extends Controller
 {
@@ -20,10 +21,10 @@ class BuyingrequestsController extends Controller
     public function send(Request $request)
     {
         $validator = Validator::make(
-            $request->all(), 
+            $request->all(),
             [
                 'product_id' => 'required|integer',
-                'user_id' => 'required|integer', 
+                'user_id' => 'required|integer',
                 'coach_id' => 'required|integer'
             ]
         );
@@ -34,7 +35,6 @@ class BuyingrequestsController extends Controller
                 'data' => ['errors' => $validator->errors()]
             ], 422);
         }
-        
 
         $buyingrequest = Buyingrequest::create($request->all());
 

@@ -28,11 +28,10 @@ class MessagesController extends Controller
         ], 200);
     }
 
-
     public function send(Request $request)
     {
         $validator = Validator::make(
-            $request->all(), 
+            $request->all(),
             [
                 'from_id' => 'required|integer',
                 'from_name' => 'required|string|max:55',
@@ -50,7 +49,6 @@ class MessagesController extends Controller
                 'data' => ['errors' => $validator->errors()]
             ], 422);
         }
-        
 
         $message = Message::create($request->all());
 
@@ -64,7 +62,7 @@ class MessagesController extends Controller
     {
         $message->seen = true;
         $message->save();
-        
+
         return response()->json([
             'message' => 'El receptor ha leído el mensaje.',
             'data' => ['message' => $message]
