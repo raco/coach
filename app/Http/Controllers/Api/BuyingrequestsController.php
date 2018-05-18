@@ -36,6 +36,7 @@ class BuyingrequestsController extends Controller
             ], 422);
         }
 
+        $request['state'] = false;
         $buyingrequest = Buyingrequest::create($request->all());
 
         return response()->json([

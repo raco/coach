@@ -2,17 +2,15 @@
 
 namespace App;
 
-use App\User;
-use App\Coach;
-use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Buyingrequest extends Model
 {
     protected $fillable = [
         'product_id',
-        'user_id', 
-        'coach_id'
+        'user_id',
+        'coach_id',
+        'state'
     ];
 
     public function user()
@@ -24,7 +22,7 @@ class Buyingrequest extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    
+
     public function coach()
     {
         return $this->belongsTo(Coach::class);
