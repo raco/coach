@@ -33,6 +33,7 @@ class MessagesController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
+                'product_id' => 'integer',
                 'from_id' => 'required|integer',
                 'from_name' => 'required|string|max:55',
                 'from_rol' => 'required|string|max:55',

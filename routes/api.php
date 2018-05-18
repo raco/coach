@@ -6,6 +6,7 @@ Route::post('login', 'AuthController@authenticate');
 Route::get('profile', 'ClientController@profile');
 Route::post('profile/update', 'ClientController@updateProfile');
 
+Route::get('product/{product}', 'ProductsController@product');
 Route::get('products', 'ProductsController@list');
 
 Route::get('diets', 'DietController@list');

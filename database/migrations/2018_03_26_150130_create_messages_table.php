@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration
             $table->string('to_id');
             $table->string('to_name');
             $table->string('to_rol');
+            $table->integer('product_id')->nullable();
             $table->boolean('seen')->default(false);
             $table->string('message');
             $table->timestamps();
